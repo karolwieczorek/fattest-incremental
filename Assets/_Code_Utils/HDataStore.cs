@@ -24,9 +24,4 @@ namespace Hypnagogia.Utils {
             return parent;
         }
     }
-
-// #if UNITY_EDITOR
-//     [UnityEditor.CustomEditor(typeof(HDataStore), true)]
-//     public class DataStoreBaseEditor : Sirenix.OdinInspector.Editor.OdinEditor { }
-// #endif
 }

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Hypnagogia.Utils;
+using Sirenix.OdinInspector;
 
 namespace FattestInc {
     public class EconomyDataStore : HDataStore {
-        public Observable<int> CurrentCalories { get; private set; } = new();
-        readonly Dictionary<string, ResourceFactory> resourceFactories = new();
+        [ShowInInspector] public Observable<int> CurrentCalories { get; private set; } = new();
+        [ShowInInspector] readonly Dictionary<string, ResourceFactory> resourceFactories = new();
 
         public IReadOnlyDictionary<string, ResourceFactory> ResourceFactories => resourceFactories;
 
