@@ -99,5 +99,7 @@ crashlytics-build.properties
 
 /[Aa]ssets/[Bb]uildReports*
 
+/[Aa]ssets/Plugins/IgnoredPlugins*
+
 # Unity Visual Scripting
 /[Aa]ssets/Unity.VisualScripting.Generated*

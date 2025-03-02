@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/scn_Bootstrapper.unity
+    guid: a5ad9cc9c83db8f43b457cb18227799b
+  - enabled: 1
     path: Assets/Scenes/scn_Gameplay.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects: {}
