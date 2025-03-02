@@ -17,6 +17,13 @@
       },
       "hash": "c94f1c9902e06c45975982cc3ac448e9330cc96d"
     },
+    "com.marijnzwemmer.unity-toolbar-extender": {
+      "version": "1.4.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.svermeulen.extenject": {
       "version": "https://github.com/karolwieczorek/Extenject.git?path=UnityProject/Assets/Plugins/Zenject/Source",
       "depth": 0,
