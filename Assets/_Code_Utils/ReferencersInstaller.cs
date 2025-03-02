@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Hypnagogia.Utils {
     public class ReferencersInstaller : ScriptableObjectInstaller {
-        const string ReferencersPath = "_Game/_Data/Referencers";
+        const string ReferencersPath = "_Data/Referencers";
 
         [AssetList(Path = ReferencersPath, AutoPopulate = true)]
         [SerializeField] List<HReferencer> referencers;

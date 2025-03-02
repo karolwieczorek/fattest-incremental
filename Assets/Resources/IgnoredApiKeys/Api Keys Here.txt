@@ -1,0 +1,2 @@
+Besides this file content of this directory is ignored in gitignore. 
+Private Api keys should not be pushed on repository, put them here.
