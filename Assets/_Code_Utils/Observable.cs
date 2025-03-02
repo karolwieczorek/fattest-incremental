@@ -1,9 +1,10 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 
 namespace Hypnagogia.Utils {
     public class Observable<T> : IReadOnlyObservable<T> {
-        T value;
-        bool isValueType;
+        [ShowInInspector] T value;
+        [ShowInInspector] bool isValueType;
 
         public event Action<T> ChangedValue;
         public event Action Changed;

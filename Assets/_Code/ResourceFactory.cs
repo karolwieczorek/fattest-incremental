@@ -1,8 +1,13 @@
-﻿namespace FattestInc {
+﻿using Sirenix.OdinInspector;
+
+namespace FattestInc {
+    [System.Serializable]
     public class ResourceFactory {
-        int level;
-        float time;
-        float duration = 1f;
+        [ShowInInspector] int level;
+        [ShowInInspector] float time;
+        [ShowInInspector] float duration = 1f;
+
+        [ShowInInspector] public float Progress => duration > 0 ? time / duration : 0f;
 
         public int Level => level;
 
@@ -15,13 +20,19 @@
         }
 
         public void Tick(float deltaTime, out int value) {
+            if (level <= 0) {
+                value = 0;
+                return;
+            }
+            
             time += deltaTime;
-            if (time >= duration) {
+            if (Progress >= 1f) {
                 time = 0;
                 value = level;
             }
-
-            value = 0;
+            else {
+                value = 0;
+            }
         }
     }
 }
