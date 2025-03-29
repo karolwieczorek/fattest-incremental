@@ -20,73 +20,73 @@ MonoBehaviour:
   levelsList:
   - level: 1
     cost: 5
-    value: 3
+    value: 1
     time: 1
   - level: 2
     cost: 7
-    value: 4
+    value: 2
     time: 1
   - level: 3
     cost: 11
-    value: 5
+    value: 4
     time: 1
   - level: 4
     cost: 20
-    value: 6
+    value: 8
     time: 1
   - level: 5
     cost: 41
-    value: 7
+    value: 16
     time: 1
   - level: 6
     cost: 95
-    value: 8
+    value: 24
     time: 1
   - level: 7
     cost: 253
-    value: 9
+    value: 32
     time: 1
   - level: 8
     cost: 774
-    value: 10
+    value: 40
     time: 1
   - level: 9
     cost: 2723
-    value: 11
+    value: 48
     time: 1
   - level: 10
     cost: 11017
-    value: 12
+    value: 56
     time: 1
   - level: 11
     cost: 51256
-    value: 13
+    value: 64
     time: 1
   - level: 12
     cost: 274233
-    value: 14
+    value: 72
     time: 1
   - level: 13
     cost: 1687298
-    value: 15
+    value: 80
     time: 1
   - level: 14
     cost: 11938825
-    value: 16
+    value: 88
     time: 1
   - level: 15
     cost: 97146955
-    value: 17
+    value: 96
     time: 1
   - level: 16
     cost: 909064374
-    value: 18
+    value: 104
     time: 1
   - level: 17
     cost: 9782681726
-    value: 19
+    value: 112
     time: 1
   - level: 18
     cost: 121065123836
-    value: 20
+    value: 120
     time: 1
