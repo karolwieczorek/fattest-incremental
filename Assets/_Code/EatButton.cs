@@ -1,9 +1,8 @@
-﻿using FattestInc;
-using Hypnagogia.Utils;
+﻿using Hypnagogia.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MiniRealEstate.Buildings {
+namespace FattestInc {
     public class EatButton : MonoBehaviour {
         [SerializeField] Button button;
         [HInject] EconomyDataStore economyDataStore;

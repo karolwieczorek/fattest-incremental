@@ -8,6 +8,8 @@ namespace FattestInc {
         const string DataPath = "_Data/Factories";
 
         [AssetList(Path = DataPath, AutoPopulate = false)]
-        [SerializeField] List<FactoryData> factories;
+        [SerializeField] List<FactoryLevelsData> factories;
+
+        public IReadOnlyList<FactoryLevelsData> Factories => factories;
     }
 }

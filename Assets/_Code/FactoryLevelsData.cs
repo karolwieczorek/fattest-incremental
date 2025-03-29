@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace FattestInc {
     public class FactoryLevelsData : GoogleSpreadsheetScriptableObject
     {
         [SerializeField] string factoryId;
+        [SerializeField] Sprite icon;
 
         [TableList]
         [SerializeField] List<LevelData> levelsList = new();
@@ -14,6 +16,8 @@ namespace FattestInc {
         public string FactoryId => factoryId;
 
         public IReadOnlyList<LevelData> LevelsListReadOnly => levelsList;
+
+        public Sprite Icon => icon;
 
         protected override void ProcessData(GoogleSheetJson data)
         {
@@ -54,7 +58,7 @@ namespace FattestInc {
 
             value = defaultValue;
         }
-        
+
         void ParseIndexInt(List<string> elements, int index, out int value, int defaultValue = 0) {
             if (elements.Count >= index + 1 && int.TryParse(elements[index], out var parsedValue)) {
                 value = parsedValue;
@@ -63,7 +67,7 @@ namespace FattestInc {
 
             value = defaultValue;
         }
-        
+
         void ParseIndexFloat(List<string> elements, int index, out float value, float defaultValue = 0) {
             if (elements.Count >= index + 1 && float.TryParse(elements[index], out var parsedValue)) {
                 value = parsedValue;
@@ -79,6 +83,21 @@ namespace FattestInc {
             [TableColumnWidth(100)] public int cost;
             [TableColumnWidth(100)] public int value;
             [TableColumnWidth(100)] public int time;
+        }
+
+        public int GetCostForNextLevel(int factoryLevel) {
+            var nextLevel = factoryLevel + 1;
+            var levelData = levelsList.FirstOrDefault(x => x.level == nextLevel);
+            if (levelData == null)
+                return -1;
+            return levelData.cost;
+        }
+
+        public int GetValueForLevel(int factoryLevel) {
+            var levelData = levelsList.FirstOrDefault(x => x.level == factoryLevel);
+            if (levelData == null)
+                return -1;
+            return levelData.value;
         }
     }
 }

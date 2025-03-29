@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4025792}
+  - component: {fileID: 4025793}
   m_Layer: 5
   m_Name: Factories
   m_TagString: Untagged
@@ -159,6 +160,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 165}
   m_SizeDelta: {x: 900, y: 600}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &4025793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbc760b53044f0791921ba8c2313356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factoryViewPrefab: {fileID: 5484057484731544591, guid: eefc2226b7466ad45a0dc57226342084, type: 3}
+  content: {fileID: 661254977}
 --- !u!1 &118003910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,8 +2434,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1651071822}
   progressBar: {fileID: 790460718}
-  factoryId: burger
-  amount: 1
+  amountLabel: {fileID: 0}
+  valueLabel: {fileID: 0}
+  costLabel: {fileID: 0}
 --- !u!114 &1651071822
 MonoBehaviour:
   m_ObjectHideFlags: 0

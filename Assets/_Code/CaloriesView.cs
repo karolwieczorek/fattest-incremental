@@ -1,9 +1,8 @@
-﻿using FattestInc;
-using Hypnagogia.Utils;
+﻿using Hypnagogia.Utils;
 using TMPro;
 using UnityEngine;
 
-namespace MiniRealEstate.Buildings {
+namespace FattestInc {
     public class CaloriesView : MonoBehaviour {
         [SerializeField] TMP_Text label;
         [HInject] EconomyDataStore economyDataStore;

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba42c31ca0b4b98a803a83a18c36569, type: 3}
   m_Name: _ReferencersInstaller
   m_EditorClassIdentifier: 
-  referencers: []
+  referencers:
+  - {fileID: 11400000, guid: a9858250b2d0ca1459c718ae36cd8962, type: 2}
+  - {fileID: 11400000, guid: 095e7f25ad5063b47a73670f8ebd0696, type: 2}
