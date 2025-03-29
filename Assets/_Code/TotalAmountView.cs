@@ -8,14 +8,14 @@ namespace FattestInc {
         [HInject] EconomyDataStore economyDataStore;
 
         void OnEnable() {
-            economyDataStore.CurrentTotalAmount.Bind(ShowCalories);
+            economyDataStore.CurrentTotalAmount.Bind(ShowTotalAmount);
         }
 
         void OnDisable() {
-            economyDataStore.CurrentTotalAmount.Unbind(ShowCalories);
+            economyDataStore.CurrentTotalAmount.Unbind(ShowTotalAmount);
         }
 
-        void ShowCalories(int value) {
+        void ShowTotalAmount(int value) {
             label.text = $"{value}";
         }
     }

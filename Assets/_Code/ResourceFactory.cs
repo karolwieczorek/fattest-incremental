@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace FattestInc {
     [System.Serializable]
@@ -33,6 +34,14 @@ namespace FattestInc {
             else {
                 value = 0;
             }
+        }
+
+        public int GetCurrentValuePerSecond() {
+            if (level <= 0) {
+                return 0;
+            }
+            Debug.Log($"Level: {level}, Duration: {duration}");
+            return (int)(level / duration);
         }
     }
 }
