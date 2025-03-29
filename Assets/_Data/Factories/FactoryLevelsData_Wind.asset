@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb3aeff3b3b4802a675585473a20c06, type: 3}
+  m_Name: FactoryLevelsData_Wind
+  m_EditorClassIdentifier: 
+  spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
+  tabName: burger
+  factoryId: SolarPanel
+  icon: {fileID: 0}
+  levelsList:
+  - level: 1
+    cost: 5
+    value: 3
+    time: 2
+  - level: 2
+    cost: 50
+    value: 4
+    time: 2
+  - level: 3
+    cost: 150
+    value: 5
+    time: 2
+  - level: 4
+    cost: 200
+    value: 6
+    time: 2
