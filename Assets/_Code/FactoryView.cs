@@ -25,11 +25,21 @@ namespace FattestInc {
         }
 
         void BuyUpgrade() {
-            var economy = economyDataStore == null ? "null" : economyDataStore.name;
-            var factory = factoryLevelsData == null ? "null" : factoryLevelsData.name;
-            Debug.Log($"{economy}, {factory}");
-            economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 1);
-            Refresh();
+            if (economyDataStore == null || factoryLevelsData == null) {
+                Debug.LogError("Missing economyDataStore or factoryLevelsData");
+                var economy = economyDataStore == null ? "null" : economyDataStore.name;
+                var factoryData = factoryLevelsData == null ? "null" : factoryLevelsData.name;
+                Debug.Log($"{economy}, {factoryData}");
+                return;
+            }
+
+            var cost = factoryLevelsData.GetCostForNextLevel(factory.Level);
+            if (economyDataStore.TryBuy(cost)) {
+                economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 1);
+                Refresh();
+            } else {
+                Debug.Log($"Not enough money to buy upgrade: current: {economyDataStore.CurrentTotalAmount.Value}, cost: {cost}");
+            }
         }
 
         void Update() {

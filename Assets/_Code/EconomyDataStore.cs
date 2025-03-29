@@ -31,5 +31,17 @@ namespace FattestInc {
             FactoryUpgradedEvent?.Invoke();
             return factory;
         }
+
+        public bool HasEnoughMoney(int cost) {
+            return CurrentTotalAmount.Value >= cost;
+        }
+
+        public bool TryBuy(int cost) {
+            if (HasEnoughMoney(cost)) {
+                CurrentTotalAmount.Value -= cost;
+                return true;
+            }
+            return false;
+        }
     }
 }
