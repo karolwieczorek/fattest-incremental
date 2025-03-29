@@ -47,7 +47,7 @@ namespace FattestInc {
         }
 
         void Refresh() {
-            amountLabel.text = $"Amount: {factory.Level}";
+            amountLabel.text = $"{factory.Level}";
             valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level).ToString();
             var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
             costLabel.text = $"Cost: {costAmount}";
