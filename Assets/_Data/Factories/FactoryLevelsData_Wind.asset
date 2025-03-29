@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: FactoryLevelsData_Wind
   m_EditorClassIdentifier: 
   spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
-  tabName: burger
-  factoryId: SolarPanel
-  icon: {fileID: 0}
+  tabName: wind
+  factoryId: Wind
+  factoryName: Wind Generator
+  icon: {fileID: 21300000, guid: 966e3fac5a07f89418fb643cd87ea0fd, type: 3}
   levelsList:
   - level: 1
     cost: 5

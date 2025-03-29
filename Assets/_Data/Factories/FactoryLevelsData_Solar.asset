@@ -13,23 +13,72 @@ MonoBehaviour:
   m_Name: FactoryLevelsData_Solar
   m_EditorClassIdentifier: 
   spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
-  tabName: burger
+  tabName: solar
   factoryId: SolarPanel
-  icon: {fileID: 0}
+  factoryName: Solar Panel
+  icon: {fileID: 21300000, guid: 4ec605792cd3c3c45b31c0ce3b6b38de, type: 3}
   levelsList:
   - level: 1
     cost: 5
     value: 3
-    time: 2
+    time: 1
   - level: 2
-    cost: 50
+    cost: 7
     value: 4
-    time: 2
+    time: 1
   - level: 3
-    cost: 150
+    cost: 11
     value: 5
-    time: 2
+    time: 1
   - level: 4
-    cost: 200
+    cost: 20
     value: 6
-    time: 2
+    time: 1
+  - level: 5
+    cost: 41
+    value: 7
+    time: 1
+  - level: 6
+    cost: 95
+    value: 8
+    time: 1
+  - level: 7
+    cost: 253
+    value: 9
+    time: 1
+  - level: 8
+    cost: 774
+    value: 10
+    time: 1
+  - level: 9
+    cost: 2723
+    value: 11
+    time: 1
+  - level: 10
+    cost: 11017
+    value: 12
+    time: 1
+  - level: 11
+    cost: 51256
+    value: 13
+    time: 1
+  - level: 12
+    cost: 274233
+    value: 14
+    time: 1
+  - level: 13
+    cost: 1687298
+    value: 15
+    time: 1
+  - level: 14
+    cost: 11938825
+    value: 16
+    time: 1
+  - level: 15
+    cost: 97146955
+    value: 17
+    time: 1
+  - level: 16
+    cost: 909064374
+    value: 18
+    time: 1

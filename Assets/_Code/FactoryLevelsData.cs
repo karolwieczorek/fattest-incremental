@@ -8,6 +8,7 @@ namespace FattestInc {
     public class FactoryLevelsData : GoogleSpreadsheetScriptableObject
     {
         [SerializeField] string factoryId;
+        [SerializeField] string factoryName;
         [SerializeField] Sprite icon;
 
         [TableList]
@@ -17,7 +18,10 @@ namespace FattestInc {
 
         public IReadOnlyList<LevelData> LevelsListReadOnly => levelsList;
 
+        [ShowInInspector]
+        [PreviewField(128)]
         public Sprite Icon => icon;
+        public string FactoryName => factoryName;
 
         protected override void ProcessData(GoogleSheetJson data)
         {

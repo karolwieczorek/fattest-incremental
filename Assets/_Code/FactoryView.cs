@@ -5,7 +5,9 @@ using UnityEngine.UI;
 namespace FattestInc {
     public class FactoryView : MonoBehaviour {
         [SerializeField] Button button;
+        [SerializeField] Image icon;
         [SerializeField] Image progressBar;
+        [SerializeField] TMP_Text nameLabel;
         [SerializeField] TMP_Text amountLabel;
         [SerializeField] TMP_Text valueLabel;
         [SerializeField] TMP_Text costLabel;
@@ -50,6 +52,8 @@ namespace FattestInc {
         }
 
         public void Init(FactoryLevelsData factoryLevelsData, EconomyDataStore economyDataStore) {
+            icon.sprite = factoryLevelsData.Icon;
+            nameLabel.text = factoryLevelsData.FactoryName;
             this.economyDataStore = economyDataStore;
             this.factory = economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 0);
             this.factoryLevelsData = factoryLevelsData;
