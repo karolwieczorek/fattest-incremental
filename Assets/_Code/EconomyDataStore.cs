@@ -20,7 +20,6 @@ namespace FattestInc {
                 resourceFactories.Add(factoryId, factory);
             }
             
-            Debug.Log("Upgraded");
             FactoryUpgradedEvent?.Invoke();
             return factory;
         }

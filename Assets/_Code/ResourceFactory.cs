@@ -36,12 +36,12 @@ namespace FattestInc {
             }
         }
 
-        public int GetCurrentValuePerSecond() {
+        public float GetCurrentValuePerSecond() {
             if (level <= 0) {
                 return 0;
             }
             Debug.Log($"Level: {level}, Duration: {duration}");
-            return (int)(level / duration);
+            return (level / duration);
         }
     }
 }

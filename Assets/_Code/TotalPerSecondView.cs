@@ -8,7 +8,6 @@ namespace FattestInc {
         [HInject] EconomyDataStore economyDataStore;
 
         void OnEnable() {
-            Debug.Log("Subscribed");
             economyDataStore.FactoryUpgradedEvent += OnFactoryUpgraded;
         }
 
@@ -17,11 +16,14 @@ namespace FattestInc {
         }
 
         void OnFactoryUpgraded() {
-            var perSecond = 0;
+            var perSecond = 0f;
             foreach (var (_, factory) in economyDataStore.ResourceFactories) {
                 perSecond += factory.GetCurrentValuePerSecond();
             }
-            label.text = $"{perSecond}/sec";
+            // if decimal is bigger than 0 (modulo from number) then just print number else print number with string format F1
+            var decimalAmount = perSecond % 1;
+            var numberToDraw = decimalAmount > 0 ? $"{perSecond:F1}" : $"{perSecond}";
+            label.text = $"{numberToDraw}/sec";
         }
     }
 }
