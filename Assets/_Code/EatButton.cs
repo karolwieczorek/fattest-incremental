@@ -17,7 +17,7 @@ namespace FattestInc {
         }
 
         void Eat() {
-            economyDataStore.CurrentCalories.Value += amount;
+            economyDataStore.CurrentTotalAmount.Value += amount;
         }
     }
 }

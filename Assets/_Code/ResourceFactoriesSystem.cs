@@ -10,7 +10,7 @@ namespace FattestInc {
             foreach (var (_, factory) in economyDataStore.ResourceFactories) {
                 factory.Tick(Time.deltaTime, out var produced);
                 if (produced > 0) {
-                    economyDataStore.CurrentCalories.Value += produced;
+                    economyDataStore.CurrentTotalAmount.Value += produced;
                 }
             }
         }

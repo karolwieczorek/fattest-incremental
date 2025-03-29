@@ -3,20 +3,20 @@ using TMPro;
 using UnityEngine;
 
 namespace FattestInc {
-    public class CaloriesView : MonoBehaviour {
+    public class TotalAmountView : MonoBehaviour {
         [SerializeField] TMP_Text label;
         [HInject] EconomyDataStore economyDataStore;
 
         void OnEnable() {
-            economyDataStore.CurrentCalories.Bind(ShowCalories);
+            economyDataStore.CurrentTotalAmount.Bind(ShowCalories);
         }
 
         void OnDisable() {
-            economyDataStore.CurrentCalories.Unbind(ShowCalories);
+            economyDataStore.CurrentTotalAmount.Unbind(ShowCalories);
         }
 
         void ShowCalories(int value) {
-            label.text = $"{value} kcal";
+            label.text = $"{value}";
         }
     }
 }
