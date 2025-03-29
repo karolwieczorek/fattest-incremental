@@ -1,10 +1,10 @@
 ﻿using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace FattestInc {
     [System.Serializable]
     public class ResourceFactory {
         [ShowInInspector] int level;
+        [ShowInInspector] int valuePerTick;
         [ShowInInspector] float time;
         [ShowInInspector] float duration = 1f;
 
@@ -12,12 +12,24 @@ namespace FattestInc {
 
         public int Level => level;
 
-        public ResourceFactory(int level) {
-            this.level = level;
+        public ResourceFactory() {
+            this.level = 0;
+            this.valuePerTick = 0;
+            this.time = 0;
+            this.duration = 1f;
         }
 
-        public void Upgrade(int levels) {
-            level = Level + levels;
+        public ResourceFactory(int level, int valuePerTick, float duration) {
+            this.level = level;
+            this.valuePerTick = valuePerTick;
+            this.duration = duration;
+            this.time = 0;
+        }
+        
+        public void Upgrade(int level, int valuePerTick, float duration) {
+            this.level = level;
+            this.valuePerTick = valuePerTick;
+            this.duration = duration;
         }
 
         public void Tick(float deltaTime, out int value) {
@@ -25,11 +37,11 @@ namespace FattestInc {
                 value = 0;
                 return;
             }
-            
+
             time += deltaTime;
             if (Progress >= 1f) {
                 time = 0;
-                value = level;
+                value = valuePerTick;
             }
             else {
                 value = 0;
@@ -52,7 +64,7 @@ namespace FattestInc {
             if (factoryLevel <= 0) {
                 return 0;
             }
-            return (factoryLevel / duration);
+            return valuePerTick / duration;
         }
     }
 }

@@ -99,6 +99,13 @@ namespace FattestInc {
                 return 0;
             return levelData.value;
         }
+        
+        public int GetDurationForLevel(int factoryLevel) {
+            var levelData = levelsList.FirstOrDefault(x => x.level == factoryLevel);
+            if (levelData == null)
+                return 0;
+            return levelData.time;
+        }
 
         public int GetValueDifferenceForNextLevel(int factoryLevel) {
             return GetValueForLevel(factoryLevel + 1) - GetValueForLevel(factoryLevel);

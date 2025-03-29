@@ -12,14 +12,22 @@ namespace FattestInc {
         public IReadOnlyDictionary<string, ResourceFactory> ResourceFactories => resourceFactories;
         public event Action FactoryUpgradedEvent;
 
-        public ResourceFactory AddOrUpgradeFactory(string factoryId, int i) {
-            if (resourceFactories.TryGetValue(factoryId, out var factory)) {
-                factory.Upgrade(i);
-            } else {
-                factory = new ResourceFactory(i);
+        public ResourceFactory AddOrUpgradeFactory(FactoryLevelsData factoryLevelsData, int i) {
+            var factoryId = factoryLevelsData.FactoryId;
+            
+            if (!resourceFactories.TryGetValue(factoryId, out var factory)) {
+                factory = new ResourceFactory();
                 resourceFactories.Add(factoryId, factory);
             }
-            
+            // else {
+            //     factory.Upgrade(i);
+            // }
+            var nextLevel = factory.Level + i;
+            var value = factoryLevelsData.GetValueForLevel(nextLevel);
+            // var cost = factoryLevelsData.GetCostForNextLevel(factory.Level);
+            var duration = factoryLevelsData.GetDurationForLevel(nextLevel);
+            factory.Upgrade(nextLevel, value, duration);
+
             FactoryUpgradedEvent?.Invoke();
             return factory;
         }

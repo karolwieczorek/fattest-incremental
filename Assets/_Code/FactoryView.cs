@@ -28,7 +28,7 @@ namespace FattestInc {
             var economy = economyDataStore == null ? "null" : economyDataStore.name;
             var factory = factoryLevelsData == null ? "null" : factoryLevelsData.name;
             Debug.Log($"{economy}, {factory}");
-            economyDataStore.AddOrUpgradeFactory(factoryLevelsData.FactoryId, 1);
+            economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 1);
             Refresh();
         }
 
@@ -41,18 +41,19 @@ namespace FattestInc {
 
         public void Init(FactoryLevelsData factoryLevelsData, EconomyDataStore economyDataStore) {
             this.economyDataStore = economyDataStore;
-            this.factory = economyDataStore.AddOrUpgradeFactory(factoryLevelsData.FactoryId, 0);
+            this.factory = economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 0);
             this.factoryLevelsData = factoryLevelsData;
             Refresh();
         }
 
         void Refresh() {
             amountLabel.text = $"{factory.Level}";
+            Debug.Log($"Value for level {factory.Level} = {factoryLevelsData.GetValueForLevel(factory.Level)}");
             valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level).ToString();
             var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
             costLabel.text = $"Cost: {costAmount}";
             var valueForNextLevel = factoryLevelsData.GetValueDifferenceForNextLevel(factory.Level).ToString();
-            nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/sec";
+            nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/tick";
         }
     }
 }

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
   tabName: burger
-  factoryId: burger
+  factoryId: SolarPanel
+  icon: {fileID: 0}
   levelsList:
   - level: 1
     cost: 5
