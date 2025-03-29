@@ -9,6 +9,7 @@ namespace FattestInc {
         [SerializeField] TMP_Text amountLabel;
         [SerializeField] TMP_Text valueLabel;
         [SerializeField] TMP_Text costLabel;
+        [SerializeField] TMP_Text nextLevelValueDifferenceLabel;
 
         ResourceFactory factory;
         FactoryLevelsData factoryLevelsData;
@@ -48,7 +49,10 @@ namespace FattestInc {
         void Refresh() {
             amountLabel.text = $"Amount: {factory.Level}";
             valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level).ToString();
-            costLabel.text = factoryLevelsData.GetCostForNextLevel(factory.Level).ToString();
+            var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
+            costLabel.text = $"Cost: {costAmount}";
+            var valueForNextLevel = factoryLevelsData.GetValueDifferenceForNextLevel(factory.Level).ToString();
+            nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/sec";
         }
     }
 }

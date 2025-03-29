@@ -36,12 +36,23 @@ namespace FattestInc {
             }
         }
 
+        public float NextUpgradePerSecondAmount() {
+            return GetValuePerSecond(level + 1);
+        }
+
+        public float GetNextLevelDifferencePerSecond() {
+            return NextUpgradePerSecondAmount() - GetCurrentValuePerSecond();
+        }
+
         public float GetCurrentValuePerSecond() {
-            if (level <= 0) {
+            return GetValuePerSecond(level);
+        }
+        
+        public float GetValuePerSecond(int factoryLevel) {
+            if (factoryLevel <= 0) {
                 return 0;
             }
-            Debug.Log($"Level: {level}, Duration: {duration}");
-            return (level / duration);
+            return (factoryLevel / duration);
         }
     }
 }

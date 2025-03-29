@@ -96,8 +96,12 @@ namespace FattestInc {
         public int GetValueForLevel(int factoryLevel) {
             var levelData = levelsList.FirstOrDefault(x => x.level == factoryLevel);
             if (levelData == null)
-                return -1;
+                return 0;
             return levelData.value;
+        }
+
+        public int GetValueDifferenceForNextLevel(int factoryLevel) {
+            return GetValueForLevel(factoryLevel + 1) - GetValueForLevel(factoryLevel);
         }
     }
 }

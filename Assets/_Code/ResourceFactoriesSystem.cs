@@ -6,6 +6,11 @@ namespace FattestInc {
     public class ResourceFactoriesSystem : HSystem, ITickable {
         [HInject] EconomyDataStore economyDataStore;
 
+        protected override void SystemStart() {
+            base.SystemStart();
+            economyDataStore.CurrentTotalAmount.Value = 5;
+        }
+
         public void Tick() {
             foreach (var (_, factory) in economyDataStore.ResourceFactories) {
                 factory.Tick(Time.deltaTime, out var produced);
