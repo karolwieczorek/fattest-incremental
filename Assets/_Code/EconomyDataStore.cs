@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace FattestInc {
     public class EconomyDataStore : HDataStore {
-        [ShowInInspector] public Observable<int> CurrentTotalAmount { get; private set; } = new();
+        [ShowInInspector] public Observable<ulong> CurrentTotalAmount { get; private set; } = new();
         [ShowInInspector] readonly Dictionary<string, ResourceFactory> resourceFactories = new();
 
         public IReadOnlyDictionary<string, ResourceFactory> ResourceFactories => resourceFactories;
@@ -32,11 +32,11 @@ namespace FattestInc {
             return factory;
         }
 
-        public bool HasEnoughMoney(int cost) {
+        public bool HasEnoughMoney(ulong cost) {
             return CurrentTotalAmount.Value >= cost;
         }
 
-        public bool TryBuy(int cost) {
+        public bool TryBuy(ulong cost) {
             if (HasEnoughMoney(cost)) {
                 CurrentTotalAmount.Value -= cost;
                 return true;

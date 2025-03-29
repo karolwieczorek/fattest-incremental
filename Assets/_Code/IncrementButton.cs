@@ -17,7 +17,7 @@ namespace FattestInc {
         }
 
         void Increment() {
-            economyDataStore.CurrentTotalAmount.Value += amount;
+            economyDataStore.CurrentTotalAmount.Value += (ulong)amount;
         }
     }
 }

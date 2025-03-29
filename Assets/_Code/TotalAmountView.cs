@@ -15,7 +15,7 @@ namespace FattestInc {
             economyDataStore.CurrentTotalAmount.Unbind(ShowTotalAmount);
         }
 
-        void ShowTotalAmount(int value) {
+        void ShowTotalAmount(ulong value) {
             label.text = $"{value}";
         }
     }

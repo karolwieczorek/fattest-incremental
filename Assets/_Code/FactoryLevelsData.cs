@@ -37,7 +37,7 @@ namespace FattestInc {
                     continue;
 
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var level, 0);
-                ParseIndexInt(sheetRow.elements, columnIndex++, out var cost, 0);
+                ParseIndexULong(sheetRow.elements, columnIndex++, out var cost, 0);
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var value, 0);
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var time, 1);
 
@@ -71,6 +71,15 @@ namespace FattestInc {
 
             value = defaultValue;
         }
+        
+        void ParseIndexULong(List<string> elements, int index, out ulong value, ulong defaultValue = 0) {
+            if (elements.Count >= index + 1 && ulong.TryParse(elements[index], out var parsedValue)) {
+                value = parsedValue;
+                return;
+            }
+
+            value = defaultValue;
+        }
 
         void ParseIndexFloat(List<string> elements, int index, out float value, float defaultValue = 0) {
             if (elements.Count >= index + 1 && float.TryParse(elements[index], out var parsedValue)) {
@@ -84,16 +93,16 @@ namespace FattestInc {
         [System.Serializable]
         public class LevelData {
             [TableColumnWidth(100)] public int level;
-            [TableColumnWidth(100)] public int cost;
+            [TableColumnWidth(100)] public ulong cost;
             [TableColumnWidth(100)] public int value;
             [TableColumnWidth(100)] public int time;
         }
 
-        public int GetCostForNextLevel(int factoryLevel) {
+        public ulong GetCostForNextLevel(int factoryLevel) {
             var nextLevel = factoryLevel + 1;
             var levelData = levelsList.FirstOrDefault(x => x.level == nextLevel);
             if (levelData == null)
-                return -1;
+                return 0;
             return levelData.cost;
         }
 
