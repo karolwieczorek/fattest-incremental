@@ -14,7 +14,7 @@ namespace FattestInc {
 
         void Start() {
             content.DestroyChildren();
-            container.InstantiatePrefab(clickerViewPrefab, content);
+            // container.InstantiatePrefab(clickerViewPrefab, content);
             foreach (var factoryLevelsData in factoriesReferencer.Factories) {
                 var factoryView = Instantiate(factoryViewPrefab, content);
                 factoryView.Init(factoryLevelsData, economyDataStore);

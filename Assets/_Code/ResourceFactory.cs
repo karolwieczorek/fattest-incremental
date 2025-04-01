@@ -3,27 +3,30 @@
 namespace FattestInc {
     [System.Serializable]
     public class ResourceFactory {
+        readonly FactoryType factoryType;
         [ShowInInspector] int level;
         [ShowInInspector] int valuePerTick;
         [ShowInInspector] float time;
         [ShowInInspector] float duration = 1f;
 
-        [ShowInInspector] public float Progress => duration > 0 ? time / duration : 0f;
+        [ShowInInspector] public float Progress {
+            get {
+                if (Type == FactoryType.Clicker)
+                    return 1f;
+                return duration > 0 ? time / duration : 0f;
+            }
+        }
 
         public int Level => level;
 
-        public ResourceFactory() {
+        public FactoryType Type => factoryType;
+
+        public ResourceFactory(FactoryType factoryType) {
+            this.factoryType = factoryType;
             this.level = 0;
             this.valuePerTick = 0;
             this.time = 0;
             this.duration = 1f;
-        }
-
-        public ResourceFactory(int level, int valuePerTick, float duration) {
-            this.level = level;
-            this.valuePerTick = valuePerTick;
-            this.duration = duration;
-            this.time = 0;
         }
         
         public void Upgrade(int level, int valuePerTick, float duration) {
@@ -33,7 +36,7 @@ namespace FattestInc {
         }
 
         public void Tick(float deltaTime, out int value) {
-            if (level <= 0) {
+            if (level <= 0 || Type == FactoryType.Clicker) {
                 value = 0;
                 return;
             }

@@ -13,16 +13,23 @@ namespace FattestInc {
         [SerializeField] TMP_Text costLabel;
         [SerializeField] TMP_Text nextLevelValueDifferenceLabel;
 
+        [SerializeField] GameObject idleContainer;
+        [SerializeField] GameObject clickerContainer;
+        [SerializeField] TMP_Text clickerButtonLabel;
+        [SerializeField] Button clickerButton;
+
         ResourceFactory factory;
         FactoryLevelsData factoryLevelsData;
         EconomyDataStore economyDataStore;
 
         void OnEnable() {
             button.onClick.AddListener(BuyUpgrade);
+            clickerButton.onClick.AddListener(ClickerButtonClick);
         }
 
         void OnDisable() {
             button.onClick.RemoveListener(BuyUpgrade);
+            clickerButton.onClick.RemoveListener(ClickerButtonClick);
             factory = null;
         }
 
@@ -44,6 +51,10 @@ namespace FattestInc {
             }
         }
 
+        void ClickerButtonClick() {
+            economyDataStore.CurrentTotalAmount.Value += (ulong)factoryLevelsData.GetValueForLevel(factory.Level);
+        }
+
         void Update() {
             if (factory == null)
                 return;
@@ -57,6 +68,12 @@ namespace FattestInc {
             this.economyDataStore = economyDataStore;
             this.factory = economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 0);
             this.factoryLevelsData = factoryLevelsData;
+            // factory type idle 
+            idleContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Idle);
+            clickerContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Clicker);
+            // idle state
+            // factory type clicker 
+            // clicker state
             Refresh();
         }
 
@@ -67,7 +84,9 @@ namespace FattestInc {
             var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
             costLabel.text = $"Cost: {costAmount}";
             var valueForNextLevel = factoryLevelsData.GetValueDifferenceForNextLevel(factory.Level).ToString();
-            nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/tick";
+            var addMode = factoryLevelsData.FactoryType == FactoryType.Idle ? "tick" : "click";
+            nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/{addMode}";
+            clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level)}";
         }
     }
 }

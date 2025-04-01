@@ -10,6 +10,7 @@ namespace FattestInc {
         [SerializeField] string factoryId;
         [SerializeField] string factoryName;
         [SerializeField] Sprite icon;
+        [SerializeField] FactoryType factoryType = FactoryType.Idle;
 
         [TableList]
         [SerializeField] List<LevelData> levelsList = new();
@@ -22,6 +23,7 @@ namespace FattestInc {
         [PreviewField(128)]
         public Sprite Icon => icon;
         public string FactoryName => factoryName;
+        public FactoryType FactoryType => factoryType;
 
         protected override void ProcessData(GoogleSheetJson data)
         {

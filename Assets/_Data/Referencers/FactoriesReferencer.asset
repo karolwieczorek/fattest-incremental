@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FactoriesReferencer
   m_EditorClassIdentifier: 
   factories:
+  - {fileID: 11400000, guid: 370abfec48ca2a1499d9c48dfe4a8432, type: 2}
   - {fileID: 11400000, guid: f05963d4676837d4794f0d8da2391b74, type: 2}
   - {fileID: 11400000, guid: 5071daba78b94e24f95c7ff9589de044, type: 2}
   - {fileID: 11400000, guid: 5a62c625d1760ac47a7d47742c7737c6, type: 2}

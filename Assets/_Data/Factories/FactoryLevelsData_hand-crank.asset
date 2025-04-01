@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb3aeff3b3b4802a675585473a20c06, type: 3}
+  m_Name: FactoryLevelsData_hand-crank
+  m_EditorClassIdentifier: 
+  spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
+  tabName: hand-crank
+  factoryId: hand-crank
+  factoryName: Hand Crank
+  icon: {fileID: 21300000, guid: 9ba0acce766791449a015197e983ac69, type: 3}
+  factoryType: 1
+  levelsList:
+  - level: 1
+    cost: 0
+    value: 1
+    time: 1
+  - level: 2
+    cost: 50
+    value: 4
+    time: 1
+  - level: 3
+    cost: 150
+    value: 5
+    time: 1
+  - level: 4
+    cost: 200
+    value: 6
+    time: 1

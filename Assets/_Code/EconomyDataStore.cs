@@ -16,7 +16,7 @@ namespace FattestInc {
             var factoryId = factoryLevelsData.FactoryId;
             
             if (!resourceFactories.TryGetValue(factoryId, out var factory)) {
-                factory = new ResourceFactory();
+                factory = new ResourceFactory(factoryLevelsData.FactoryType);
                 resourceFactories.Add(factoryId, factory);
             }
             // else {
