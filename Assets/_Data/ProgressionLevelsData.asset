@@ -18,7 +18,7 @@ MonoBehaviour:
   - index: 1
     name: Phone
     value: 10
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: e3f23ad9a5cac2342b75381c97dca9de, type: 3}
   - index: 2
     name: Fridge
     value: 100
@@ -48,6 +48,8 @@ MonoBehaviour:
     value: 10000000000
     sprite: {fileID: 21300000, guid: 51ab11b6b30bc3a459bb81705243183e, type: 3}
   icons:
+  - name: Phone
+    icon: {fileID: 21300000, guid: e3f23ad9a5cac2342b75381c97dca9de, type: 3}
   - name: Fridge
     icon: {fileID: 21300000, guid: 918f375dd9e4c7048a8e396a845138c8, type: 3}
   - name: Electric Car
