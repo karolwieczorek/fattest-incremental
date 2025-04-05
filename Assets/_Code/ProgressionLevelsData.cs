@@ -11,9 +11,11 @@ namespace FattestInc {
 
         [SerializeField] List<IconNamePair> icons;
 
+        public List<LevelData> LevelsList => levelsList;
+
         protected override void ProcessData(GoogleSheetJson data)
         {
-            levelsList.Clear();
+            LevelsList.Clear();
             foreach (var sheetRow in data.values)
             {
                 if (sheetRow.elements.Count <= 1)
@@ -28,7 +30,7 @@ namespace FattestInc {
                 ParseIndexString(sheetRow.elements, columnIndex++, out var name, "None");
                 ParseIndexULong(sheetRow.elements, columnIndex++, out var value, 0);
 
-                levelsList.Add(new LevelData
+                LevelsList.Add(new LevelData
                 {
                     index = index,
                     name = name,

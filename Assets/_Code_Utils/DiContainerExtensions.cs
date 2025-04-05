@@ -45,5 +45,10 @@ namespace Hypnagogia.Utils {
                 container.BindInterfacesAndSelfTo(hSystem).AsSingle().NonLazy();
             }
         }
+
+        public static T InstantiateTypedPrefab<T>(this DiContainer container, T prefab, Transform parentTransform) where T : MonoBehaviour {
+            var spawnedPrefab = container.InstantiatePrefab(prefab, parentTransform);
+            return spawnedPrefab.GetComponent<T>();
+        }
     }
 }
