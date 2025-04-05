@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0df31d192706cec46a7532ac65c95c3d, type: 3}
-  m_Name: AudioClipData
+  m_Name: MusicData
   m_EditorClassIdentifier: 
   audioClips:
   - {fileID: 8300000, guid: 527d679145cb1de44b890d08ba7560c8, type: 3}
+  - {fileID: 8300000, guid: 92e0391ab9f3e1f4c876c3b58f6cc1fe, type: 3}
   pitchVariation: {x: 1, y: 1.8146979}
-  volumeVariation: {x: 1, y: 1}
+  volumeVariation: {x: 0.462663, y: 0.49822205}

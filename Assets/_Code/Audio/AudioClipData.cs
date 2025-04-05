@@ -29,7 +29,8 @@ namespace FattestInc.Audio {
         }
 
         public void Play(AudioSource audioSource) {
-            audioSource.volume = GetVolume();
+            var volume = GetVolume();
+            audioSource.volume = AudioVolumeConverter.ConvertLinearToLogarithmicVolume(volume);
             audioSource.pitch = GetPitchOffset();
             audioSource.clip = GetAudioClip();
             audioSource.Play();
