@@ -272,6 +272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 6669645077182623377}
   label: {fileID: 4109970042711790404}
+  canvasGroup: {fileID: 6645575469791094226}
+  futureAlpha: 0.02
 --- !u!114 &8010133827306284532
 MonoBehaviour:
   m_ObjectHideFlags: 0

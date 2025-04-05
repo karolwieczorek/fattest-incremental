@@ -79,7 +79,7 @@ namespace FattestInc {
 
         void Refresh() {
             amountLabel.text = $"{factory.Level}";
-            Debug.Log($"Value for level {factory.Level} = {factoryLevelsData.GetValueForLevel(factory.Level)}");
+            // Debug.Log($"Value for level {factory.Level} = {factoryLevelsData.GetValueForLevel(factory.Level)}");
             valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level).ToString();
             var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
             costLabel.text = $"Cost: {costAmount}";

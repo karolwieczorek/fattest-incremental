@@ -5,7 +5,8 @@ namespace FattestInc {
     public class GameplayInstaller : MonoInstaller {
         public override void InstallBindings() {
             Container.BindSystems(
-                typeof(ResourceFactoriesSystem)
+                typeof(ResourceFactoriesSystem),
+                typeof(EconomySystem)
                 );
         }
     }

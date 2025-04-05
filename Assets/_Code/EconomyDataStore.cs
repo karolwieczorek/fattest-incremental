@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace FattestInc {
     public class EconomyDataStore : HDataStore {
         [ShowInInspector] public Observable<ulong> CurrentTotalAmount { get; private set; } = new();
+        [ShowInInspector] public Observable<float> CurrentAmountPerSecond { get; private set; } = new();
         [ShowInInspector] readonly Dictionary<string, ResourceFactory> resourceFactories = new();
 
         public IReadOnlyDictionary<string, ResourceFactory> ResourceFactories => resourceFactories;
