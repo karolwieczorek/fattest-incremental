@@ -37,6 +37,7 @@ namespace FattestInc.Audio {
             Debug.Log($"{audioSource.isPlaying}", audioSource);
         }
 
+#if UNITY_EDITOR
         [Button]
         void Play() {
             if (Application.isEditor)
@@ -53,5 +54,6 @@ namespace FattestInc.Audio {
         void OnInspectorDispose() {
             EditorAudioPlayer.Dispose();
         }
+#endif
     }
 }
