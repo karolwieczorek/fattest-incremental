@@ -8,6 +8,7 @@ namespace FattestInc {
         [HInject] EconomyDataStore economyDataStore;
 
         void OnEnable() {
+            OnAmountPerSecondChanged(economyDataStore.CurrentAmountPerSecond.Value);
             economyDataStore.CurrentAmountPerSecond.ChangedValue += OnAmountPerSecondChanged;
         }
 

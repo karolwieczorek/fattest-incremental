@@ -60,6 +60,8 @@ namespace FattestInc {
         }
 
         public float GetCurrentValuePerSecond() {
+            if (factoryType == FactoryType.Clicker)
+                return 0;
             return GetValuePerSecond(level);
         }
         

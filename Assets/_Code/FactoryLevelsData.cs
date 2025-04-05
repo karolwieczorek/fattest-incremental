@@ -9,6 +9,7 @@ namespace FattestInc {
     {
         [SerializeField] string factoryId;
         [SerializeField] string factoryName;
+        [SerializeField] int startingLevel = 0;
         [SerializeField] Sprite icon;
         [SerializeField] FactoryType factoryType = FactoryType.Idle;
 
@@ -16,6 +17,7 @@ namespace FattestInc {
         [SerializeField] List<LevelData> levelsList = new();
 
         public string FactoryId => factoryId;
+        public int StartingLevel => startingLevel;
 
         public IReadOnlyList<LevelData> LevelsListReadOnly => levelsList;
 
