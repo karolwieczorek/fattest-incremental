@@ -41,7 +41,7 @@ namespace FattestInc.Audio {
             if (Application.isEditor)
                 EditorAudioPlayer.Play(GetAudioClip(), GetVolume(), GetPitchOffset());
         }
-        
+
         [Button]
         void Stop() {
             if (Application.isEditor)

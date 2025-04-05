@@ -18,18 +18,19 @@ namespace FattestInc.Audio {
 
         [ShowInInspector] AudioClip clip;
         [ShowInInspector] float volume;
+        [ShowInInspector] float convertedVolume;
         [ShowInInspector] float pitch;
 
         public void Play(AudioClip clip, float volume, float pitch) {
             this.clip = MyAudioSource.clip = clip;
-            this.volume = MyAudioSource.volume = volume;
+            this.volume = volume;
+            convertedVolume = MyAudioSource.volume = AudioVolumeConverter.ConvertLinearToLogarithmicVolume(volume);
             this.pitch = MyAudioSource.pitch = pitch;
             MyAudioSource.Play();
         }
 
         [ShowInInspector, ReadOnly, LabelText("Clip"), HorizontalGroup("Status")]
-        [InfoBox("No AudioSource available for preview.", InfoMessageType.Warning)]
-        string CurrentClipName => MyAudioSource?.clip?.name ?? "N/A";
+        string CurrentClipName => MyAudioSource.clip?.name ?? "N/A";
 
         static AudioSource CreateInvisibleAudioSource(string name = "InvisibleAudioPlayer") {
             GameObject audioHost = new GameObject(name);
