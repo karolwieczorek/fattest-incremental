@@ -35,6 +35,7 @@ namespace FattestInc {
                 else if (currentView == null) {
                     currentView = view;
                     view.SetCurrent();
+                    view.UpdateAmount(economyDataStore.CurrentAmountPerSecond.Value);
                     Debug.Log($"Current view: {view.name}", view);
                 }
                 else {

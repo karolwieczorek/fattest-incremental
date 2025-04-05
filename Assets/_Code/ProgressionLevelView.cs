@@ -1,17 +1,23 @@
 ﻿using Hypnagogia.Utils;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace FattestInc {
-    public class ProgressionLevelView : MonoBehaviour, IInitializable {
+    public class ProgressionLevelView : MonoBehaviour {
+        [SerializeField] Image currentBackground;
         [SerializeField] Image icon;
         [SerializeField] TMP_Text label;
         [SerializeField] CanvasGroup canvasGroup;
+        [SerializeField] RectTransform rectTransform;
+        [SerializeField] GameObject progressBarContent;
+        [SerializeField] Image progressBarFillImage;
+        [SerializeField] TMP_Text progressBarAmountLabel;
+        
         [SerializeField] float futureAlpha = 0.5f;
-
-        [HInject] EconomyDataStore economyDataStore;
+        [SerializeField] float standardHeight = 110;
+        [SerializeField] float currentHeight = 150;
 
         ProgressionLevelsData.LevelData levelData;
 
@@ -23,24 +29,34 @@ namespace FattestInc {
             label.text = levelData.name;
         }
 
-        public void Initialize() {
-            economyDataStore.CurrentTotalAmount.ChangedValue += OnCurrentAmountChanged;
+        [Button]
+        public void SetCompleted() {
+            canvasGroup.alpha = 1f;
+            currentBackground.enabled = false;
+            rectTransform.SetHeight(standardHeight);
+            progressBarContent.SetActive(false);
         }
 
-        void OnCurrentAmountChanged(ulong value) {
+        [Button]
+        public void SetCurrent() {
+            canvasGroup.alpha = 1f;
+            currentBackground.enabled = true;
+            rectTransform.SetHeight(currentHeight);
+            progressBarContent.SetActive(true);
             
         }
 
-        public void SetCompleted() {
-            canvasGroup.alpha = 1f;
+        public void UpdateAmount(float currentAmount) {
+            progressBarFillImage.fillAmount = currentAmount / Value;
+            progressBarAmountLabel.text = $"{currentAmount} / {Value}";
         }
 
-        public void SetCurrent() {
-            canvasGroup.alpha = 1f;
-        }
-
+        [Button]
         public void SetFuture() {
             canvasGroup.alpha = futureAlpha;
+            currentBackground.enabled = false;
+            rectTransform.SetHeight(standardHeight);
+            progressBarContent.SetActive(false);
         }
     }
 }
