@@ -42,6 +42,11 @@ namespace FattestInc {
                 return;
             }
 
+            if (factoryLevelsData.IsLastLevel(factory.Level)) {
+                Debug.LogError($"Last level - {factory.Level}. Cant upgrade further. {factoryLevelsData.FactoryName}", factoryLevelsData);
+                return;
+            }
+
             var cost = factoryLevelsData.GetCostForNextLevel(factory.Level);
             if (economyDataStore.TryBuy(cost)) {
                 economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 1);

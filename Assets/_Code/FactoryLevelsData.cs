@@ -127,5 +127,9 @@ namespace FattestInc {
         public int GetValueDifferenceForNextLevel(int factoryLevel) {
             return GetValueForLevel(factoryLevel + 1) - GetValueForLevel(factoryLevel);
         }
+
+        public bool IsLastLevel(int factoryLevel) {
+            return levelsList.Max(x => x.level) <= factoryLevel;
+        }
     }
 }
