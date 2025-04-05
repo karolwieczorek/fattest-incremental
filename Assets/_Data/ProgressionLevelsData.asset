@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3947a13f6784e15ac6fdcee1e890d53, type: 3}
+  m_Name: ProgressionLevelsData
+  m_EditorClassIdentifier: 
+  spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
+  tabName: progression
+  levelsList:
+  - index: 1
+    name: Phone
+    value: 10
+    sprite: {fileID: 0}
+  - index: 2
+    name: Fridge
+    value: 100
+    sprite: {fileID: 21300000, guid: 918f375dd9e4c7048a8e396a845138c8, type: 3}
+  - index: 3
+    name: Electric Car
+    value: 500
+    sprite: {fileID: 21300000, guid: ebf1bdac1eeaeab428286325ae9d783e, type: 3}
+  - index: 4
+    name: Home
+    value: 1000
+    sprite: {fileID: 21300000, guid: a30e3c4840425e14f9d42d71d4a0aa26, type: 3}
+  - index: 5
+    name: Street
+    value: 20000
+    sprite: {fileID: 21300000, guid: 641bf743ec49c294182e5c02433f72a0, type: 3}
+  - index: 6
+    name: City
+    value: 1000000
+    sprite: {fileID: 21300000, guid: d2f9777fafb57a746ac3f56220160f76, type: 3}
+  - index: 7
+    name: Country
+    value: 100000000
+    sprite: {fileID: 21300000, guid: 1e64e69f1c3ec8447a06fe6a77877d7e, type: 3}
+  - index: 8
+    name: Globe
+    value: 10000000000
+    sprite: {fileID: 21300000, guid: 51ab11b6b30bc3a459bb81705243183e, type: 3}
+  icons:
+  - name: Fridge
+    icon: {fileID: 21300000, guid: 918f375dd9e4c7048a8e396a845138c8, type: 3}
+  - name: Electric Car
+    icon: {fileID: 21300000, guid: ebf1bdac1eeaeab428286325ae9d783e, type: 3}
+  - name: Home
+    icon: {fileID: 21300000, guid: a30e3c4840425e14f9d42d71d4a0aa26, type: 3}
+  - name: Street
+    icon: {fileID: 21300000, guid: 641bf743ec49c294182e5c02433f72a0, type: 3}
+  - name: City
+    icon: {fileID: 21300000, guid: d2f9777fafb57a746ac3f56220160f76, type: 3}
+  - name: Country
+    icon: {fileID: 21300000, guid: 1e64e69f1c3ec8447a06fe6a77877d7e, type: 3}
+  - name: Globe
+    icon: {fileID: 21300000, guid: 51ab11b6b30bc3a459bb81705243183e, type: 3}
