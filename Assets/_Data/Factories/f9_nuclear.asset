@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bb3aeff3b3b4802a675585473a20c06, type: 3}
-  m_Name: FactoryLevelsData_Nuclear
+  m_Name: f9_nuclear
   m_EditorClassIdentifier: 
   spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
   tabName: nuclear
