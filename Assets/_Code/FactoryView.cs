@@ -18,6 +18,8 @@ namespace FattestInc {
         [SerializeField] TMP_Text clickerButtonLabel;
         [SerializeField] Button clickerButton;
 
+        [SerializeField] FactoryUpgradeButtonView factoryUpgradeButtonView;
+
         ResourceFactory factory;
         FactoryLevelsData factoryLevelsData;
         EconomyDataStore economyDataStore;
@@ -25,11 +27,15 @@ namespace FattestInc {
         void OnEnable() {
             button.onClick.AddListener(BuyUpgrade);
             clickerButton.onClick.AddListener(ClickerButtonClick);
+            if (economyDataStore != null)
+                economyDataStore.CurrentTotalAmount.Changed += Refresh;
         }
 
         void OnDisable() {
             button.onClick.RemoveListener(BuyUpgrade);
             clickerButton.onClick.RemoveListener(ClickerButtonClick);
+            if (economyDataStore != null)
+                economyDataStore.CurrentTotalAmount.Changed -= Refresh;
             factory = null;
         }
 
@@ -76,6 +82,8 @@ namespace FattestInc {
             // factory type idle 
             idleContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Idle);
             clickerContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Clicker);
+            if (economyDataStore != null)
+                economyDataStore.CurrentTotalAmount.Changed += Refresh;
             // idle state
             // factory type clicker 
             // clicker state
@@ -84,14 +92,26 @@ namespace FattestInc {
 
         void Refresh() {
             amountLabel.text = $"{factory.Level}";
-            // Debug.Log($"Value for level {factory.Level} = {factoryLevelsData.GetValueForLevel(factory.Level)}");
             valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level).ToString();
-            var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
-            costLabel.text = $"Cost: {costAmount}";
-            var valueForNextLevel = factoryLevelsData.GetValueDifferenceForNextLevel(factory.Level).ToString();
-            var addMode = factoryLevelsData.FactoryType == FactoryType.Idle ? "tick" : "click";
-            nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/{addMode}";
             clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level)}";
+            
+            // Debug.Log($"Value for level {factory.Level} = {factoryLevelsData.GetValueForLevel(factory.Level)}");
+            if (!factoryLevelsData.HasNextLevel(factory.Level)) {
+                factoryUpgradeButtonView.ApplyMax();
+            }
+            else {
+                var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
+                bool canAffort = economyDataStore.HasEnoughMoney(costAmount);
+                if (canAffort)
+                    factoryUpgradeButtonView.ApplyAvailable();
+                else 
+                    factoryUpgradeButtonView.ApplyUnavailable();
+                
+                costLabel.text = $"Cost: {costAmount}";
+                var valueForNextLevel = factoryLevelsData.GetValueDifferenceForNextLevel(factory.Level).ToString();
+                var addMode = factoryLevelsData.FactoryType == FactoryType.Idle ? "tick" : "click";
+                nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/{addMode}";
+            }
         }
     }
 }

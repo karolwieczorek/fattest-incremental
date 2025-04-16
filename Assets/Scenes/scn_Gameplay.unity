@@ -2792,6 +2792,7 @@ MonoBehaviour:
   clickerContainer: {fileID: 0}
   clickerButtonLabel: {fileID: 0}
   clickerButton: {fileID: 0}
+  factoryUpgradeButtonView: {fileID: 0}
 --- !u!114 &1651071822
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -446,10 +446,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5414455848855262273}
   - component: {fileID: 1859493602999292963}
+  - component: {fileID: 3999711964612734813}
   - component: {fileID: 2286187130611325823}
   - component: {fileID: 5400645198337795072}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Uprgade Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,6 +486,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318156510081581367}
   m_CullTransparentMesh: 1
+--- !u!114 &3999711964612734813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318156510081581367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32b9d329445448090f022228bee9c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonBackgroundImage: {fileID: 2286187130611325823}
+  buttonText: {fileID: 4295259137645762138}
+  costText: {fileID: 4229522374795872570}
+  available:
+    backgroundColor: {r: 0.21176471, g: 0.22745098, b: 0.24313726, a: 1}
+    buttonTextColor: {r: 0.9607843, g: 0.9019608, b: 0.8392157, a: 1}
+    costTextColor: {r: 0.5372549, g: 0.3019608, b: 0.11372549, a: 1}
+  unavailable:
+    backgroundColor: {r: 0.21176471, g: 0.22745098, b: 0.24313726, a: 0.8862745}
+    buttonTextColor: {r: 0.9607843, g: 0.9019608, b: 0.8392157, a: 1}
+    costTextColor: {r: 0.9137255, g: 0, b: 0.16470589, a: 1}
+  max:
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    buttonTextColor: {r: 0, g: 0, b: 0, a: 0}
+    costTextColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2286187130611325823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,7 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21176472, g: 0.227451, b: 0.24313727, a: 1}
+  m_Color: {r: 0.21176471, g: 0.22745098, b: 0.24313726, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -797,6 +825,7 @@ MonoBehaviour:
   clickerContainer: {fileID: 2544739020421261057}
   clickerButtonLabel: {fileID: 1413600229750249196}
   clickerButton: {fileID: 2940651581215586106}
+  factoryUpgradeButtonView: {fileID: 3999711964612734813}
 --- !u!1 &2291927200712225619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1282,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4292273909
-  m_fontColor: {r: 0.9622642, g: 0.90241295, b: 0.83971167, a: 1}
+  m_fontColor: {r: 0.9607843, g: 0.9019608, b: 0.8392157, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1462,7 +1491,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4280110473
-  m_fontColor: {r: 0.5372549, g: 0.3019608, b: 0.1137255, a: 1}
+  m_fontColor: {r: 0.5372549, g: 0.3019608, b: 0.11372549, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1689,9 +1718,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -71.3, y: 2.2000008}
-  m_SizeDelta: {x: 122.8, y: 59.2}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -132.70001, y: 2.2000122}
+  m_SizeDelta: {x: 300, y: 59.2}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4964932418162344213
 CanvasRenderer:
   m_ObjectHideFlags: 0
