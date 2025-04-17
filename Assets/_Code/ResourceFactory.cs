@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace FattestInc {
     [System.Serializable]
@@ -23,10 +24,10 @@ namespace FattestInc {
 
         public ResourceFactory(FactoryType factoryType) {
             this.factoryType = factoryType;
-            this.level = 0;
-            this.valuePerTick = 0;
-            this.time = 0;
-            this.duration = 1f;
+            level = 0;
+            valuePerTick = 0;
+            time = 0;
+            duration = 1f;
         }
         
         public void Upgrade(int level, int valuePerTick, float duration) {
@@ -42,13 +43,16 @@ namespace FattestInc {
             }
 
             time += deltaTime;
-            if (Progress >= 1f) {
-                time = 0;
-                value = valuePerTick;
+
+            int ticksCompleted = 0;
+            if (duration > 0f) {
+                ticksCompleted = Mathf.FloorToInt(time / duration);
+
+                if (ticksCompleted > 0)
+                    time -= ticksCompleted * duration;
             }
-            else {
-                value = 0;
-            }
+
+            value = ticksCompleted * valuePerTick;
         }
 
         public float NextUpgradePerSecondAmount() {

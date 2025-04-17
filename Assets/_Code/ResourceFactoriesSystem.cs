@@ -7,6 +7,7 @@ namespace FattestInc {
         [HInject] EconomyDataStore economyDataStore;
         [HInject] EconomyReferencer economyReferencer;
         [HInject] FactoriesReferencer factoriesReferencer;
+        [HInject] ResourceFactoriesHelper resourceFactoriesHelper;
 
         protected override void SystemStart() {
             base.SystemStart();
@@ -19,12 +20,8 @@ namespace FattestInc {
         }
 
         public void Tick() {
-            foreach (var (_, factory) in economyDataStore.ResourceFactories) {
-                factory.Tick(Time.deltaTime, out var produced);
-                if (produced > 0) {
-                    economyDataStore.CurrentTotalAmount.Value += (ulong)produced;
-                }
-            }
+            var deltaTime = Time.deltaTime;
+            resourceFactoriesHelper.TickAllFactories(deltaTime);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace FattestInc {
                 typeof(ResourceFactoriesSystem),
                 typeof(EconomySystem)
                 );
+            Container.BindInterfacesAndSelfTo<ResourceFactoriesHelper>().AsSingle();
         }
     }
 }
