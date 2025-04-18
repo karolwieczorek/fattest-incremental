@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingValue: 0
   progressionLevelsData: {fileID: 11400000, guid: f3e1476c42f16114d94c94452219aab2, type: 2}
+  unlockingFactoriesData: {fileID: 11400000, guid: 4dc0b6769d9745e4aa31679f343186a4, type: 2}

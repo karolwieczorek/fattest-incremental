@@ -12,6 +12,182 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30149a2d1dee401393539861adf6f20a, type: 3}
   m_Name: UnlockingFactoriesData
   m_EditorClassIdentifier: 
-  spreadsheetId: 
-  tabName: 
-  levelsList: []
+  spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
+  tabName: unlocking
+  levelsList:
+  - index: 1
+    factoryToUnlockId: SolarPanel
+    unlockType: Show
+    value: 0
+    valuePerSecond: -1
+    factory1Id: hand-crank
+    factory1Level: 2
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 2
+    factoryToUnlockId: SolarPanel
+    unlockType: Unlock
+    value: 0
+    valuePerSecond: -1
+    factory1Id: hand-crank
+    factory1Level: 4
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 3
+    factoryToUnlockId: Wind
+    unlockType: Show
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 4
+    factoryToUnlockId: Wind
+    unlockType: Unlock
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 5
+    factoryToUnlockId: Coal
+    unlockType: Show
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 6
+    factoryToUnlockId: Coal
+    unlockType: Unlock
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 7
+    factoryToUnlockId: geothermal
+    unlockType: Show
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 8
+    factoryToUnlockId: geothermal
+    unlockType: Unlock
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 9
+    factoryToUnlockId: oil
+    unlockType: Show
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 10
+    factoryToUnlockId: oil
+    unlockType: Unlock
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 11
+    factoryToUnlockId: solar-array
+    unlockType: Show
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 12
+    factoryToUnlockId: solar-array
+    unlockType: Unlock
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 13
+    factoryToUnlockId: dam
+    unlockType: Show
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 14
+    factoryToUnlockId: dam
+    unlockType: Unlock
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 15
+    factoryToUnlockId: Nuclear
+    unlockType: Show
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 16
+    factoryToUnlockId: Nuclear
+    unlockType: Unlock
+    value: 0
+    valuePerSecond: -1
+    factory1Id: SolarPanel
+    factory1Level: 40
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0

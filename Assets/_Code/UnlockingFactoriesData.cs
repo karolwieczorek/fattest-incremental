@@ -58,6 +58,9 @@ namespace FattestInc {
             [TableColumnWidth(30)] public int factory2Level;
             [TableColumnWidth(100)] public string factory3Id;
             [TableColumnWidth(30)] public int factory3Level;
+
+            public bool IsShowType => unlockType == "Show";
+            public bool IsUnlockType => unlockType == "Unlock";
         }
     }
 }

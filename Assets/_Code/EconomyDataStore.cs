@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace FattestInc {
     public class EconomyDataStore : HDataStore {
@@ -58,6 +60,34 @@ namespace FattestInc {
                 return true;
             }
             return false;
+        }
+
+        public bool IsFactoryUnlocked(string factoryId) {
+            return ResourceFactories.Any(x => x.Key == factoryId && x.Value.State == FactoryState.Unlocked);
+        }
+
+        public bool IsFactoryShown(string factoryId) {
+            return ResourceFactories.Any(x => x.Key == factoryId && x.Value.State == FactoryState.Shown);
+        }
+
+        public void UnlockFactory(string factoryId) {
+            var (key, factory) = ResourceFactories.FirstOrDefault(x => x.Key == factoryId);
+            if (factory == null) {
+                Debug.LogError("Could not unlock factory. Factory is missing");
+                return;
+            }
+
+            factory.Unlock();
+        }
+        
+        public void ShowFactory(string factoryId) {
+            var (key, factory) = ResourceFactories.FirstOrDefault(x => x.Key == factoryId);
+            if (factory == null) {
+                Debug.LogError("Could not unlock factory. Factory is missing");
+                return;
+            }
+
+            factory.Show();
         }
     }
 }

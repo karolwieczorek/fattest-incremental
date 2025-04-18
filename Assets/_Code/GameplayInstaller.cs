@@ -10,6 +10,7 @@ namespace FattestInc {
                 );
             Container.BindInterfacesAndSelfTo<ResourceFactoriesHelper>().AsSingle();
             Container.BindInterfacesAndSelfTo<SaveHelper>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UnlockingHelper>().AsSingle();
         }
     }
 }

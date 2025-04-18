@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ namespace FattestInc {
         ResourceFactory factory;
         FactoryLevelsData factoryLevelsData;
         EconomyDataStore economyDataStore;
+        
+        public string FactoryId { get; private set; }
 
         void OnEnable() {
             button.onClick.AddListener(BuyUpgrade);
@@ -36,7 +39,6 @@ namespace FattestInc {
             clickerButton.onClick.RemoveListener(ClickerButtonClick);
             if (economyDataStore != null)
                 economyDataStore.CurrentTotalAmount.Changed -= Refresh;
-            factory = null;
         }
 
         void BuyUpgrade() {
@@ -75,6 +77,7 @@ namespace FattestInc {
 
         public void Init(FactoryLevelsData factoryLevelsData, EconomyDataStore economyDataStore) {
             icon.sprite = factoryLevelsData.Icon;
+            FactoryId = factoryLevelsData.FactoryId;
             nameLabel.text = factoryLevelsData.FactoryName;
             this.economyDataStore = economyDataStore;
             this.factory = economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 0);
@@ -111,6 +114,42 @@ namespace FattestInc {
                 var valueForNextLevel = factoryLevelsData.GetValueDifferenceForNextLevel(factory.Level).ToString();
                 var addMode = factoryLevelsData.FactoryType == FactoryType.Idle ? "tick" : "click";
                 nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/{addMode}";
+            }
+        }
+
+        public void RefreshUnlockedState() {
+            if (factory == null) {
+                Hide();
+                return;
+            }
+            switch (factory.State) {
+                case FactoryState.Hidden:
+                    Hide();
+                    break;
+                case FactoryState.Shown:
+                    ShowFactory();
+                    break;
+                case FactoryState.Unlocked:
+                    Unlock();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return;
+
+            void Hide() {
+                gameObject.SetActive(false);
+            }
+
+            void Unlock() {
+                Debug.Log($"Unlock: {FactoryId}", this);
+                gameObject.SetActive(true);
+            }
+
+            void ShowFactory() {
+                Debug.Log($"Show: {FactoryId}", this);
+                gameObject.SetActive(true);
             }
         }
     }

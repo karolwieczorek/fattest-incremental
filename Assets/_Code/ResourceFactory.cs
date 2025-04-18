@@ -5,6 +5,7 @@ namespace FattestInc {
     [System.Serializable]
     public class ResourceFactory {
         readonly FactoryType factoryType;
+        FactoryState factoryState;
         [ShowInInspector] int level;
         [ShowInInspector] int valuePerTick;
         [ShowInInspector] float time;
@@ -21,6 +22,7 @@ namespace FattestInc {
         public int Level => level;
 
         public FactoryType Type => factoryType;
+        public FactoryState State => factoryState;
 
         public ResourceFactory(FactoryType factoryType) {
             this.factoryType = factoryType;
@@ -74,6 +76,14 @@ namespace FattestInc {
                 return 0;
             }
             return valuePerTick / duration;
+        }
+
+        public void Unlock() {
+            factoryState = FactoryState.Unlocked;
+        }
+
+        public void Show() {
+            factoryState = FactoryState.Shown;
         }
     }
 }
