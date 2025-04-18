@@ -24,7 +24,7 @@ MonoBehaviour:
     value: 100
     sprite: {fileID: 21300000, guid: 918f375dd9e4c7048a8e396a845138c8, type: 3}
   - index: 3
-    name: Electric Car
+    name: Car
     value: 500
     sprite: {fileID: 21300000, guid: ebf1bdac1eeaeab428286325ae9d783e, type: 3}
   - index: 4
@@ -52,7 +52,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: e3f23ad9a5cac2342b75381c97dca9de, type: 3}
   - name: Fridge
     icon: {fileID: 21300000, guid: 918f375dd9e4c7048a8e396a845138c8, type: 3}
-  - name: Electric Car
+  - name: Car
     icon: {fileID: 21300000, guid: ebf1bdac1eeaeab428286325ae9d783e, type: 3}
   - name: Home
     icon: {fileID: 21300000, guid: a30e3c4840425e14f9d42d71d4a0aa26, type: 3}

@@ -6,6 +6,7 @@ using UnityEngine;
 namespace FattestInc {
     public class EditorGameplayTools : MonoBehaviour {
         [HInject] ResourceFactoriesHelper resourceFactoriesHelper;
+        [HInject] SaveHelper saveHelper;
 
         [Button]
         void IncrementMinutes(int minutes) {
@@ -32,16 +33,20 @@ namespace FattestInc {
             Debug.Log(EncryptionUtils.Decrypt(encryptionMethod, text));
         }
 
-        [ButtonGroup("Save")]
-        [Button]
+        [ButtonGroup("Save"), Button]
         void SaveGame() {
-            Debug.Log("Save");
+            saveHelper.SaveGame();
         }
 
-        [ButtonGroup("Save")]
-        [Button]
+        [ButtonGroup("Save"), Button]
         void LoadGame() {
-            Debug.Log("Load");
+            saveHelper.LoadGame();
+        }
+
+        [ButtonGroup("Save"), Button]
+        [GUIColor("#eb0000")]
+        void DeleteSave() {
+            saveHelper.DeleteSave();
         }
     }
 }

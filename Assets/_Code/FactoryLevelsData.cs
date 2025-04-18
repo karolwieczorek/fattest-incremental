@@ -134,7 +134,6 @@ namespace FattestInc {
 
         public bool HasNextLevel(int factoryLevel) {
             var maxLevel = levelsList.Max(x => x.level);
-            Debug.Log($"HasNextLevel: {maxLevel} > {factoryLevel} = {maxLevel > factoryLevel}");
             return maxLevel > factoryLevel;
         }
     }

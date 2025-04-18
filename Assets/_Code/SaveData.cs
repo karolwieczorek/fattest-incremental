@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace FattestInc {
     [Serializable]
     public class SaveData {
-        public float currencyAmount;
+        public ulong currencyAmount;
         public List<FactoryLevelEntry> factoryLevels = new();
 
         [Serializable]

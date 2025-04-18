@@ -32,6 +32,22 @@ namespace FattestInc {
             return factory;
         }
 
+        public ResourceFactory LoadFactory(FactoryLevelsData factoryLevelsData, int level) {
+            var factoryId = factoryLevelsData.FactoryId;
+            
+            if (!resourceFactories.TryGetValue(factoryId, out var factory)) {
+                factory = new ResourceFactory(factoryLevelsData.FactoryType);
+                resourceFactories.Add(factoryId, factory);
+            }
+            
+            var value = factoryLevelsData.GetValueForLevel(level);
+            var duration = factoryLevelsData.GetDurationForLevel(level);
+            factory.Upgrade(level, value, duration);
+
+            FactoryUpgradedEvent?.Invoke();
+            return factory;
+        }
+
         public bool HasEnoughMoney(ulong cost) {
             return CurrentTotalAmount.Value >= cost;
         }

@@ -23,7 +23,6 @@ namespace FattestInc {
         }
 
         void OnCurrentAmountChanged(float value) {
-            Debug.Log($"Current amount per second: {value}");
             RefreshCurrentView(value);
         }
 
@@ -36,7 +35,6 @@ namespace FattestInc {
                     currentView = view;
                     view.SetCurrent();
                     view.UpdateAmount(economyDataStore.CurrentAmountPerSecond.Value);
-                    Debug.Log($"Current view: {view.name}", view);
                 }
                 else {
                     view.SetFuture();
