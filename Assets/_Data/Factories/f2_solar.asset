@@ -16,77 +16,403 @@ MonoBehaviour:
   tabName: solar
   factoryId: SolarPanel
   factoryName: Solar Panel
+  startingLevel: 0
   icon: {fileID: 21300000, guid: 4ec605792cd3c3c45b31c0ce3b6b38de, type: 3}
+  factoryType: 0
   levelsList:
   - level: 1
-    cost: 5
+    cost: 200
     value: 1
     time: 1
   - level: 2
-    cost: 7
+    cost: 190
     value: 2
     time: 1
   - level: 3
-    cost: 11
-    value: 4
+    cost: 180
+    value: 3
     time: 1
   - level: 4
-    cost: 20
-    value: 8
+    cost: 500
+    value: 6
     time: 1
   - level: 5
-    cost: 41
-    value: 16
+    cost: 495
+    value: 9
     time: 1
   - level: 6
-    cost: 95
-    value: 24
+    cost: 490
+    value: 12
     time: 1
   - level: 7
-    cost: 253
-    value: 32
+    cost: 485
+    value: 15
     time: 1
   - level: 8
-    cost: 774
-    value: 40
+    cost: 480
+    value: 18
     time: 1
   - level: 9
-    cost: 2723
-    value: 48
+    cost: 475
+    value: 21
     time: 1
   - level: 10
-    cost: 11017
-    value: 56
+    cost: 470
+    value: 24
     time: 1
   - level: 11
-    cost: 51256
-    value: 64
+    cost: 465
+    value: 27
     time: 1
   - level: 12
-    cost: 274233
-    value: 72
+    cost: 460
+    value: 30
     time: 1
   - level: 13
-    cost: 1687298
-    value: 80
+    cost: 900
+    value: 36
     time: 1
   - level: 14
-    cost: 11938825
-    value: 88
+    cost: 895
+    value: 42
     time: 1
   - level: 15
-    cost: 97146955
-    value: 96
+    cost: 890
+    value: 48
     time: 1
   - level: 16
-    cost: 909064374
-    value: 104
+    cost: 885
+    value: 54
     time: 1
   - level: 17
-    cost: 9782681726
-    value: 112
+    cost: 880
+    value: 60
     time: 1
   - level: 18
-    cost: 121065123836
-    value: 120
+    cost: 875
+    value: 66
+    time: 1
+  - level: 19
+    cost: 870
+    value: 72
+    time: 1
+  - level: 20
+    cost: 865
+    value: 78
+    time: 1
+  - level: 21
+    cost: 860
+    value: 84
+    time: 1
+  - level: 22
+    cost: 855
+    value: 90
+    time: 1
+  - level: 23
+    cost: 850
+    value: 96
+    time: 1
+  - level: 24
+    cost: 845
+    value: 102
+    time: 1
+  - level: 25
+    cost: 1600
+    value: 114
+    time: 1
+  - level: 26
+    cost: 1595
+    value: 126
+    time: 1
+  - level: 27
+    cost: 1590
+    value: 138
+    time: 1
+  - level: 28
+    cost: 1585
+    value: 150
+    time: 1
+  - level: 29
+    cost: 1580
+    value: 162
+    time: 1
+  - level: 30
+    cost: 1575
+    value: 174
+    time: 1
+  - level: 31
+    cost: 1570
+    value: 186
+    time: 1
+  - level: 32
+    cost: 1565
+    value: 198
+    time: 1
+  - level: 33
+    cost: 1560
+    value: 210
+    time: 1
+  - level: 34
+    cost: 1555
+    value: 222
+    time: 1
+  - level: 35
+    cost: 1550
+    value: 234
+    time: 1
+  - level: 36
+    cost: 1545
+    value: 246
+    time: 1
+  - level: 37
+    cost: 1540
+    value: 258
+    time: 1
+  - level: 38
+    cost: 1535
+    value: 270
+    time: 1
+  - level: 39
+    cost: 1
+    value: 1
+    time: 1
+  - level: 40
+    cost: 1
+    value: 1
+    time: 1
+  - level: 41
+    cost: 1
+    value: 1
+    time: 1
+  - level: 42
+    cost: 1
+    value: 1
+    time: 1
+  - level: 43
+    cost: 1
+    value: 1
+    time: 1
+  - level: 44
+    cost: 1
+    value: 1
+    time: 1
+  - level: 45
+    cost: 1
+    value: 1
+    time: 1
+  - level: 46
+    cost: 1
+    value: 1
+    time: 1
+  - level: 47
+    cost: 1
+    value: 1
+    time: 1
+  - level: 48
+    cost: 1
+    value: 1
+    time: 1
+  - level: 49
+    cost: 1
+    value: 1
+    time: 1
+  - level: 50
+    cost: 1
+    value: 1
+    time: 1
+  - level: 51
+    cost: 1
+    value: 1
+    time: 1
+  - level: 52
+    cost: 1
+    value: 1
+    time: 1
+  - level: 53
+    cost: 1
+    value: 1
+    time: 1
+  - level: 54
+    cost: 1
+    value: 1
+    time: 1
+  - level: 55
+    cost: 1
+    value: 1
+    time: 1
+  - level: 56
+    cost: 1
+    value: 1
+    time: 1
+  - level: 57
+    cost: 1
+    value: 1
+    time: 1
+  - level: 58
+    cost: 1
+    value: 1
+    time: 1
+  - level: 59
+    cost: 1
+    value: 1
+    time: 1
+  - level: 60
+    cost: 1
+    value: 1
+    time: 1
+  - level: 61
+    cost: 1
+    value: 1
+    time: 1
+  - level: 62
+    cost: 1
+    value: 1
+    time: 1
+  - level: 63
+    cost: 1
+    value: 1
+    time: 1
+  - level: 64
+    cost: 1
+    value: 1
+    time: 1
+  - level: 65
+    cost: 1
+    value: 1
+    time: 1
+  - level: 66
+    cost: 1
+    value: 1
+    time: 1
+  - level: 67
+    cost: 1
+    value: 1
+    time: 1
+  - level: 68
+    cost: 1
+    value: 1
+    time: 1
+  - level: 69
+    cost: 1
+    value: 1
+    time: 1
+  - level: 70
+    cost: 1
+    value: 1
+    time: 1
+  - level: 71
+    cost: 1
+    value: 1
+    time: 1
+  - level: 72
+    cost: 1
+    value: 1
+    time: 1
+  - level: 73
+    cost: 1
+    value: 1
+    time: 1
+  - level: 74
+    cost: 1
+    value: 1
+    time: 1
+  - level: 75
+    cost: 1
+    value: 1
+    time: 1
+  - level: 76
+    cost: 1
+    value: 1
+    time: 1
+  - level: 77
+    cost: 1
+    value: 1
+    time: 1
+  - level: 78
+    cost: 1
+    value: 1
+    time: 1
+  - level: 79
+    cost: 1
+    value: 1
+    time: 1
+  - level: 80
+    cost: 1
+    value: 1
+    time: 1
+  - level: 81
+    cost: 1
+    value: 1
+    time: 1
+  - level: 82
+    cost: 1
+    value: 1
+    time: 1
+  - level: 83
+    cost: 1
+    value: 1
+    time: 1
+  - level: 84
+    cost: 1
+    value: 1
+    time: 1
+  - level: 85
+    cost: 1
+    value: 1
+    time: 1
+  - level: 86
+    cost: 1
+    value: 1
+    time: 1
+  - level: 87
+    cost: 1
+    value: 1
+    time: 1
+  - level: 88
+    cost: 1
+    value: 1
+    time: 1
+  - level: 89
+    cost: 1
+    value: 1
+    time: 1
+  - level: 90
+    cost: 1
+    value: 1
+    time: 1
+  - level: 91
+    cost: 1
+    value: 1
+    time: 1
+  - level: 92
+    cost: 1
+    value: 1
+    time: 1
+  - level: 93
+    cost: 1
+    value: 1
+    time: 1
+  - level: 94
+    cost: 1
+    value: 1
+    time: 1
+  - level: 95
+    cost: 1
+    value: 1
+    time: 1
+  - level: 96
+    cost: 1
+    value: 1
+    time: 1
+  - level: 97
+    cost: 1
+    value: 1
+    time: 1
+  - level: 98
+    cost: 1
+    value: 1
+    time: 1
+  - level: 99
+    cost: 1
+    value: 1
     time: 1

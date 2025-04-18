@@ -25,14 +25,14 @@ MonoBehaviour:
     value: 1
     time: 1
   - level: 2
-    cost: 50
-    value: 4
+    cost: 10
+    value: 2
     time: 1
   - level: 3
-    cost: 150
-    value: 5
+    cost: 40
+    value: 3
     time: 1
   - level: 4
-    cost: 200
-    value: 6
+    cost: 40
+    value: 4
     time: 1
