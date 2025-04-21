@@ -1,0 +1,34 @@
+using System;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
+[Serializable]
+public class DualKawaseBlurSettings {
+    public ComputeShader m_DualKawaseBlurShader;
+    public bool m_CopyToFrameBuffer = true;
+    public string m_TargetTextureName = "_BlurTexture";
+}
+
+public class DualKawaseBlurRenderFeature : ScriptableRendererFeature {
+    [SerializeField] DualKawaseBlurSettings m_Settings = new();
+    DualKawaseBlurRenderPass mPass;
+
+    public override void Create() {
+        if (m_Settings.m_DualKawaseBlurShader == null)
+            return;
+
+        mPass = new DualKawaseBlurRenderPass(name, m_Settings);
+    }
+
+    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData) {
+        DualKawaseBlur volumeComponent = VolumeManager.instance.stack.GetComponent<DualKawaseBlur>();
+        if (!volumeComponent || !volumeComponent.IsActive())
+            return;
+        if (renderingData.cameraData.cameraType != CameraType.Game)
+            return;
+
+        mPass.Setup(volumeComponent);
+        renderer.EnqueuePass(mPass);
+    }
+}

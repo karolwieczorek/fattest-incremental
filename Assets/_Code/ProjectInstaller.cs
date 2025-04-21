@@ -1,3 +1,4 @@
+using FattestInc.Windows.General;
 using Hypnagogia.Utils;
 using Zenject;
 
@@ -7,6 +8,7 @@ namespace FattestInc {
             new SignalsDeclarator().DeclareSignals(Container);
 
             Container.BindDataStores(transform, makeGroup:false, 
+                typeof(UIDataStore),
                 typeof(EconomyDataStore)
                 );
             Container.BindInterfacesAndSelfTo<ScenesLoaderHelper>().AsSingle();

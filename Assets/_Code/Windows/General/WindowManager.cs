@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hypnagogia.Utils;
 using UnityEngine;
 using Zenject;
@@ -13,6 +14,7 @@ namespace FattestInc.Windows.General
         readonly Dictionary<Type, WindowBase> windows = new();
 
         [HInject] WindowsReferencer windowsReferencer;
+        [HInject] UIDataStore uiDataStore;
         [HInject] DiContainer diContainer;
 
         public T GetWindow<T>() where T : WindowBase
@@ -63,7 +65,7 @@ namespace FattestInc.Windows.General
             var window = GetWindow<T>();
             if (window != null)
             {
-                window.Open();
+                ShowWindow(window);
                 return window;
             }
 
@@ -77,7 +79,7 @@ namespace FattestInc.Windows.General
             if (window != null)
             {
                 if (window is ISimpleWindowOpen windowOpen)
-                    windowOpen.Open();
+                    ShowWindow(windowOpen);
                 else 
                     Debug.LogError("Trying to open complex window with simple command.");
                 return window;
@@ -104,6 +106,18 @@ namespace FattestInc.Windows.General
             return window;
         }
 
+        void ShowWindow(ISimpleWindowOpen window) {
+            window.Open();
+            if (uiDataStore.windowBlur != null)
+                uiDataStore.windowBlur.SetActive(true);
+        }
+
+        void HideWindow(ISimpleWindowClose window) {
+            window.Close();
+            if (uiDataStore.windowBlur != null)
+                uiDataStore.windowBlur.SetActive(false);
+        }
+
         public T OpenOnTop<T, TP>(TP parametersContainer) where TP : WindowParameters
             where T : WindowBase, IWindowParametersInitialization<TP>, ISimpleWindowOpen
         {
@@ -111,7 +125,7 @@ namespace FattestInc.Windows.General
             if (window != null)
             {
                 window.InitializeWithParameters(parametersContainer);
-                window.Open();
+                ShowWindow(window);
                 MoveOnTopWindow(window);
             }
 
@@ -139,7 +153,7 @@ namespace FattestInc.Windows.General
         {
             if (window != null && simpleWindowClose != null && ReferenceEquals(window, simpleWindowClose))
             {
-                simpleWindowClose.Close();
+                HideWindow(simpleWindowClose);
                 return true;
             }
 
@@ -160,8 +174,15 @@ namespace FattestInc.Windows.General
             foreach (var (_, window) in windows)
             {
                 if (window.IsVisible && window is ISimpleWindowClose simpleWindowClose)
-                    simpleWindowClose.Close();
+                    HideWindow(simpleWindowClose);
             }
+        }
+
+        public void CloseWindowOnTop() {
+            var minIndex = windows.Where(x => x.Value.IsVisible).Min(x => x.Value.transform.GetSiblingIndex());
+            var (type, window) = windows.FirstOrDefault(x => x.Value.IsVisible && x.Value.transform.GetSiblingIndex() == minIndex);
+            if (window != null && window is ISimpleWindowClose simpleClose)
+                HideWindow(simpleClose);
         }
     }
 }
