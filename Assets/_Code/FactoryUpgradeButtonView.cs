@@ -8,6 +8,7 @@ namespace FattestInc {
         [SerializeField] Image buttonBackgroundImage;
         [SerializeField] TMP_Text buttonText;
         [SerializeField] TMP_Text costText;
+        [SerializeField] Button button;
 
         [SerializeField] Data available;
         [SerializeField] Data unavailable;
@@ -35,6 +36,7 @@ namespace FattestInc {
             buttonBackgroundImage.color = data.backgroundColor;
             buttonText.color = data.buttonTextColor;
             costText.color = data.costTextColor;
+            button.interactable = data.buttonInteractable;
         }
 
         [System.Serializable]
@@ -42,6 +44,7 @@ namespace FattestInc {
             public Color backgroundColor;
             public Color buttonTextColor;
             public Color costTextColor;
+            public bool buttonInteractable;
         }
     }
 }

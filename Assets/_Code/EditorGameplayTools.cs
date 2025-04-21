@@ -6,7 +6,13 @@ using UnityEngine;
 namespace FattestInc {
     public class EditorGameplayTools : MonoBehaviour {
         [HInject] ResourceFactoriesHelper resourceFactoriesHelper;
+        [HInject] EconomyDataStore economyDataStore;
         [HInject] SaveHelper saveHelper;
+
+        [Button]
+        void AddValue(ulong value) {
+            economyDataStore.CurrentTotalAmount.Value += value;
+        }
 
         [Button]
         void IncrementMinutes(int minutes) {

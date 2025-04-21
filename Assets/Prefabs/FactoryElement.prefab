@@ -501,18 +501,22 @@ MonoBehaviour:
   buttonBackgroundImage: {fileID: 2286187130611325823}
   buttonText: {fileID: 4295259137645762138}
   costText: {fileID: 4229522374795872570}
+  button: {fileID: 5400645198337795072}
   available:
     backgroundColor: {r: 0.21176471, g: 0.22745098, b: 0.24313726, a: 1}
     buttonTextColor: {r: 0.9607843, g: 0.9019608, b: 0.8392157, a: 1}
     costTextColor: {r: 0.5372549, g: 0.3019608, b: 0.11372549, a: 1}
+    buttonInteractable: 1
   unavailable:
     backgroundColor: {r: 0.21176471, g: 0.22745098, b: 0.24313726, a: 0.8862745}
     buttonTextColor: {r: 0.9607843, g: 0.9019608, b: 0.8392157, a: 1}
     costTextColor: {r: 0.9137255, g: 0, b: 0.16470589, a: 1}
+    buttonInteractable: 0
   max:
     backgroundColor: {r: 0, g: 0, b: 0, a: 0}
     buttonTextColor: {r: 0, g: 0, b: 0, a: 0}
     costTextColor: {r: 0, g: 0, b: 0, a: 0}
+    buttonInteractable: 0
 --- !u!114 &2286187130611325823
 MonoBehaviour:
   m_ObjectHideFlags: 0
