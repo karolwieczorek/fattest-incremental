@@ -1,7 +1,9 @@
-﻿using Hypnagogia.Utils;
+﻿using FattestInc.UI.API;
+using FattestInc.Windows.General;
+using Hypnagogia.Utils;
 using UnityEngine;
 
-namespace FattestInc.Windows.General {
+namespace FattestInc.UI.Implementation {
     public class CloseThisWindowButton : ButtonBehaviour {
         [HInject] WindowManager windowManager;
         [SerializeField] WindowBase targetWindow;

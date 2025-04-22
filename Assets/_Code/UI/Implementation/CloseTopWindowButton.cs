@@ -1,4 +1,6 @@
-﻿using Hypnagogia.Utils;
+﻿using FattestInc.UI;
+using FattestInc.UI.API;
+using Hypnagogia.Utils;
 
 namespace FattestInc.Windows.General {
     public class CloseTopWindowButton : ButtonBehaviour {

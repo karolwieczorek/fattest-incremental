@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using FattestInc.UI;
+using FattestInc.UI.API;
 using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;

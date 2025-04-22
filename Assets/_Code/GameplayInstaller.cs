@@ -9,7 +9,6 @@ namespace FattestInc {
                 typeof(EconomySystem)
                 );
             Container.BindInterfacesAndSelfTo<ResourceFactoriesHelper>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SaveHelper>().AsSingle();
             Container.BindInterfacesAndSelfTo<UnlockingHelper>().AsSingle();
         }
     }

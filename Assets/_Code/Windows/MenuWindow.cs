@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FattestInc.Windows.General;
+﻿using FattestInc.Windows.General;
+using Hypnagogia.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,26 +7,32 @@ using UnityEngine.UI;
 namespace FattestInc.Windows {
     public class MenuWindow : SimpleWindow {
         [SerializeField] TMP_Text versionLabel;
-        [SerializeField] TMP_Dropdown colorDropdown;
-        [SerializeField] TMP_Dropdown renderDropdown;
-        [SerializeField] Button button;
+        [SerializeField] Button saveButton;
+        [SerializeField] Button loadButton;
 
-        void Awake() {
-            button.onClick.AddListener(ButtonClicked);
-            renderDropdown.options.Clear();
-            foreach (var renderTextureFormat in Enum.GetValues(typeof(RenderTextureFormat)).Cast<RenderTextureFormat>()) {
-                renderDropdown.options.Add(new TMP_Dropdown.OptionData(renderTextureFormat.ToString()));
-            }
-            
+        [HInject] SaveHelper saveHelper;
+        [HInject] WindowManager windowManager;
+
+
+        void OnEnable() {
+            WindowApiShow();
+            saveButton.onClick.AddListener(SaveButtonClicked);
+            loadButton.onClick.AddListener(LoadButtonClicked);
         }
 
-        void ButtonClicked() {
-            var renderTextureFormat = Enum.Parse<RenderTextureFormat>(renderDropdown.options[renderDropdown.value].text);
-            Debug.Log($"Creating RT with format: {renderTextureFormat}");
-            var tempBlendRT = RenderTexture.GetTemporary(Screen.width, Screen.height, 0, renderTextureFormat);
-            RenderTexture.ReleaseTemporary(tempBlendRT);
+        void OnDisable() {
+            saveButton.onClick.RemoveListener(SaveButtonClicked);
+            loadButton.onClick.RemoveListener(LoadButtonClicked);
         }
 
+        void SaveButtonClicked() {
+            saveHelper.SaveGame();
+        }
+
+        void LoadButtonClicked() {
+            saveHelper.LoadGame();
+            windowManager.TryCloseWindow(this);
+        }
 
         public void WindowApiShow() {
             versionLabel.text = $"Version {Application.version}";

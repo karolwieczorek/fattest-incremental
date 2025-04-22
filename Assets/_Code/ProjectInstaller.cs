@@ -12,6 +12,7 @@ namespace FattestInc {
                 typeof(EconomyDataStore)
                 );
             Container.BindInterfacesAndSelfTo<ScenesLoaderHelper>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SaveHelper>().AsSingle();
         }
     }
 }

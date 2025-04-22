@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace FattestInc.Windows.General {
+namespace FattestInc.UI.API {
     public abstract class ButtonBehaviour : MonoBehaviour
     {
         [SerializeField] Button button;
