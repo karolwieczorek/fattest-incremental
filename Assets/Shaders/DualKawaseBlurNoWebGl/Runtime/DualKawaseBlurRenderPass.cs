@@ -192,9 +192,6 @@ public class DualKawaseBlurRenderPass : ScriptableRenderPass
             int threadGroupX = Mathf.CeilToInt((float)targetSize.x / x);
             int threadGroupY = Mathf.CeilToInt((float)targetSize.y / y);
             cmd.DispatchCompute(mPassShader, mDownSampleKernel, threadGroupX, threadGroupY, 1);
-            // var tempRT = RenderTexture.GetTemporary(targetSize.x, targetSize.y);
-            // cmd.Blit(target, tempRT);
-            // RenderTexture.ReleaseTemporary(tempRT);
         }
         
     }
