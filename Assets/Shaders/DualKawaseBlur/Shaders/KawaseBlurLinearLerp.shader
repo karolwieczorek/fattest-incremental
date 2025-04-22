@@ -15,7 +15,7 @@
             ZTest Always Cull Off ZWrite Off
 
             HLSLPROGRAM
-            #pragma vertex vert
+            #pragma vertex vert_img
             #pragma fragment frag
             #include "UnityCG.cginc"
 
@@ -23,28 +23,12 @@
             sampler2D _BlurTex;
             float _BlendRatio;
 
-            struct v2f
-            {
-                float4 vertex : SV_POSITION;
-                float2 uv : TEXCOORD0;
-            };
-
-            v2f vert(appdata_base v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.texcoord;
-                return o;
-            }
-
-            fixed4 frag(v2f i) : SV_Target
+            half4 frag (v2f_img i) : SV_Target
             {
                 float3 source = tex2D(_MainTex, i.uv).rgb;
                 float3 blur = tex2D(_BlurTex, i.uv).rgb;
-                // return fixed4(source, 1.0f);
-
                 float3 result = lerp(source, blur, _BlendRatio);
-                return fixed4(result, 1.0f);
+                return half4(result, 1.0h);
             }
             ENDHLSL
         }

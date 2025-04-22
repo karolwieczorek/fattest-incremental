@@ -18,10 +18,10 @@ MonoBehaviour:
     m_Value: 1
   m_BlurRadius:
     m_OverrideState: 1
-    m_Value: 47.4
+    m_Value: 134.9
   m_BlurIntensity:
     m_OverrideState: 1
-    m_Value: 0.285
+    m_Value: 0.557
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   active: 1
   blurRadius:
     m_OverrideState: 1
-    m_Value: 19.9
+    m_Value: 96.6
   blurIntensity:
     m_OverrideState: 1
-    m_Value: 0.116
+    m_Value: 0.276

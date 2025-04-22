@@ -45,11 +45,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlendRatio: 0.7261336
+    - _BlendRatio: 0.78981256
     - _EnableExternalAlpha: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TexelSize: {r: 0.0020833334, g: 0.0033333334, b: 0, a: 0}
+    - _TexelSize: {r: 0.016666668, g: 0.02631579, b: 0, a: 0}
   m_BuildTextureStacks: []

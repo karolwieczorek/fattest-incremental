@@ -94,6 +94,8 @@ public class DualKawaseBlurRenderPass : ScriptableRenderPass
                 
                 // do the kawase blur
                 // ------------------
+                
+                Debug.Log($"Downsample: {kBlurTextureName + i}, {targetTextureSize.x}, {targetTextureSize.y}");
                 DownSampleBlur(cmd, sourceTextureID, targetTextureID, targetTextureSize);
                 
                 // update the last size and ID
@@ -180,7 +182,9 @@ public class DualKawaseBlurRenderPass : ScriptableRenderPass
             // -------------------
             cmd.SetComputeTextureParam(mPassShader, mDownSampleKernel, _SourceTexture, source);
             cmd.SetComputeTextureParam(mPassShader, mDownSampleKernel, _TargetTexture, target);
-            cmd.SetComputeVectorParam(mPassShader, _TargetSize, GetTextureSizeParams(targetSize));
+            var textureSizeParams = GetTextureSizeParams(targetSize);
+            Debug.Log($"{nameof(textureSizeParams)} - {textureSizeParams.x}, {textureSizeParams.y}");
+            cmd.SetComputeVectorParam(mPassShader, _TargetSize, textureSizeParams);
         
             // dispatch shader
             // ---------------
@@ -188,6 +192,9 @@ public class DualKawaseBlurRenderPass : ScriptableRenderPass
             int threadGroupX = Mathf.CeilToInt((float)targetSize.x / x);
             int threadGroupY = Mathf.CeilToInt((float)targetSize.y / y);
             cmd.DispatchCompute(mPassShader, mDownSampleKernel, threadGroupX, threadGroupY, 1);
+            // var tempRT = RenderTexture.GetTemporary(targetSize.x, targetSize.y);
+            // cmd.Blit(target, tempRT);
+            // RenderTexture.ReleaseTemporary(tempRT);
         }
         
     }

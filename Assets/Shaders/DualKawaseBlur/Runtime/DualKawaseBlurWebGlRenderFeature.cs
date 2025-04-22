@@ -7,6 +7,11 @@ using UnityEngine.Rendering.Universal;
 public class DualKawaseBlurWebGlSettings {
     public bool copyToFrameBuffer = true;
     public string targetTextureName = "_BlurTexture";
+    
+    public bool m_CopyToFrameBuffer = true; // Or false if setting global texture
+    public string m_TargetTextureName = "_BlurTexture"; // If not copying to frame buffer
+    // public string m_TargetTextureName = "_BlurResultTexture"; // If not copying to frame buffer
+
 
     public Material blurDownMaterial;
     public Material blurUpMaterial;

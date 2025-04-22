@@ -58,5 +58,6 @@ void LinearLerp(uint3 id : SV_DispatchThreadID)
 	float4 sourceTex = _SourceTexture.Load(uint3(id.xy, 0));
 	float4 blurredTex = _TargetTexture.Load(uint3(id.xy, 0));
 	float3 color = lerp(sourceTex.rgb, blurredTex.rgb, _BlendRatio);
+	// float3 color = lerp(blurredTex.rgb, blurredTex.rgb, _BlendRatio);
 	_TargetTexture[id.xy] = half4(color, 1.0f);
 }
