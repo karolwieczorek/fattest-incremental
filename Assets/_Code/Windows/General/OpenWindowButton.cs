@@ -25,8 +25,8 @@ namespace FattestInc.Windows.General {
             windowManager.OpenOnTop(windowBase.GetType());
         }
 
-#if UNITY_EDITOR
         IEnumerable<WindowBase> GetWindowPrefabs() {
+#if UNITY_EDITOR
             const string folderPath = "Assets/Prefabs/Windows";
             var prefabGuids = UnityEditor.AssetDatabase.FindAssets("t:Prefab", new[] {folderPath});
 
@@ -42,7 +42,9 @@ namespace FattestInc.Windows.General {
             }
 
             return windowPrefabs;
-        }
+#else
+            return null;
 #endif
+        }
     }
 }
