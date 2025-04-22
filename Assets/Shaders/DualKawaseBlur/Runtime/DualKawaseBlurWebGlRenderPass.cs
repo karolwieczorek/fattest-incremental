@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -17,10 +14,13 @@ public class DualKawaseBlurWebGlRenderPass : ScriptableRenderPass {
 
     Vector2Int mOriginalSize;
 
-    const string KBlurTextureName = "_BlurTexture";
+    const string BlurTextureName = "_BlurTexture";
     
     static readonly int BlendRatioId = Shader.PropertyToID("_BlendRatio");
-    private List<RenderTexture> mTemporaryRTs = new List<RenderTexture>();
+    static readonly int TexelSizeId = Shader.PropertyToID("_TexelSize");
+    static readonly int BlurTexId = Shader.PropertyToID("_BlurTex");
+    static readonly int MainTexId = Shader.PropertyToID("_MainTex");
+    readonly List<RenderTexture> mTemporaryRTs = new();
 
     public DualKawaseBlurWebGlRenderPass(string featureName, DualKawaseBlurWebGlSettings settings) {
         sampler = new ProfilingSampler(featureName);
@@ -28,19 +28,6 @@ public class DualKawaseBlurWebGlRenderPass : ScriptableRenderPass {
             ? RenderPassEvent.BeforeRenderingPostProcessing
             : RenderPassEvent.AfterRenderingSkybox;
         this.settings = settings;
-
-        // var graphicsFormat = SystemInfo.GetCompatibleFormat(mDescriptor.graphicsFormat, FormatUsage.SetPixels);//UnityEngine.Experimental.Rendering.GraphicsFormat.R8G8B8A8_UNorm;
-        // Debug.Log($"mDescriptor.graphicsFormat: {graphicsFormat}");
-        //
-        // var format = mDescriptor.graphicsFormat;
-        // Debug.Log($"Default format: {format}");
-        // Debug.Log("Default format");
-        // foreach (var renterTextureFormat in Enum.GetValues(typeof(RenderTextureFormat)).Cast<RenderTextureFormat>()) {
-        //     var isSupported = SystemInfo.SupportsRenderTextureFormat(renterTextureFormat);
-        //     if (isSupported)
-        //         supportedFormat = renterTextureFormat;
-        //     Debug.Log($"Format: {renterTextureFormat} is supported: {isSupported}");
-        // }
     }
 
     public void Setup(DualKawaseBlurWebGl volumeComponent) {
@@ -63,10 +50,13 @@ public class DualKawaseBlurWebGlRenderPass : ScriptableRenderPass {
         mOriginalSize = new Vector2Int(mDescriptor.width, mDescriptor.height);
     }
 
-    RenderTexture GetTemporaryRT(RenderTextureDescriptor desc, string name)
-    {
+    RenderTexture GetTemporaryRT(RenderTextureDescriptor desc, string name) {
         desc.width = Mathf.Max(1, desc.width); // Ensure width is at least 1
         desc.height = Mathf.Max(1, desc.height); // Ensure height is at least 1
+        
+        // important: For some reason WebGL really did not liked creating render texture with descriptor, 
+        // I did not dig to the bottom of why was it, the current solution is to create RenderTexture with just width and height 
+        
         // desc.graphicsFormat = GraphicsFormat.R8G8B8A8_SRGB;
         // RenderTexture rt = RenderTexture.GetTemporary(desc);
         RenderTexture rt = RenderTexture.GetTemporary(desc.width, desc.height);
@@ -96,7 +86,7 @@ public class DualKawaseBlurWebGlRenderPass : ScriptableRenderPass {
 
             // create final target blur texture
             var finalTextureID = GetTemporaryRT(mDescriptor, settings.targetTextureName);
-            
+
             // keep track
             textureIDs.Add(finalTextureID);
             textureSizes.Add(mOriginalSize);
@@ -108,18 +98,17 @@ public class DualKawaseBlurWebGlRenderPass : ScriptableRenderPass {
             for (var i = 0; i <= blurIterations; i++) {
                 // create a new target texture
                 // ---------------------------
-                
+
                 // plus one is necessary to zero thread group count
                 Vector2Int targetTextureSize = new((sourceTextureSize.x + 1) / 2, (sourceTextureSize.y + 1) / 2);
                 mDescriptor.width = targetTextureSize.x;
                 mDescriptor.height = targetTextureSize.y;
-                var targetTextureID = GetTemporaryRT(mDescriptor, $"{KBlurTextureName}" + i);
+                var targetTextureID = GetTemporaryRT(mDescriptor, $"{BlurTextureName}" + i);
                 // keep track
                 textureIDs.Add(targetTextureID);
                 textureSizes.Add(targetTextureSize);
 
                 // do the kawase blur
-                Debug.Log($"Downsample: {targetTextureID.name}, {targetTextureSize.x}, {targetTextureSize.y}");
                 DownSampleBlur(cmd, sourceTextureID, targetTextureID, targetTextureSize);
 
                 // update the last size and ID
@@ -134,8 +123,9 @@ public class DualKawaseBlurWebGlRenderPass : ScriptableRenderPass {
                 var tempTextureSize = textureSizes[blurIterations];
                 mDescriptor.width = tempTextureSize.x;
                 mDescriptor.height = tempTextureSize.y;
-                const string kBlurTextureName = "_BlurTexture";
-                var tempTextureID = GetTemporaryRT(mDescriptor, $"{kBlurTextureName}{(blurIterations + 1)}");//RenderTexture.GetTemporary(mDescriptor.width, mDescriptor.height, 0);
+                var tempTextureID =
+                    GetTemporaryRT(mDescriptor,
+                        $"{BlurTextureName}{(blurIterations + 1)}"); //RenderTexture.GetTemporary(mDescriptor.width, mDescriptor.height, 0);
 
                 for (var i = blurIterations + 1; i >= 1; i--) {
                     var sourceID = textureIDs[i];
@@ -170,6 +160,7 @@ public class DualKawaseBlurWebGlRenderPass : ScriptableRenderPass {
         context.ExecuteCommandBuffer(cmd);
         cmd.Clear();
         CommandBufferPool.Release(cmd);
+        ReleaseAllTemporaryRTs();
     }
 
     Vector4 GetTextureSizeParams(Vector2Int size) {
@@ -179,12 +170,11 @@ public class DualKawaseBlurWebGlRenderPass : ScriptableRenderPass {
     void DownSampleBlur(CommandBuffer cmd, RenderTargetIdentifier source, RenderTargetIdentifier target,
         Vector2Int targetSize) {
         using (new ProfilingScope(cmd, new ProfilingSampler("DownSample Blur"))) {
-            cmd.SetGlobalTexture("_MainTex", source);
+            cmd.SetGlobalTexture(MainTexId, source);
             var mat = settings.blurDownMaterial;
             var textureSizeParams = GetTextureSizeParams(targetSize);
-            Debug.Log($"{nameof(textureSizeParams)} - {textureSizeParams.x}, {textureSizeParams.y}");
-            mat.SetVector("_TexelSize", textureSizeParams);
-            cmd.SetGlobalVector("_TexelSize", textureSizeParams);
+            mat.SetVector(TexelSizeId, textureSizeParams);
+            cmd.SetGlobalVector(TexelSizeId, textureSizeParams);
             cmd.Blit(source, target, mat);
         }
     }
@@ -192,44 +182,39 @@ public class DualKawaseBlurWebGlRenderPass : ScriptableRenderPass {
     void UpSampleBlur(CommandBuffer cmd, RenderTargetIdentifier source, RenderTargetIdentifier target,
         Vector2Int targetSize) {
         using (new ProfilingScope(cmd, new ProfilingSampler("UpSample Blur"))) {
-            cmd.SetGlobalTexture("_MainTex", source);
+            cmd.SetGlobalTexture(MainTexId, source);
             var textureSizeParams = GetTextureSizeParams(targetSize);
             var mat = settings.blurUpMaterial;
-            mat.SetVector("_TexelSize", textureSizeParams);
+            mat.SetVector(TexelSizeId, textureSizeParams);
             cmd.Blit(source, target, mat);
         }
     }
 
-    void Linear(CommandBuffer cmd, RenderTargetIdentifier original, RenderTargetIdentifier blurred, Vector2Int size, float ratio)
-    {
-        using (new ProfilingScope(cmd, new ProfilingSampler("Linear Blend")))
-        {
-            cmd.SetGlobalTexture("_MainTex", original);
-            // cmd.SetGlobalTexture("_BlurTex", blurred);
+    void Linear(CommandBuffer cmd, RenderTargetIdentifier original, RenderTargetIdentifier blurred, Vector2Int size,
+        float ratio) {
+        using (new ProfilingScope(cmd, new ProfilingSampler("Linear Blend"))) {
+            cmd.SetGlobalTexture(MainTexId, original);
             var blurredRT = GetTemporaryRT(mDescriptor, "_BlurTex");
             cmd.Blit(blurred, blurredRT);
             var mat = settings.blurLinearMaterial;
-            mat.SetFloat("_BlendRatio", ratio);
-            mat.SetVector("_TexelSize", GetTextureSizeParams(size));
-            mat.SetTexture("_BlurTex", blurredRT);
+            mat.SetFloat(BlendRatioId, ratio);
+            mat.SetVector(TexelSizeId, GetTextureSizeParams(size));
+            mat.SetTexture(BlurTexId, blurredRT);
             cmd.Blit(original, blurred, mat);
         }
     }
 
-    void ReleaseAllTemporaryRTs()
-    {
-        foreach (var rt in mTemporaryRTs)
-        {
-            if (rt != null)
-            {
+    void ReleaseAllTemporaryRTs() {
+        foreach (var rt in mTemporaryRTs) {
+            if (rt != null) {
                 RenderTexture.ReleaseTemporary(rt);
             }
         }
+
         mTemporaryRTs.Clear();
     }
 
-    public override void OnCameraCleanup(CommandBuffer cmd)
-    {
+    public override void OnCameraCleanup(CommandBuffer cmd) {
         base.OnCameraCleanup(cmd);
         ReleaseAllTemporaryRTs();
     }
