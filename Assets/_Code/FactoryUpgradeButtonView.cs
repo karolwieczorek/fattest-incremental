@@ -1,10 +1,12 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace FattestInc {
-    public class FactoryUpgradeButtonView : MonoBehaviour {
+    public class FactoryUpgradeButtonView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         [SerializeField] Image buttonBackgroundImage;
         [SerializeField] TMP_Text buttonText;
         [SerializeField] TMP_Text costText;
@@ -13,6 +15,11 @@ namespace FattestInc {
         [SerializeField] Data available;
         [SerializeField] Data unavailable;
         [SerializeField] Data max;
+
+        bool isHovered;
+        public bool IsHovered => button.interactable && isHovered;
+        public event Action PointerEnter;
+        public event Action PointerExit;
 
         [Button]
         [ContextMenu(nameof(ApplyAvailable))]
@@ -45,6 +52,18 @@ namespace FattestInc {
             public Color buttonTextColor;
             public Color costTextColor;
             public bool buttonInteractable;
+        }
+
+        public void OnPointerEnter(PointerEventData eventData) {
+            isHovered = true;
+            if (button.interactable)
+                PointerEnter?.Invoke();
+        }
+
+        public void OnPointerExit(PointerEventData eventData) {
+            isHovered = false;
+            if (button.interactable)
+                PointerExit?.Invoke();
         }
     }
 }

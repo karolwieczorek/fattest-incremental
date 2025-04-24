@@ -30,6 +30,8 @@ namespace FattestInc {
         void OnEnable() {
             button.onClick.AddListener(BuyUpgrade);
             clickerButton.onClick.AddListener(ClickerButtonClick);
+            factoryUpgradeButtonView.PointerEnter += Refresh;
+            factoryUpgradeButtonView.PointerExit += Refresh;
             if (economyDataStore != null)
                 economyDataStore.CurrentTotalAmount.Changed += Refresh;
         }
@@ -37,6 +39,8 @@ namespace FattestInc {
         void OnDisable() {
             button.onClick.RemoveListener(BuyUpgrade);
             clickerButton.onClick.RemoveListener(ClickerButtonClick);
+            factoryUpgradeButtonView.PointerEnter -= Refresh;
+            factoryUpgradeButtonView.PointerExit -= Refresh;
             if (economyDataStore != null)
                 economyDataStore.CurrentTotalAmount.Changed -= Refresh;
         }
@@ -94,12 +98,19 @@ namespace FattestInc {
         }
 
         void Refresh() {
-            amountLabel.text = $"{factory.Level}";
-            valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level).ToString();
-            clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level)}";
+            var hasNextLevel = factoryLevelsData.HasNextLevel(factory.Level);
+            if (factoryUpgradeButtonView.IsHovered && hasNextLevel) {
+                valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level + 1).ToString();
+                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level + 1)}";
+                amountLabel.text = $"{factory.Level + 1}";
+            }
+            else {
+                valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level).ToString();
+                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level)}";
+                amountLabel.text = $"{factory.Level}";
+            }
             
-            // Debug.Log($"Value for level {factory.Level} = {factoryLevelsData.GetValueForLevel(factory.Level)}");
-            if (!factoryLevelsData.HasNextLevel(factory.Level)) {
+            if (!hasNextLevel) {
                 factoryUpgradeButtonView.ApplyMax();
             }
             else {
@@ -111,9 +122,7 @@ namespace FattestInc {
                     factoryUpgradeButtonView.ApplyUnavailable();
                 
                 costLabel.text = $"Cost: {costAmount}";
-                var valueForNextLevel = factoryLevelsData.GetValueDifferenceForNextLevel(factory.Level).ToString();
-                var addMode = factoryLevelsData.FactoryType == FactoryType.Idle ? "tick" : "click";
-                nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/{addMode}";
+                nextLevelValueDifferenceLabel.text = $"Buy 1";
             }
         }
 
