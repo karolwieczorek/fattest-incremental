@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace FattestInc {
@@ -10,6 +11,11 @@ namespace FattestInc {
         [ShowInInspector] int valuePerTick;
         [ShowInInspector] float time;
         [ShowInInspector] float duration = 1f;
+
+        [ShowInInspector]
+        public float TimeLeft => duration - time;
+
+        public float Duration => duration;
 
         [ShowInInspector] public float Progress {
             get {

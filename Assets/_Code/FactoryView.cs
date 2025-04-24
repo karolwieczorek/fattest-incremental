@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +15,8 @@ namespace FattestInc {
         [SerializeField] TMP_Text valueLabel;
         [SerializeField] TMP_Text costLabel;
         [SerializeField] TMP_Text nextLevelValueDifferenceLabel;
+        [SerializeField] TMP_Text timeLeftA;
+        [SerializeField] TMP_Text timeLeftB;
 
         [SerializeField] GameObject idleContainer;
         [SerializeField] GameObject clickerContainer;
@@ -27,6 +31,8 @@ namespace FattestInc {
         
         public string FactoryId { get; private set; }
 
+        CancellationTokenSource cancellationTokenSource;
+
         void OnEnable() {
             button.onClick.AddListener(BuyUpgrade);
             clickerButton.onClick.AddListener(ClickerButtonClick);
@@ -34,6 +40,14 @@ namespace FattestInc {
             factoryUpgradeButtonView.PointerExit += Refresh;
             if (economyDataStore != null)
                 economyDataStore.CurrentTotalAmount.Changed += Refresh;
+
+            if (cancellationTokenSource != null) {
+                cancellationTokenSource.Cancel();
+                cancellationTokenSource.Dispose();
+            }
+
+            cancellationTokenSource = new CancellationTokenSource();
+            RefreshTimeTask(cancellationTokenSource.Token).Forget();
         }
 
         void OnDisable() {
@@ -43,6 +57,12 @@ namespace FattestInc {
             factoryUpgradeButtonView.PointerExit -= Refresh;
             if (economyDataStore != null)
                 economyDataStore.CurrentTotalAmount.Changed -= Refresh;
+            
+            if (cancellationTokenSource != null) {
+                cancellationTokenSource.Cancel();
+                cancellationTokenSource.Dispose();
+                cancellationTokenSource = null;
+            }
         }
 
         void BuyUpgrade() {
@@ -159,6 +179,28 @@ namespace FattestInc {
             void ShowFactory() {
                 Debug.Log($"Show: {FactoryId}", this);
                 gameObject.SetActive(true);
+            }
+        }
+
+        async UniTaskVoid RefreshTimeTask(CancellationToken cancellationToken) {
+            while (true) {
+                await UniTask.WaitForSeconds(0.1f, cancellationToken: cancellationToken);
+                if (cancellationToken.IsCancellationRequested)
+                    return;
+                if (factory != null) {
+                    if (factory.Duration > 10) {
+                        var timeSpan = TimeSpan.FromSeconds(factory.TimeLeft);
+                        var timeLabel = $"{timeSpan.TotalMinutes}:{timeSpan.Seconds}";
+                        timeLeftA.text = timeLabel;
+                        timeLeftB.text = timeLabel;
+                    }
+                    else {
+                        // var timeSpan = TimeSpan.FromSeconds(factory.TimeLeft);
+                        var timeLabel = $"{factory.TimeLeft:F1}";
+                        timeLeftA.text = timeLabel;
+                        timeLeftB.text = timeLabel;
+                    }
+                }
             }
         }
     }
