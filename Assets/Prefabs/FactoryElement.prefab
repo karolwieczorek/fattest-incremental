@@ -32,11 +32,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1912871189799573309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 391.8, y: 43.7}
-  m_SizeDelta: {x: 335.5, y: 81.4}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 175.3, y: -46.300003}
+  m_SizeDelta: {x: 354.8, y: 81.399994}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7277753542497552635
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -394,9 +394,9 @@ RectTransform:
   m_Father: {fileID: 1912871189799573309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 215, y: 15}
-  m_SizeDelta: {x: 370, y: 85}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 20, y: 15}
+  m_SizeDelta: {x: -40, y: 40}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &98291977186173652
 CanvasRenderer:
@@ -473,10 +473,10 @@ RectTransform:
   - {fileID: 4732833239760267259}
   m_Father: {fileID: 1912871189799573309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 281.8, y: 19.7}
-  m_SizeDelta: {x: 224.5, y: 102.9}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 80, y: -8}
+  m_SizeDelta: {x: -200, y: 89.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1859493602999292963
 CanvasRenderer:
@@ -505,7 +505,7 @@ MonoBehaviour:
   available:
     backgroundColor: {r: 0.21176471, g: 0.22745098, b: 0.24313726, a: 1}
     buttonTextColor: {r: 0.9607843, g: 0.9019608, b: 0.8392157, a: 1}
-    costTextColor: {r: 0.5372549, g: 0.3019608, b: 0.11372549, a: 1}
+    costTextColor: {r: 0.22745098, g: 0.9137255, b: 0, a: 1}
     buttonInteractable: 1
   unavailable:
     backgroundColor: {r: 0.21176471, g: 0.22745098, b: 0.24313726, a: 0.8862745}
@@ -803,7 +803,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 850, y: 180}
+  m_SizeDelta: {x: 550, y: 229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5484057484731544591
 MonoBehaviour:
@@ -954,7 +954,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -4.1, y: 25.6}
+  m_AnchoredPosition: {x: -4.100006, y: 25.599998}
   m_SizeDelta: {x: 142.3, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &2627703099784431202
@@ -1124,10 +1124,10 @@ RectTransform:
   - {fileID: 3391759577305969792}
   m_Father: {fileID: 5116542146271707652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -66.6, y: 2}
-  m_SizeDelta: {x: 224.5, y: 75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5034523789945757652
 CanvasRenderer:
@@ -1245,7 +1245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15, y: 0}
+  m_AnchoredPosition: {x: -15, y: 15}
   m_SizeDelta: {x: -30, y: -40}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1821870877393888500
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.3
+  m_fontSize: 43.9
   m_fontSizeBase: 39.4
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1452,11 +1452,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5414455848855262273}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -75.4}
-  m_SizeDelta: {x: -20, y: 57.2}
-  m_Pivot: {x: 1, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -10, y: 5}
+  m_SizeDelta: {x: -20, y: 30}
+  m_Pivot: {x: 1, y: 0}
 --- !u!222 &686801418505221808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1494,8 +1494,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280110473
-  m_fontColor: {r: 0.5372549, g: 0.3019608, b: 0.11372549, a: 1}
+    rgba: 4278249786
+  m_fontColor: {r: 0.22666919, g: 0.9137255, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1518,7 +1518,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1646,7 +1646,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.1
+  m_fontSize: 35.8
   m_fontSizeBase: 39.4
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2440,8 +2440,8 @@ RectTransform:
   - {fileID: 2826428035790817310}
   m_Father: {fileID: 1912871189799573309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -312, y: 6}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -84}
   m_SizeDelta: {x: 140, y: 140}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
