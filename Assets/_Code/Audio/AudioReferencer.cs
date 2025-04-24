@@ -19,7 +19,7 @@ namespace FattestInc.Audio {
         }
 
         public void SetMuted(bool isMuted) {
-            SetMasterMixerGroupVolume(isMuted ? 0f : -80f);
+            SetMasterMixerGroupVolume(isMuted ? 0f : 1f);
         }
 
         void SetMasterMixerGroupVolume(float volume) {
@@ -27,7 +27,7 @@ namespace FattestInc.Audio {
         }
 
         float ConvertValueToMixerValue(float value) {
-            return value * 80f - 80f;
+            return value * 80f - 80f; // TODO better calculation (log)
         }
     }
 }
