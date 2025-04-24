@@ -1,3 +1,4 @@
+using FattestInc.Audio;
 using FattestInc.Windows.General;
 using Hypnagogia.Utils;
 using Zenject;
@@ -9,8 +10,14 @@ namespace FattestInc {
 
             Container.BindDataStores(transform, makeGroup:false, 
                 typeof(UIDataStore),
-                typeof(EconomyDataStore)
+                typeof(EconomyDataStore),
+                typeof(AudioSettingsDataStore)
+                
                 );
+            Container.BindSystems(
+                typeof(AudioSystem)
+            );
+            // Container.BindSystem<AudioSystem>();
             Container.BindInterfacesAndSelfTo<ScenesLoaderHelper>().AsSingle();
             Container.BindInterfacesAndSelfTo<SaveHelper>().AsSingle();
         }

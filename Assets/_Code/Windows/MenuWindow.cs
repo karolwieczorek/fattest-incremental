@@ -9,6 +9,7 @@ namespace FattestInc.Windows {
         [SerializeField] TMP_Text versionLabel;
         [SerializeField] Button saveButton;
         [SerializeField] Button loadButton;
+        [SerializeField] Slider musicSlider;
 
         [HInject] SaveHelper saveHelper;
         [HInject] WindowManager windowManager;
@@ -18,6 +19,7 @@ namespace FattestInc.Windows {
             WindowApiShow();
             saveButton.onClick.AddListener(SaveButtonClicked);
             loadButton.onClick.AddListener(LoadButtonClicked);
+            // musicSlider.value
         }
 
         void OnDisable() {
