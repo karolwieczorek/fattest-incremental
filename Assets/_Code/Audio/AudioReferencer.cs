@@ -11,11 +11,11 @@ namespace FattestInc.Audio {
         [SerializeField] AudioMixerGroup sfxAudioMixerGroup;
 
         public void SetMusicMixerGroupVolume(float volume) {
-            audioMixer.SetFloat("MusicVolume", volume);
+            audioMixer.SetFloat("MusicVolume", ConvertValueToMixerValue(volume));
         }
 
         public void SetSfxMixerGroupVolume(float volume) {
-            audioMixer.SetFloat("SfxVolume", volume);
+            audioMixer.SetFloat("SfxVolume", ConvertValueToMixerValue(volume));
         }
 
         public void SetMuted(bool isMuted) {
@@ -23,7 +23,11 @@ namespace FattestInc.Audio {
         }
 
         void SetMasterMixerGroupVolume(float volume) {
-            audioMixer.SetFloat("MasterVolume", volume);
+            audioMixer.SetFloat("MasterVolume", ConvertValueToMixerValue(volume));
+        }
+
+        float ConvertValueToMixerValue(float value) {
+            return value * 80f - 80f;
         }
     }
 }
