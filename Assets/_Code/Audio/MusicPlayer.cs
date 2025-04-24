@@ -90,21 +90,5 @@ namespace FattestInc.Audio {
         public void SetLowPassTranstionDirection(float f) {
             _lowPassTransitionDirection = f;
         }
-
-        public float testValue;
-
-        public float valueSlider;
-        [ShowInInspector]
-        [PropertyRange(0f, 1f)]
-        public float ValueSlider {
-            get => valueSlider;
-            set {
-                valueSlider = value;
-                var currentVolume = Mathf.Max(0.001f, valueSlider);
-                this.testValue = Mathf.Log10(currentVolume) * 26.7f;
-                // if (valueSlider <= 0)
-                //     testValue -= 20;
-            }
-        }
     }
 }
