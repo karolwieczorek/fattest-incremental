@@ -26,20 +26,17 @@ namespace FattestInc.Audio {
             mutedObservable = new Observable<bool>(mutePref.Value);
         }
 
-        public void ChangeMusicVolume(float newVolume)
-        {
+        public void ChangeMusicVolume(float newVolume) {
             musicVolumePref.Value = newVolume;
             musicVolumeObservable.Value = newVolume;
         }
 
-        public void ChangeSfxVolume(float newVolume)
-        {
+        public void ChangeSfxVolume(float newVolume) {
             sfxVolumePref.Value = newVolume;
             sfxVolumeObservable.Value = newVolume;
         }
-        
-        public void ChangeMuteState(bool isMuted)
-        {
+
+        public void ChangeMuteState(bool isMuted) {
             mutePref.Value = isMuted;
             mutedObservable.Value = isMuted;
         }

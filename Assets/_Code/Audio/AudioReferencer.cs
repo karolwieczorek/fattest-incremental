@@ -29,7 +29,7 @@ namespace FattestInc.Audio {
         float ConvertValueToMixerValue(float value) {
             if (value <= 0)
                 return -80f;
-            
+
             var currentVolume = Mathf.Max(0.001f, value);
             return Mathf.Log10(currentVolume) * 20f;
         }
