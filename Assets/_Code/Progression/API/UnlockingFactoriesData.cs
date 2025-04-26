@@ -3,7 +3,7 @@ using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace FattestInc {
+namespace FattestInc.Progression.API {
     public class UnlockingFactoriesData : GoogleSpreadsheetScriptableObject {
         [TableList]
         [SerializeField] List<UnlockingData> levelsList = new();

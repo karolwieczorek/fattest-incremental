@@ -1,8 +1,7 @@
-﻿using System;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace FattestInc {
+namespace FattestInc.Economy.API {
     [System.Serializable]
     public class ResourceFactory {
         readonly FactoryType factoryType;

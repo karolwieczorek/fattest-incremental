@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using FattestInc.Economy.API;
 using Hypnagogia.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FattestInc {
+namespace FattestInc.UI.Implementation {
     public class FactoryView : MonoBehaviour {
         [SerializeField] Button button;
         [SerializeField] Image icon;

@@ -1,4 +1,7 @@
-﻿using Hypnagogia.Utils;
+﻿using FattestInc.Economy.API;
+using FattestInc.Economy.Implementation;
+using FattestInc.Progression.API;
+using Hypnagogia.Utils;
 using Zenject;
 
 namespace FattestInc {

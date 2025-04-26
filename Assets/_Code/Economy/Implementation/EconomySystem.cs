@@ -1,6 +1,7 @@
-﻿using Hypnagogia.Utils;
+﻿using FattestInc.Economy.API;
+using Hypnagogia.Utils;
 
-namespace FattestInc {
+namespace FattestInc.Economy.Implementation {
     public class EconomySystem : HSystem {
         [HInject] EconomyDataStore economyDataStore;
 

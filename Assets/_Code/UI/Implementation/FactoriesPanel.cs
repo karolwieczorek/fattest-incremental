@@ -1,10 +1,11 @@
-using System;
 using System.Collections.Generic;
+using FattestInc.Economy.API;
+using FattestInc.Progression.API;
 using Hypnagogia.Utils;
 using UnityEngine;
 using Zenject;
 
-namespace FattestInc {
+namespace FattestInc.UI.Implementation {
     public class FactoriesPanel : MonoBehaviour {
         [SerializeField] FactoryView factoryViewPrefab;
         [SerializeField] GameObject clickerViewPrefab;

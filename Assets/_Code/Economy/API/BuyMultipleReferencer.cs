@@ -1,6 +1,6 @@
 ﻿using Hypnagogia.Utils;
 
-namespace FattestInc {
+namespace FattestInc.Economy.API {
     public class BuyMultipleReferencer : HReferencer {
         
     }

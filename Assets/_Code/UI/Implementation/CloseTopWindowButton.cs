@@ -1,8 +1,8 @@
-﻿using FattestInc.UI;
-using FattestInc.UI.API;
+﻿using FattestInc.UI.API;
+using FattestInc.Windows.General;
 using Hypnagogia.Utils;
 
-namespace FattestInc.Windows.General {
+namespace FattestInc.UI.Implementation {
     public class CloseTopWindowButton : ButtonBehaviour {
         [HInject] WindowManager windowManager;
 

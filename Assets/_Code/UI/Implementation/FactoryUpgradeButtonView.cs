@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace FattestInc {
+namespace FattestInc.UI.Implementation {
     public class FactoryUpgradeButtonView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         [SerializeField] Image buttonBackgroundImage;
         [SerializeField] TMP_Text buttonText;

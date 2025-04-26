@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using FattestInc.UI;
 using FattestInc.UI.API;
+using FattestInc.Windows.General;
 using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace FattestInc.Windows.General {
+namespace FattestInc.UI.Implementation {
     public class OpenWindowButton : ButtonBehaviour {
         [HInject] WindowManager windowManager;
 

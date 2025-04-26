@@ -1,8 +1,9 @@
-﻿using Hypnagogia.Utils;
+﻿using FattestInc.Economy.API;
+using Hypnagogia.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FattestInc {
+namespace FattestInc.UI.Implementation {
     public class IncrementButton : MonoBehaviour {
         [SerializeField] Button button;
         [HInject] EconomyDataStore economyDataStore;

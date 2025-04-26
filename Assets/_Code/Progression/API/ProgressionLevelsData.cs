@@ -4,7 +4,7 @@ using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace FattestInc {
+namespace FattestInc.Progression.API {
     public class ProgressionLevelsData : GoogleSpreadsheetScriptableObject {
         [TableList]
         [SerializeField] List<LevelData> levelsList = new();

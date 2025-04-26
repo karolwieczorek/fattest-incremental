@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using FattestInc.Economy.API;
 using Hypnagogia.Utils;
 using UnityEngine;
 using Zenject;
 
-namespace FattestInc {
+namespace FattestInc.UI.Implementation {
     public class ProgressionPanel : MonoBehaviour {
         [SerializeField] ProgressionLevelView progressionLevelViewPrefab;
         [SerializeField] Transform content;

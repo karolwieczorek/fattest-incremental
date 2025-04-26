@@ -1,8 +1,10 @@
-﻿using Hypnagogia.Utils;
+﻿using FattestInc.Economy.API;
+using FattestInc.Progression.API;
+using Hypnagogia.Utils;
 using UnityEngine;
 using Zenject;
 
-namespace FattestInc {
+namespace FattestInc.Economy.Implementation {
     public class ResourceFactoriesSystem : HSystem, ITickable {
         [HInject] EconomyDataStore economyDataStore;
         [HInject] EconomyReferencer economyReferencer;

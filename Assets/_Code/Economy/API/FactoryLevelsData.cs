@@ -4,7 +4,7 @@ using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace FattestInc {
+namespace FattestInc.Economy.API {
     public class FactoryLevelsData : GoogleSpreadsheetScriptableObject
     {
         [SerializeField] string factoryId;

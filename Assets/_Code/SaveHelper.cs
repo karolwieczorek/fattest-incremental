@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FattestInc.Economy.API;
 using Hypnagogia.Utils;
 using JetBrains.Annotations;
 using UnityEngine;

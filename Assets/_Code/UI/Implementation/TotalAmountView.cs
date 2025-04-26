@@ -1,8 +1,9 @@
-﻿using Hypnagogia.Utils;
+﻿using FattestInc.Economy.API;
+using Hypnagogia.Utils;
 using TMPro;
 using UnityEngine;
 
-namespace FattestInc {
+namespace FattestInc.UI.Implementation {
     public class TotalAmountView : MonoBehaviour {
         [SerializeField] TMP_Text label;
         [HInject] EconomyDataStore economyDataStore;

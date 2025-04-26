@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using Hypnagogia.Utils;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace FattestInc {
+namespace FattestInc.Economy.API {
     public class FactoriesReferencer : HReferencer {
         const string DataPath = "_Data/Factories";
 

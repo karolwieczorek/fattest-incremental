@@ -1,4 +1,5 @@
 ﻿using System;
+using FattestInc.Economy.API;
 using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;

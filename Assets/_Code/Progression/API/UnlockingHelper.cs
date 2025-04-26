@@ -1,9 +1,10 @@
 ﻿using System.Linq;
+using FattestInc.Economy.API;
 using Hypnagogia.Utils;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace FattestInc {
+namespace FattestInc.Progression.API {
     [UsedImplicitly]
     public class UnlockingHelper {
         [HInject] EconomyDataStore economyDataStore;

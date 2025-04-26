@@ -1,10 +1,11 @@
-﻿using Hypnagogia.Utils;
+﻿using FattestInc.Progression.API;
+using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FattestInc {
+namespace FattestInc.UI.Implementation {
     public class ProgressionLevelView : MonoBehaviour {
         [SerializeField] Image currentBackground;
         [SerializeField] Image icon;

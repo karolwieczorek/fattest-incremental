@@ -1,7 +1,8 @@
-﻿using Hypnagogia.Utils;
+﻿using FattestInc.Progression.API;
+using Hypnagogia.Utils;
 using UnityEngine;
 
-namespace FattestInc {
+namespace FattestInc.Economy.API {
     public class EconomyReferencer : HReferencer {
         [SerializeField] ulong startingValue = 3;
 
