@@ -42,7 +42,7 @@ namespace FattestInc {
 
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var level, 0);
                 ParseIndexULong(sheetRow.elements, columnIndex++, out var cost, 0);
-                ParseIndexInt(sheetRow.elements, columnIndex++, out var value, 0);
+                ParseIndexULong(sheetRow.elements, columnIndex++, out var value, 0);
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var time, 1);
 
                 levelsList.Add(new LevelData
@@ -62,7 +62,7 @@ namespace FattestInc {
         public class LevelData {
             [TableColumnWidth(100)] public int level;
             [TableColumnWidth(100)] public ulong cost;
-            [TableColumnWidth(100)] public int value;
+            [TableColumnWidth(100)] public ulong value;
             [TableColumnWidth(100)] public int time;
         }
 
@@ -74,7 +74,7 @@ namespace FattestInc {
             return levelData.cost;
         }
 
-        public int GetValueForLevel(int factoryLevel) {
+        public ulong GetValueForLevel(int factoryLevel) {
             var levelData = levelsList.FirstOrDefault(x => x.level == factoryLevel);
             if (levelData == null)
                 return 0;
@@ -86,10 +86,6 @@ namespace FattestInc {
             if (levelData == null)
                 return 0;
             return levelData.time;
-        }
-
-        public int GetValueDifferenceForNextLevel(int factoryLevel) {
-            return GetValueForLevel(factoryLevel + 1) - GetValueForLevel(factoryLevel);
         }
 
         public bool IsLastLevel(int factoryLevel) {

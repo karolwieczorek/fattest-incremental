@@ -8,7 +8,7 @@ namespace FattestInc {
         readonly FactoryType factoryType;
         FactoryState factoryState;
         [ShowInInspector] int level;
-        [ShowInInspector] int valuePerTick;
+        [ShowInInspector] ulong valuePerTick;
         [ShowInInspector] float time;
         [ShowInInspector] float duration = 1f;
 
@@ -38,13 +38,13 @@ namespace FattestInc {
             duration = 1f;
         }
         
-        public void Upgrade(int level, int valuePerTick, float duration) {
+        public void Upgrade(int level, ulong valuePerTick, float duration) {
             this.level = level;
             this.valuePerTick = valuePerTick;
             this.duration = duration;
         }
 
-        public void Tick(float deltaTime, out int value) {
+        public void Tick(float deltaTime, out ulong value) {
             if (level <= 0 || Type == FactoryType.Clicker) {
                 value = 0;
                 return;
@@ -60,7 +60,7 @@ namespace FattestInc {
                     time -= ticksCompleted * duration;
             }
 
-            value = ticksCompleted * valuePerTick;
+            value = ((ulong)ticksCompleted) * valuePerTick;
         }
 
         public float NextUpgradePerSecondAmount() {

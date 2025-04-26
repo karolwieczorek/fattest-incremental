@@ -21,18 +21,1762 @@ MonoBehaviour:
   factoryType: 0
   levelsList:
   - level: 1
-    cost: 5
-    value: 3
-    time: 2
+    cost: 110000000
+    value: 1833333
+    time: 60
   - level: 2
-    cost: 50
-    value: 4
-    time: 2
+    cost: 110000000
+    value: 3666667
+    time: 60
   - level: 3
-    cost: 150
-    value: 5
-    time: 2
+    cost: 110000000
+    value: 5500000
+    time: 60
   - level: 4
-    cost: 200
-    value: 6
-    time: 2
+    cost: 320000000
+    value: 10833333
+    time: 60
+  - level: 5
+    cost: 320000000
+    value: 16166667
+    time: 60
+  - level: 6
+    cost: 1500000000
+    value: 41166667
+    time: 60
+  - level: 7
+    cost: 1500000000
+    value: 66166667
+    time: 60
+  - level: 8
+    cost: 1500000000
+    value: 91166667
+    time: 60
+  - level: 9
+    cost: 1870000000
+    value: 122333333
+    time: 60
+  - level: 10
+    cost: 2020000000
+    value: 156000000
+    time: 60
+  - level: 11
+    cost: 2020000000
+    value: 189666667
+    time: 60
+  - level: 12
+    cost: 2020000000
+    value: 223333333
+    time: 60
+  - level: 13
+    cost: 2020000000
+    value: 257000000
+    time: 60
+  - level: 14
+    cost: 2020000000
+    value: 290666667
+    time: 60
+  - level: 15
+    cost: 2020000000
+    value: 324333333
+    time: 60
+  - level: 16
+    cost: 2020000000
+    value: 358000000
+    time: 60
+  - level: 17
+    cost: 2020000000
+    value: 391666667
+    time: 60
+  - level: 18
+    cost: 2020000000
+    value: 425333333
+    time: 60
+  - level: 19
+    cost: 2020000000
+    value: 459000000
+    time: 60
+  - level: 20
+    cost: 2020000000
+    value: 492666667
+    time: 60
+  - level: 21
+    cost: 2020000000
+    value: 526333333
+    time: 60
+  - level: 22
+    cost: 2050000000
+    value: 560500000
+    time: 60
+  - level: 23
+    cost: 2050000000
+    value: 594666667
+    time: 60
+  - level: 24
+    cost: 3000000000
+    value: 644666667
+    time: 60
+  - level: 25
+    cost: 3000000000
+    value: 694666667
+    time: 60
+  - level: 26
+    cost: 3130000000
+    value: 746833333
+    time: 60
+  - level: 27
+    cost: 3150000000
+    value: 799333333
+    time: 60
+  - level: 28
+    cost: 3260000000
+    value: 853666667
+    time: 60
+  - level: 29
+    cost: 3400000000
+    value: 910333333
+    time: 60
+  - level: 30
+    cost: 3650000000
+    value: 971166667
+    time: 60
+  - level: 31
+    cost: 3650000000
+    value: 1032000000
+    time: 60
+  - level: 32
+    cost: 3760000000
+    value: 1094666667
+    time: 60
+  - level: 33
+    cost: 3810000000
+    value: 1158166667
+    time: 60
+  - level: 34
+    cost: 3850000000
+    value: 1222333333
+    time: 60
+  - level: 35
+    cost: 4110000000
+    value: 1290833333
+    time: 60
+  - level: 36
+    cost: 4110000000
+    value: 1359333333
+    time: 60
+  - level: 37
+    cost: 4110000000
+    value: 1427833333
+    time: 60
+  - level: 38
+    cost: 4110000000
+    value: 1496333333
+    time: 60
+  - level: 39
+    cost: 4160000000
+    value: 1565666667
+    time: 60
+  - level: 40
+    cost: 4340000000
+    value: 1638000000
+    time: 60
+  - level: 41
+    cost: 4450000000
+    value: 1712166667
+    time: 60
+  - level: 42
+    cost: 4660000000
+    value: 1789833333
+    time: 60
+  - level: 43
+    cost: 4660000000
+    value: 1867500000
+    time: 60
+  - level: 44
+    cost: 4670000000
+    value: 1945333333
+    time: 60
+  - level: 45
+    cost: 4690000000
+    value: 2023500000
+    time: 60
+  - level: 46
+    cost: 4790000000
+    value: 2103333333
+    time: 60
+  - level: 47
+    cost: 4790000000
+    value: 2183166667
+    time: 60
+  - level: 48
+    cost: 4790000000
+    value: 2263000000
+    time: 60
+  - level: 49
+    cost: 4790000000
+    value: 2342833333
+    time: 60
+  - level: 50
+    cost: 4820000000
+    value: 2423166667
+    time: 60
+  - level: 51
+    cost: 4850000000
+    value: 2504000000
+    time: 60
+  - level: 52
+    cost: 4900000000
+    value: 2585666667
+    time: 60
+  - level: 53
+    cost: 4900000000
+    value: 2667333333
+    time: 60
+  - level: 54
+    cost: 5050000000
+    value: 2751500000
+    time: 60
+  - level: 55
+    cost: 5070000000
+    value: 2836000000
+    time: 60
+  - level: 56
+    cost: 5070000000
+    value: 2920500000
+    time: 60
+  - level: 57
+    cost: 5100000000
+    value: 3005500000
+    time: 60
+  - level: 58
+    cost: 5100000000
+    value: 3090500000
+    time: 60
+  - level: 59
+    cost: 5100000000
+    value: 3175500000
+    time: 60
+  - level: 60
+    cost: 5100000000
+    value: 3260500000
+    time: 60
+  - level: 61
+    cost: 5160000000
+    value: 3346500000
+    time: 60
+  - level: 62
+    cost: 5160000000
+    value: 3432500000
+    time: 60
+  - level: 63
+    cost: 5160000000
+    value: 3518500000
+    time: 60
+  - level: 64
+    cost: 5160000000
+    value: 3604500000
+    time: 60
+  - level: 65
+    cost: 5190000000
+    value: 3691000000
+    time: 60
+  - level: 66
+    cost: 5220000000
+    value: 3778000000
+    time: 60
+  - level: 67
+    cost: 5500000000
+    value: 3869666667
+    time: 60
+  - level: 68
+    cost: 5500000000
+    value: 3961333333
+    time: 60
+  - level: 69
+    cost: 5600000000
+    value: 4054666667
+    time: 60
+  - level: 70
+    cost: 5600000000
+    value: 4148000000
+    time: 60
+  - level: 71
+    cost: 5690000000
+    value: 4242833333
+    time: 60
+  - level: 72
+    cost: 5710000000
+    value: 4338000000
+    time: 60
+  - level: 73
+    cost: 5750000000
+    value: 4433833333
+    time: 60
+  - level: 74
+    cost: 5900000000
+    value: 4532166667
+    time: 60
+  - level: 75
+    cost: 5910000000
+    value: 4630666667
+    time: 60
+  - level: 76
+    cost: 5910000000
+    value: 4729166667
+    time: 60
+  - level: 77
+    cost: 5950000000
+    value: 4828333333
+    time: 60
+  - level: 78
+    cost: 5950000000
+    value: 4927500000
+    time: 60
+  - level: 79
+    cost: 5950000000
+    value: 5026666667
+    time: 60
+  - level: 80
+    cost: 6010000000
+    value: 5126833333
+    time: 60
+  - level: 81
+    cost: 6010000000
+    value: 5227000000
+    time: 60
+  - level: 82
+    cost: 6050000000
+    value: 5327833333
+    time: 60
+  - level: 83
+    cost: 6080000000
+    value: 5429166667
+    time: 60
+  - level: 84
+    cost: 6090000000
+    value: 5530666667
+    time: 60
+  - level: 85
+    cost: 6130000000
+    value: 5632833333
+    time: 60
+  - level: 86
+    cost: 6200000000
+    value: 5736166667
+    time: 60
+  - level: 87
+    cost: 6200000000
+    value: 5839500000
+    time: 60
+  - level: 88
+    cost: 6230000000
+    value: 5943333333
+    time: 60
+  - level: 89
+    cost: 6230000000
+    value: 6047166667
+    time: 60
+  - level: 90
+    cost: 6230000000
+    value: 6151000000
+    time: 60
+  - level: 91
+    cost: 6230000000
+    value: 6254833333
+    time: 60
+  - level: 92
+    cost: 6280000000
+    value: 6359500000
+    time: 60
+  - level: 93
+    cost: 6300000000
+    value: 6464500000
+    time: 60
+  - level: 94
+    cost: 6300000000
+    value: 6569500000
+    time: 60
+  - level: 95
+    cost: 6300000000
+    value: 6674500000
+    time: 60
+  - level: 96
+    cost: 6400000000
+    value: 6781166667
+    time: 60
+  - level: 97
+    cost: 6500000000
+    value: 6889500000
+    time: 60
+  - level: 98
+    cost: 6500000000
+    value: 6997833333
+    time: 60
+  - level: 99
+    cost: 6600000000
+    value: 7107833333
+    time: 60
+  - level: 100
+    cost: 6770000000
+    value: 7220666667
+    time: 60
+  - level: 101
+    cost: 6770000000
+    value: 7333500000
+    time: 60
+  - level: 102
+    cost: 6930000000
+    value: 7449000000
+    time: 60
+  - level: 103
+    cost: 6960000000
+    value: 7565000000
+    time: 60
+  - level: 104
+    cost: 7410000000
+    value: 7688500000
+    time: 60
+  - level: 105
+    cost: 7690000000
+    value: 7816666667
+    time: 60
+  - level: 106
+    cost: 7700000000
+    value: 7945000000
+    time: 60
+  - level: 107
+    cost: 7750000000
+    value: 8074166667
+    time: 60
+  - level: 108
+    cost: 7770000000
+    value: 8203666667
+    time: 60
+  - level: 109
+    cost: 7770000000
+    value: 8333166667
+    time: 60
+  - level: 110
+    cost: 7800000000
+    value: 8463166667
+    time: 60
+  - level: 111
+    cost: 7800000000
+    value: 8593166667
+    time: 60
+  - level: 112
+    cost: 7800000000
+    value: 8723166667
+    time: 60
+  - level: 113
+    cost: 7890000000
+    value: 8854666667
+    time: 60
+  - level: 114
+    cost: 7960000000
+    value: 8987333333
+    time: 60
+  - level: 115
+    cost: 7960000000
+    value: 9120000000
+    time: 60
+  - level: 116
+    cost: 8070000000
+    value: 9254500000
+    time: 60
+  - level: 117
+    cost: 8110000000
+    value: 9389666667
+    time: 60
+  - level: 118
+    cost: 8130000000
+    value: 9525166667
+    time: 60
+  - level: 119
+    cost: 8170000000
+    value: 9661333333
+    time: 60
+  - level: 120
+    cost: 8170000000
+    value: 9797500000
+    time: 60
+  - level: 121
+    cost: 8170000000
+    value: 9933666667
+    time: 60
+  - level: 122
+    cost: 8170000000
+    value: 10069833333
+    time: 60
+  - level: 123
+    cost: 8200000000
+    value: 10206500000
+    time: 60
+  - level: 124
+    cost: 8210000000
+    value: 10343333333
+    time: 60
+  - level: 125
+    cost: 8300000000
+    value: 10481666667
+    time: 60
+  - level: 126
+    cost: 8300000000
+    value: 10620000000
+    time: 60
+  - level: 127
+    cost: 8360000000
+    value: 10759333333
+    time: 60
+  - level: 128
+    cost: 8370000000
+    value: 10898833333
+    time: 60
+  - level: 129
+    cost: 8380000000
+    value: 11038500000
+    time: 60
+  - level: 130
+    cost: 8380000000
+    value: 11178166667
+    time: 60
+  - level: 131
+    cost: 8460000000
+    value: 11319166667
+    time: 60
+  - level: 132
+    cost: 8460000000
+    value: 11460166667
+    time: 60
+  - level: 133
+    cost: 8460000000
+    value: 11601166667
+    time: 60
+  - level: 134
+    cost: 8470000000
+    value: 11742333333
+    time: 60
+  - level: 135
+    cost: 8480000000
+    value: 11883666667
+    time: 60
+  - level: 136
+    cost: 8550000000
+    value: 12026166667
+    time: 60
+  - level: 137
+    cost: 8590000000
+    value: 12169333333
+    time: 60
+  - level: 138
+    cost: 8660000000
+    value: 12313666667
+    time: 60
+  - level: 139
+    cost: 8690000000
+    value: 12458500000
+    time: 60
+  - level: 140
+    cost: 8740000000
+    value: 12604166667
+    time: 60
+  - level: 141
+    cost: 8760000000
+    value: 12750166667
+    time: 60
+  - level: 142
+    cost: 8770000000
+    value: 12896333333
+    time: 60
+  - level: 143
+    cost: 8780000000
+    value: 13042666667
+    time: 60
+  - level: 144
+    cost: 8780000000
+    value: 13189000000
+    time: 60
+  - level: 145
+    cost: 8780000000
+    value: 13335333333
+    time: 60
+  - level: 146
+    cost: 8780000000
+    value: 13481666667
+    time: 60
+  - level: 147
+    cost: 8790000000
+    value: 13628166667
+    time: 60
+  - level: 148
+    cost: 8800000000
+    value: 13774833333
+    time: 60
+  - level: 149
+    cost: 8800000000
+    value: 13921500000
+    time: 60
+  - level: 150
+    cost: 8830000000
+    value: 14068666667
+    time: 60
+  - level: 151
+    cost: 8830000000
+    value: 14215833333
+    time: 60
+  - level: 152
+    cost: 8900000000
+    value: 14364166667
+    time: 60
+  - level: 153
+    cost: 8900000000
+    value: 14512500000
+    time: 60
+  - level: 154
+    cost: 8900000000
+    value: 14660833333
+    time: 60
+  - level: 155
+    cost: 8900000000
+    value: 14809166667
+    time: 60
+  - level: 156
+    cost: 8900000000
+    value: 14957500000
+    time: 60
+  - level: 157
+    cost: 8900000000
+    value: 15105833333
+    time: 60
+  - level: 158
+    cost: 8940000000
+    value: 15254833333
+    time: 60
+  - level: 159
+    cost: 8940000000
+    value: 15403833333
+    time: 60
+  - level: 160
+    cost: 9050000000
+    value: 15554666667
+    time: 60
+  - level: 161
+    cost: 9050000000
+    value: 15705500000
+    time: 60
+  - level: 162
+    cost: 9050000000
+    value: 15856333333
+    time: 60
+  - level: 163
+    cost: 9050000000
+    value: 16007166667
+    time: 60
+  - level: 164
+    cost: 9050000000
+    value: 16158000000
+    time: 60
+  - level: 165
+    cost: 9080000000
+    value: 16309333333
+    time: 60
+  - level: 166
+    cost: 9080000000
+    value: 16460666667
+    time: 60
+  - level: 167
+    cost: 9100000000
+    value: 16612333333
+    time: 60
+  - level: 168
+    cost: 9100000000
+    value: 16764000000
+    time: 60
+  - level: 169
+    cost: 9100000000
+    value: 16915666667
+    time: 60
+  - level: 170
+    cost: 9100000000
+    value: 17067333333
+    time: 60
+  - level: 171
+    cost: 9100000000
+    value: 17219000000
+    time: 60
+  - level: 172
+    cost: 9100000000
+    value: 17370666667
+    time: 60
+  - level: 173
+    cost: 9100000000
+    value: 17522333333
+    time: 60
+  - level: 174
+    cost: 9100000000
+    value: 17674000000
+    time: 60
+  - level: 175
+    cost: 9100000000
+    value: 17825666667
+    time: 60
+  - level: 176
+    cost: 9100000000
+    value: 17977333333
+    time: 60
+  - level: 177
+    cost: 9100000000
+    value: 18129000000
+    time: 60
+  - level: 178
+    cost: 9100000000
+    value: 18280666667
+    time: 60
+  - level: 179
+    cost: 9110000000
+    value: 18432500000
+    time: 60
+  - level: 180
+    cost: 9150000000
+    value: 18585000000
+    time: 60
+  - level: 181
+    cost: 9150000000
+    value: 18737500000
+    time: 60
+  - level: 182
+    cost: 9150000000
+    value: 18890000000
+    time: 60
+  - level: 183
+    cost: 9150000000
+    value: 19042500000
+    time: 60
+  - level: 184
+    cost: 9150000000
+    value: 19195000000
+    time: 60
+  - level: 185
+    cost: 9150000000
+    value: 19347500000
+    time: 60
+  - level: 186
+    cost: 9150000000
+    value: 19500000000
+    time: 60
+  - level: 187
+    cost: 9150000000
+    value: 19652500000
+    time: 60
+  - level: 188
+    cost: 9150000000
+    value: 19805000000
+    time: 60
+  - level: 189
+    cost: 9150000000
+    value: 19957500000
+    time: 60
+  - level: 190
+    cost: 9150000000
+    value: 20110000000
+    time: 60
+  - level: 191
+    cost: 9240000000
+    value: 20264000000
+    time: 60
+  - level: 192
+    cost: 9250000000
+    value: 20418166667
+    time: 60
+  - level: 193
+    cost: 9250000000
+    value: 20572333333
+    time: 60
+  - level: 194
+    cost: 9250000000
+    value: 20726500000
+    time: 60
+  - level: 195
+    cost: 9250000000
+    value: 20880666667
+    time: 60
+  - level: 196
+    cost: 9250000000
+    value: 21034833333
+    time: 60
+  - level: 197
+    cost: 9250000000
+    value: 21189000000
+    time: 60
+  - level: 198
+    cost: 9250000000
+    value: 21343166667
+    time: 60
+  - level: 199
+    cost: 9300000000
+    value: 21498166667
+    time: 60
+  - level: 200
+    cost: 9320000000
+    value: 21653500000
+    time: 60
+  - level: 201
+    cost: 9320000000
+    value: 21808833333
+    time: 60
+  - level: 202
+    cost: 9320000000
+    value: 21964166667
+    time: 60
+  - level: 203
+    cost: 9380000000
+    value: 22120500000
+    time: 60
+  - level: 204
+    cost: 9380000000
+    value: 22276833333
+    time: 60
+  - level: 205
+    cost: 9440000000
+    value: 22434166667
+    time: 60
+  - level: 206
+    cost: 9440000000
+    value: 22591500000
+    time: 60
+  - level: 207
+    cost: 9480000000
+    value: 22749500000
+    time: 60
+  - level: 208
+    cost: 9500000000
+    value: 22907833333
+    time: 60
+  - level: 209
+    cost: 9500000000
+    value: 23066166667
+    time: 60
+  - level: 210
+    cost: 9500000000
+    value: 23224500000
+    time: 60
+  - level: 211
+    cost: 9500000000
+    value: 23382833333
+    time: 60
+  - level: 212
+    cost: 9500000000
+    value: 23541166667
+    time: 60
+  - level: 213
+    cost: 9500000000
+    value: 23699500000
+    time: 60
+  - level: 214
+    cost: 9500000000
+    value: 23857833333
+    time: 60
+  - level: 215
+    cost: 9500000000
+    value: 24016166667
+    time: 60
+  - level: 216
+    cost: 9500000000
+    value: 24174500000
+    time: 60
+  - level: 217
+    cost: 9500000000
+    value: 24332833333
+    time: 60
+  - level: 218
+    cost: 9500000000
+    value: 24491166667
+    time: 60
+  - level: 219
+    cost: 9500000000
+    value: 24649500000
+    time: 60
+  - level: 220
+    cost: 9500000000
+    value: 24807833333
+    time: 60
+  - level: 221
+    cost: 9500000000
+    value: 24966166667
+    time: 60
+  - level: 222
+    cost: 9500000000
+    value: 25124500000
+    time: 60
+  - level: 223
+    cost: 9500000000
+    value: 25282833333
+    time: 60
+  - level: 224
+    cost: 9500000000
+    value: 25441166667
+    time: 60
+  - level: 225
+    cost: 9500000000
+    value: 25599500000
+    time: 60
+  - level: 226
+    cost: 9500000000
+    value: 25757833333
+    time: 60
+  - level: 227
+    cost: 9500000000
+    value: 25916166667
+    time: 60
+  - level: 228
+    cost: 9500000000
+    value: 26074500000
+    time: 60
+  - level: 229
+    cost: 9500000000
+    value: 26232833333
+    time: 60
+  - level: 230
+    cost: 9500000000
+    value: 26391166667
+    time: 60
+  - level: 231
+    cost: 9500000000
+    value: 26549500000
+    time: 60
+  - level: 232
+    cost: 9500000000
+    value: 26707833333
+    time: 60
+  - level: 233
+    cost: 9500000000
+    value: 26866166667
+    time: 60
+  - level: 234
+    cost: 9530000000
+    value: 27025000000
+    time: 60
+  - level: 235
+    cost: 9570000000
+    value: 27184500000
+    time: 60
+  - level: 236
+    cost: 9620000000
+    value: 27344833333
+    time: 60
+  - level: 237
+    cost: 9640000000
+    value: 27505500000
+    time: 60
+  - level: 238
+    cost: 9670000000
+    value: 27666666667
+    time: 60
+  - level: 239
+    cost: 9700000000
+    value: 27828333333
+    time: 60
+  - level: 240
+    cost: 9730000000
+    value: 27990500000
+    time: 60
+  - level: 241
+    cost: 9790000000
+    value: 28153666667
+    time: 60
+  - level: 242
+    cost: 9810000000
+    value: 28317166667
+    time: 60
+  - level: 243
+    cost: 9860000000
+    value: 28481500000
+    time: 60
+  - level: 244
+    cost: 9860000000
+    value: 28645833333
+    time: 60
+  - level: 245
+    cost: 9870000000
+    value: 28810333333
+    time: 60
+  - level: 246
+    cost: 9880000000
+    value: 28975000000
+    time: 60
+  - level: 247
+    cost: 9880000000
+    value: 29139666667
+    time: 60
+  - level: 248
+    cost: 9890000000
+    value: 29304500000
+    time: 60
+  - level: 249
+    cost: 9890000000
+    value: 29469333333
+    time: 60
+  - level: 250
+    cost: 9910000000
+    value: 29634500000
+    time: 60
+  - level: 251
+    cost: 9920000000
+    value: 29799833333
+    time: 60
+  - level: 252
+    cost: 9930000000
+    value: 29965333333
+    time: 60
+  - level: 253
+    cost: 9930000000
+    value: 30130833333
+    time: 60
+  - level: 254
+    cost: 9940000000
+    value: 30296500000
+    time: 60
+  - level: 255
+    cost: 9950000000
+    value: 30462333333
+    time: 60
+  - level: 256
+    cost: 9950000000
+    value: 30628166667
+    time: 60
+  - level: 257
+    cost: 9960000000
+    value: 30794166667
+    time: 60
+  - level: 258
+    cost: 9960000000
+    value: 30960166667
+    time: 60
+  - level: 259
+    cost: 9970000000
+    value: 31126333333
+    time: 60
+  - level: 260
+    cost: 9970000000
+    value: 31292500000
+    time: 60
+  - level: 261
+    cost: 9970000000
+    value: 31458666667
+    time: 60
+  - level: 262
+    cost: 10000000000
+    value: 31625333333
+    time: 60
+  - level: 263
+    cost: 10000000000
+    value: 31792000000
+    time: 60
+  - level: 264
+    cost: 10000000000
+    value: 31958666667
+    time: 60
+  - level: 265
+    cost: 10000000000
+    value: 32125333333
+    time: 60
+  - level: 266
+    cost: 10000000000
+    value: 32292000000
+    time: 60
+  - level: 267
+    cost: 10000000000
+    value: 32458666667
+    time: 60
+  - level: 268
+    cost: 10000000000
+    value: 32625333333
+    time: 60
+  - level: 269
+    cost: 10000000000
+    value: 32792000000
+    time: 60
+  - level: 270
+    cost: 10000000000
+    value: 32958666667
+    time: 60
+  - level: 271
+    cost: 10000000000
+    value: 33125333333
+    time: 60
+  - level: 272
+    cost: 10000000000
+    value: 33292000000
+    time: 60
+  - level: 273
+    cost: 10000000000
+    value: 33458666667
+    time: 60
+  - level: 274
+    cost: 10000000000
+    value: 33625333333
+    time: 60
+  - level: 275
+    cost: 10000000000
+    value: 33792000000
+    time: 60
+  - level: 276
+    cost: 10030000000
+    value: 33959166667
+    time: 60
+  - level: 277
+    cost: 10030000000
+    value: 34126333333
+    time: 60
+  - level: 278
+    cost: 10030000000
+    value: 34293500000
+    time: 60
+  - level: 279
+    cost: 10060000000
+    value: 34461166667
+    time: 60
+  - level: 280
+    cost: 10070000000
+    value: 34629000000
+    time: 60
+  - level: 281
+    cost: 10070000000
+    value: 34796833333
+    time: 60
+  - level: 282
+    cost: 10100000000
+    value: 34965166667
+    time: 60
+  - level: 283
+    cost: 10110000000
+    value: 35133666667
+    time: 60
+  - level: 284
+    cost: 10110000000
+    value: 35302166667
+    time: 60
+  - level: 285
+    cost: 10120000000
+    value: 35470833333
+    time: 60
+  - level: 286
+    cost: 10120000000
+    value: 35639500000
+    time: 60
+  - level: 287
+    cost: 10120000000
+    value: 35808166667
+    time: 60
+  - level: 288
+    cost: 10170000000
+    value: 35977666667
+    time: 60
+  - level: 289
+    cost: 10170000000
+    value: 36147166667
+    time: 60
+  - level: 290
+    cost: 10180000000
+    value: 36316833333
+    time: 60
+  - level: 291
+    cost: 10180000000
+    value: 36486500000
+    time: 60
+  - level: 292
+    cost: 10180000000
+    value: 36656166667
+    time: 60
+  - level: 293
+    cost: 10180000000
+    value: 36825833333
+    time: 60
+  - level: 294
+    cost: 10260000000
+    value: 36996833333
+    time: 60
+  - level: 295
+    cost: 10300000000
+    value: 37168500000
+    time: 60
+  - level: 296
+    cost: 10300000000
+    value: 37340166667
+    time: 60
+  - level: 297
+    cost: 10470000000
+    value: 37514666667
+    time: 60
+  - level: 298
+    cost: 10560000000
+    value: 37690666667
+    time: 60
+  - level: 299
+    cost: 10600000000
+    value: 37867333333
+    time: 60
+  - level: 300
+    cost: 10600000000
+    value: 38044000000
+    time: 60
+  - level: 301
+    cost: 10600000000
+    value: 38220666667
+    time: 60
+  - level: 302
+    cost: 10600000000
+    value: 38397333333
+    time: 60
+  - level: 303
+    cost: 10600000000
+    value: 38574000000
+    time: 60
+  - level: 304
+    cost: 10610000000
+    value: 38750833333
+    time: 60
+  - level: 305
+    cost: 10610000000
+    value: 38927666667
+    time: 60
+  - level: 306
+    cost: 10610000000
+    value: 39104500000
+    time: 60
+  - level: 307
+    cost: 10610000000
+    value: 39281333333
+    time: 60
+  - level: 308
+    cost: 10610000000
+    value: 39458166667
+    time: 60
+  - level: 309
+    cost: 10610000000
+    value: 39635000000
+    time: 60
+  - level: 310
+    cost: 10620000000
+    value: 39812000000
+    time: 60
+  - level: 311
+    cost: 10640000000
+    value: 39989333333
+    time: 60
+  - level: 312
+    cost: 10670000000
+    value: 40167166667
+    time: 60
+  - level: 313
+    cost: 10670000000
+    value: 40345000000
+    time: 60
+  - level: 314
+    cost: 10670000000
+    value: 40522833333
+    time: 60
+  - level: 315
+    cost: 10670000000
+    value: 40700666667
+    time: 60
+  - level: 316
+    cost: 10670000000
+    value: 40878500000
+    time: 60
+  - level: 317
+    cost: 10670000000
+    value: 41056333333
+    time: 60
+  - level: 318
+    cost: 10750000000
+    value: 41235500000
+    time: 60
+  - level: 319
+    cost: 10750000000
+    value: 41414666667
+    time: 60
+  - level: 320
+    cost: 10810000000
+    value: 41594833333
+    time: 60
+  - level: 321
+    cost: 10860000000
+    value: 41775833333
+    time: 60
+  - level: 322
+    cost: 10860000000
+    value: 41956833333
+    time: 60
+  - level: 323
+    cost: 10920000000
+    value: 42138833333
+    time: 60
+  - level: 324
+    cost: 11000000000
+    value: 42322166667
+    time: 60
+  - level: 325
+    cost: 11010000000
+    value: 42505666667
+    time: 60
+  - level: 326
+    cost: 11010000000
+    value: 42689166667
+    time: 60
+  - level: 327
+    cost: 11010000000
+    value: 42872666667
+    time: 60
+  - level: 328
+    cost: 11040000000
+    value: 43056666667
+    time: 60
+  - level: 329
+    cost: 11050000000
+    value: 43240833333
+    time: 60
+  - level: 330
+    cost: 11050000000
+    value: 43425000000
+    time: 60
+  - level: 331
+    cost: 11080000000
+    value: 43609666667
+    time: 60
+  - level: 332
+    cost: 11080000000
+    value: 43794333333
+    time: 60
+  - level: 333
+    cost: 11100000000
+    value: 43979333333
+    time: 60
+  - level: 334
+    cost: 11100000000
+    value: 44164333333
+    time: 60
+  - level: 335
+    cost: 11150000000
+    value: 44350166667
+    time: 60
+  - level: 336
+    cost: 11170000000
+    value: 44536333333
+    time: 60
+  - level: 337
+    cost: 11170000000
+    value: 44722500000
+    time: 60
+  - level: 338
+    cost: 11180000000
+    value: 44908833333
+    time: 60
+  - level: 339
+    cost: 11210000000
+    value: 45095666667
+    time: 60
+  - level: 340
+    cost: 11260000000
+    value: 45283333333
+    time: 60
+  - level: 341
+    cost: 11270000000
+    value: 45471166667
+    time: 60
+  - level: 342
+    cost: 11270000000
+    value: 45659000000
+    time: 60
+  - level: 343
+    cost: 11270000000
+    value: 45846833333
+    time: 60
+  - level: 344
+    cost: 11270000000
+    value: 46034666667
+    time: 60
+  - level: 345
+    cost: 11300000000
+    value: 46223000000
+    time: 60
+  - level: 346
+    cost: 11310000000
+    value: 46411500000
+    time: 60
+  - level: 347
+    cost: 11340000000
+    value: 46600500000
+    time: 60
+  - level: 348
+    cost: 11340000000
+    value: 46789500000
+    time: 60
+  - level: 349
+    cost: 11360000000
+    value: 46978833333
+    time: 60
+  - level: 350
+    cost: 11370000000
+    value: 47168333333
+    time: 60
+  - level: 351
+    cost: 11380000000
+    value: 47358000000
+    time: 60
+  - level: 352
+    cost: 11390000000
+    value: 47547833333
+    time: 60
+  - level: 353
+    cost: 11400000000
+    value: 47737833333
+    time: 60
+  - level: 354
+    cost: 11500000000
+    value: 47929500000
+    time: 60
+  - level: 355
+    cost: 11500000000
+    value: 48121166667
+    time: 60
+  - level: 356
+    cost: 11520000000
+    value: 48313166667
+    time: 60
+  - level: 357
+    cost: 11520000000
+    value: 48505166667
+    time: 60
+  - level: 358
+    cost: 11570000000
+    value: 48698000000
+    time: 60
+  - level: 359
+    cost: 11570000000
+    value: 48890833333
+    time: 60
+  - level: 360
+    cost: 11570000000
+    value: 49083666667
+    time: 60
+  - level: 361
+    cost: 11580000000
+    value: 49276666667
+    time: 60
+  - level: 362
+    cost: 11580000000
+    value: 49469666667
+    time: 60
+  - level: 363
+    cost: 11580000000
+    value: 49662666667
+    time: 60
+  - level: 364
+    cost: 11600000000
+    value: 49856000000
+    time: 60
+  - level: 365
+    cost: 11600000000
+    value: 50049333333
+    time: 60
+  - level: 366
+    cost: 11640000000
+    value: 50243333333
+    time: 60
+  - level: 367
+    cost: 11640000000
+    value: 50437333333
+    time: 60
+  - level: 368
+    cost: 11680000000
+    value: 50632000000
+    time: 60
+  - level: 369
+    cost: 11680000000
+    value: 50826666667
+    time: 60
+  - level: 370
+    cost: 11690000000
+    value: 51021500000
+    time: 60
+  - level: 371
+    cost: 11700000000
+    value: 51216500000
+    time: 60
+  - level: 372
+    cost: 11700000000
+    value: 51411500000
+    time: 60
+  - level: 373
+    cost: 11720000000
+    value: 51606833333
+    time: 60
+  - level: 374
+    cost: 11720000000
+    value: 51802166667
+    time: 60
+  - level: 375
+    cost: 11940000000
+    value: 52001166667
+    time: 60
+  - level: 376
+    cost: 11950000000
+    value: 52200333333
+    time: 60
+  - level: 377
+    cost: 11980000000
+    value: 52400000000
+    time: 60
+  - level: 378
+    cost: 12000000000
+    value: 52600000000
+    time: 60
+  - level: 379
+    cost: 12000000000
+    value: 52800000000
+    time: 60
+  - level: 380
+    cost: 12000000000
+    value: 53000000000
+    time: 60
+  - level: 381
+    cost: 12050000000
+    value: 53200833333
+    time: 60
+  - level: 382
+    cost: 12100000000
+    value: 53402500000
+    time: 60
+  - level: 383
+    cost: 12100000000
+    value: 53604166667
+    time: 60
+  - level: 384
+    cost: 12150000000
+    value: 53806666667
+    time: 60
+  - level: 385
+    cost: 12330000000
+    value: 54012166667
+    time: 60
+  - level: 386
+    cost: 12400000000
+    value: 54218833333
+    time: 60
+  - level: 387
+    cost: 12460000000
+    value: 54426500000
+    time: 60
+  - level: 388
+    cost: 12570000000
+    value: 54636000000
+    time: 60
+  - level: 389
+    cost: 12570000000
+    value: 54845500000
+    time: 60
+  - level: 390
+    cost: 12750000000
+    value: 55058000000
+    time: 60
+  - level: 391
+    cost: 12770000000
+    value: 55270833333
+    time: 60
+  - level: 392
+    cost: 12800000000
+    value: 55484166667
+    time: 60
+  - level: 393
+    cost: 12800000000
+    value: 55697500000
+    time: 60
+  - level: 394
+    cost: 13000000000
+    value: 55914166667
+    time: 60
+  - level: 395
+    cost: 13000000000
+    value: 56130833333
+    time: 60
+  - level: 396
+    cost: 13000000000
+    value: 56347500000
+    time: 60
+  - level: 397
+    cost: 13000000000
+    value: 56564166667
+    time: 60
+  - level: 398
+    cost: 13000000000
+    value: 56780833333
+    time: 60
+  - level: 399
+    cost: 13100000000
+    value: 56999166667
+    time: 60
+  - level: 400
+    cost: 13100000000
+    value: 57217500000
+    time: 60
+  - level: 401
+    cost: 13100000000
+    value: 57435833333
+    time: 60
+  - level: 402
+    cost: 13100000000
+    value: 57654166667
+    time: 60
+  - level: 403
+    cost: 13100000000
+    value: 57872500000
+    time: 60
+  - level: 404
+    cost: 13100000000
+    value: 58090833333
+    time: 60
+  - level: 405
+    cost: 13110000000
+    value: 58309333333
+    time: 60
+  - level: 406
+    cost: 13120000000
+    value: 58528000000
+    time: 60
+  - level: 407
+    cost: 13140000000
+    value: 58747000000
+    time: 60
+  - level: 408
+    cost: 13150000000
+    value: 58966166667
+    time: 60
+  - level: 409
+    cost: 13150000000
+    value: 59185333333
+    time: 60
+  - level: 410
+    cost: 13250000000
+    value: 59406166667
+    time: 60
+  - level: 411
+    cost: 13300000000
+    value: 59627833333
+    time: 60
+  - level: 412
+    cost: 13300000000
+    value: 59849500000
+    time: 60
+  - level: 413
+    cost: 13300000000
+    value: 60071166667
+    time: 60
+  - level: 414
+    cost: 13300000000
+    value: 60292833333
+    time: 60
+  - level: 415
+    cost: 13300000000
+    value: 60514500000
+    time: 60
+  - level: 416
+    cost: 13300000000
+    value: 60736166667
+    time: 60
+  - level: 417
+    cost: 13300000000
+    value: 60957833333
+    time: 60
+  - level: 418
+    cost: 13300000000
+    value: 61179500000
+    time: 60
+  - level: 419
+    cost: 13310000000
+    value: 61401333333
+    time: 60
+  - level: 420
+    cost: 13350000000
+    value: 61623833333
+    time: 60
+  - level: 421
+    cost: 13350000000
+    value: 61846333333
+    time: 60
+  - level: 422
+    cost: 13370000000
+    value: 62069166667
+    time: 60
+  - level: 423
+    cost: 13370000000
+    value: 62292000000
+    time: 60
+  - level: 424
+    cost: 13370000000
+    value: 62514833333
+    time: 60
+  - level: 425
+    cost: 13370000000
+    value: 62737666667
+    time: 60
+  - level: 426
+    cost: 13400000000
+    value: 62961000000
+    time: 60
+  - level: 427
+    cost: 13920000000
+    value: 63193000000
+    time: 60
+  - level: 428
+    cost: 13920000000
+    value: 63425000000
+    time: 60
+  - level: 429
+    cost: 14000000000
+    value: 63658333333
+    time: 60
+  - level: 430
+    cost: 14000000000
+    value: 63891666667
+    time: 60
+  - level: 431
+    cost: 14010000000
+    value: 64125166667
+    time: 60
+  - level: 432
+    cost: 14140000000
+    value: 64360833333
+    time: 60
+  - level: 433
+    cost: 14950000000
+    value: 64610000000
+    time: 60
+  - level: 434
+    cost: 14950000000
+    value: 64859166667
+    time: 60
+  - level: 435
+    cost: 15000000000
+    value: 65109166667
+    time: 60
+  - level: 436
+    cost: 15000000000
+    value: 65359166667
+    time: 60
+  - level: 437
+    cost: 15750000000
+    value: 65621666667
+    time: 60
+  - level: 438
+    cost: 16300000000
+    value: 65893333333
+    time: 60
+  - level: 439
+    cost: 16600000000
+    value: 66170000000
+    time: 60
+  - level: 440
+    cost: 16600000000
+    value: 66446666667
+    time: 60
