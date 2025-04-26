@@ -2,11 +2,9 @@
 
 namespace FattestInc
 {
-    public class SignalsDeclarator
-    {
-        public void DeclareSignals(DiContainer container)
-        {
-            
+    public class SignalsDeclarator {
+        public void DeclareSignals(DiContainer container) {
+            // container.DeclareSignal<>();
         }
     }
 }
