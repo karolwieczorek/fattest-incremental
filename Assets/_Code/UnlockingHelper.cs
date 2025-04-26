@@ -15,7 +15,7 @@ namespace FattestInc {
                     x => x.IsShowType && x.factoryToUnlockId == factoryId);
 
             if (unlockingData == null) {
-                Debug.LogWarning("Missing Unlocking Data");
+                Debug.LogWarning($"Missing Unlocking Data. {factoryId}");
                 return true;
             }
 
@@ -28,7 +28,7 @@ namespace FattestInc {
                     x => x.IsUnlockType && x.factoryToUnlockId == factoryId);
 
             if (unlockingData == null) {
-                Debug.LogWarning("Missing Unlocking Data");
+                Debug.LogWarning($"Missing Unlocking Data. {factoryId}");
                 return true;
             }
 

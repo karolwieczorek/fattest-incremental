@@ -32,7 +32,7 @@ namespace FattestInc {
 
         void UnlockOrShowFactoryIfApplicable() {
             foreach (var factory in factoriesReferencer.Factories) {
-                Debug.Log($"{factory.FactoryId}");
+                // Debug.Log($"{factory.FactoryId}");
                 if (economyDataStore.IsFactoryUnlocked(factory.FactoryId))
                     continue;
 

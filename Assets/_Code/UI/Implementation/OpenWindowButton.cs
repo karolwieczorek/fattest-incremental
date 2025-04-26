@@ -12,6 +12,9 @@ namespace FattestInc.Windows.General {
         [ValueDropdown(nameof(GetWindowPrefabs))] [SerializeField]
         WindowBase windowBase;
 
+        [ShowInInspector]
+        WindowBase WindowBase => windowBase;
+
         [SerializeField] bool closeOtherWindows = false;
 
         void OnValidate() {

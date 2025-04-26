@@ -21,398 +21,234 @@ MonoBehaviour:
   factoryType: 0
   levelsList:
   - level: 1
-    cost: 200
+    cost: 20
     value: 1
-    time: 1
+    time: 10
   - level: 2
-    cost: 190
+    cost: 19
     value: 2
-    time: 1
+    time: 10
   - level: 3
-    cost: 180
+    cost: 18
     value: 3
-    time: 1
+    time: 10
   - level: 4
-    cost: 500
-    value: 6
-    time: 1
+    cost: 17
+    value: 4
+    time: 10
   - level: 5
-    cost: 495
-    value: 9
-    time: 1
+    cost: 16
+    value: 5
+    time: 10
   - level: 6
-    cost: 490
-    value: 12
-    time: 1
+    cost: 15
+    value: 3
+    time: 5
   - level: 7
-    cost: 485
-    value: 15
-    time: 1
+    cost: 40
+    value: 4
+    time: 5
   - level: 8
-    cost: 480
-    value: 18
-    time: 1
+    cost: 39
+    value: 5
+    time: 5
   - level: 9
-    cost: 475
-    value: 21
-    time: 1
+    cost: 38
+    value: 6
+    time: 5
   - level: 10
-    cost: 470
-    value: 24
-    time: 1
+    cost: 37
+    value: 7
+    time: 5
   - level: 11
-    cost: 465
-    value: 27
-    time: 1
+    cost: 36
+    value: 8
+    time: 5
   - level: 12
-    cost: 460
-    value: 30
-    time: 1
+    cost: 35
+    value: 9
+    time: 5
   - level: 13
-    cost: 900
-    value: 36
-    time: 1
+    cost: 100
+    value: 5
+    time: 2
   - level: 14
-    cost: 895
-    value: 42
-    time: 1
+    cost: 99
+    value: 6
+    time: 2
   - level: 15
-    cost: 890
-    value: 48
-    time: 1
+    cost: 98
+    value: 7
+    time: 2
   - level: 16
-    cost: 885
-    value: 54
-    time: 1
+    cost: 97
+    value: 8
+    time: 2
   - level: 17
-    cost: 880
-    value: 60
-    time: 1
+    cost: 96
+    value: 9
+    time: 2
   - level: 18
-    cost: 875
-    value: 66
+    cost: 95
+    value: 5
     time: 1
   - level: 19
-    cost: 870
-    value: 72
+    cost: 200
+    value: 5
     time: 1
   - level: 20
-    cost: 865
-    value: 78
+    cost: 190
+    value: 4
     time: 1
   - level: 21
-    cost: 860
-    value: 84
+    cost: 180
+    value: 7
     time: 1
   - level: 22
-    cost: 855
-    value: 90
+    cost: 500
+    value: 10
     time: 1
   - level: 23
-    cost: 850
-    value: 96
+    cost: 495
+    value: 13
     time: 1
   - level: 24
-    cost: 845
-    value: 102
+    cost: 490
+    value: 16
     time: 1
   - level: 25
-    cost: 1600
-    value: 114
+    cost: 485
+    value: 19
     time: 1
   - level: 26
-    cost: 1595
-    value: 126
+    cost: 480
+    value: 22
     time: 1
   - level: 27
-    cost: 1590
-    value: 138
+    cost: 475
+    value: 25
     time: 1
   - level: 28
-    cost: 1585
-    value: 150
+    cost: 470
+    value: 28
     time: 1
   - level: 29
-    cost: 1580
-    value: 162
+    cost: 465
+    value: 31
     time: 1
   - level: 30
-    cost: 1575
-    value: 174
+    cost: 460
+    value: 34
     time: 1
   - level: 31
-    cost: 1570
-    value: 186
+    cost: 900
+    value: 40
     time: 1
   - level: 32
-    cost: 1565
-    value: 198
+    cost: 895
+    value: 46
     time: 1
   - level: 33
-    cost: 1560
-    value: 210
+    cost: 890
+    value: 52
     time: 1
   - level: 34
-    cost: 1555
-    value: 222
+    cost: 885
+    value: 58
     time: 1
   - level: 35
-    cost: 1550
-    value: 234
+    cost: 880
+    value: 64
     time: 1
   - level: 36
-    cost: 1545
-    value: 246
+    cost: 875
+    value: 70
     time: 1
   - level: 37
-    cost: 1540
-    value: 258
+    cost: 870
+    value: 76
     time: 1
   - level: 38
-    cost: 1535
-    value: 270
+    cost: 865
+    value: 82
     time: 1
   - level: 39
-    cost: 1
-    value: 1
+    cost: 860
+    value: 88
     time: 1
   - level: 40
-    cost: 1
-    value: 1
+    cost: 855
+    value: 94
     time: 1
   - level: 41
-    cost: 1
-    value: 1
+    cost: 850
+    value: 100
     time: 1
   - level: 42
-    cost: 1
-    value: 1
+    cost: 845
+    value: 106
     time: 1
   - level: 43
-    cost: 1
-    value: 1
+    cost: 1600
+    value: 118
     time: 1
   - level: 44
-    cost: 1
-    value: 1
+    cost: 1595
+    value: 130
     time: 1
   - level: 45
-    cost: 1
-    value: 1
+    cost: 1590
+    value: 142
     time: 1
   - level: 46
-    cost: 1
-    value: 1
+    cost: 1585
+    value: 154
     time: 1
   - level: 47
-    cost: 1
-    value: 1
+    cost: 1580
+    value: 166
     time: 1
   - level: 48
-    cost: 1
-    value: 1
+    cost: 1575
+    value: 178
     time: 1
   - level: 49
-    cost: 1
-    value: 1
+    cost: 1570
+    value: 190
     time: 1
   - level: 50
-    cost: 1
-    value: 1
+    cost: 1565
+    value: 202
     time: 1
   - level: 51
-    cost: 1
-    value: 1
+    cost: 1560
+    value: 214
     time: 1
   - level: 52
-    cost: 1
-    value: 1
+    cost: 1555
+    value: 226
     time: 1
   - level: 53
-    cost: 1
-    value: 1
+    cost: 1550
+    value: 238
     time: 1
   - level: 54
-    cost: 1
-    value: 1
+    cost: 1545
+    value: 250
     time: 1
   - level: 55
-    cost: 1
-    value: 1
+    cost: 1540
+    value: 262
     time: 1
   - level: 56
-    cost: 1
-    value: 1
+    cost: 1535
+    value: 274
     time: 1
   - level: 57
-    cost: 1
-    value: 1
+    cost: 1530
+    value: 286
     time: 1
   - level: 58
-    cost: 1
-    value: 1
-    time: 1
-  - level: 59
-    cost: 1
-    value: 1
-    time: 1
-  - level: 60
-    cost: 1
-    value: 1
-    time: 1
-  - level: 61
-    cost: 1
-    value: 1
-    time: 1
-  - level: 62
-    cost: 1
-    value: 1
-    time: 1
-  - level: 63
-    cost: 1
-    value: 1
-    time: 1
-  - level: 64
-    cost: 1
-    value: 1
-    time: 1
-  - level: 65
-    cost: 1
-    value: 1
-    time: 1
-  - level: 66
-    cost: 1
-    value: 1
-    time: 1
-  - level: 67
-    cost: 1
-    value: 1
-    time: 1
-  - level: 68
-    cost: 1
-    value: 1
-    time: 1
-  - level: 69
-    cost: 1
-    value: 1
-    time: 1
-  - level: 70
-    cost: 1
-    value: 1
-    time: 1
-  - level: 71
-    cost: 1
-    value: 1
-    time: 1
-  - level: 72
-    cost: 1
-    value: 1
-    time: 1
-  - level: 73
-    cost: 1
-    value: 1
-    time: 1
-  - level: 74
-    cost: 1
-    value: 1
-    time: 1
-  - level: 75
-    cost: 1
-    value: 1
-    time: 1
-  - level: 76
-    cost: 1
-    value: 1
-    time: 1
-  - level: 77
-    cost: 1
-    value: 1
-    time: 1
-  - level: 78
-    cost: 1
-    value: 1
-    time: 1
-  - level: 79
-    cost: 1
-    value: 1
-    time: 1
-  - level: 80
-    cost: 1
-    value: 1
-    time: 1
-  - level: 81
-    cost: 1
-    value: 1
-    time: 1
-  - level: 82
-    cost: 1
-    value: 1
-    time: 1
-  - level: 83
-    cost: 1
-    value: 1
-    time: 1
-  - level: 84
-    cost: 1
-    value: 1
-    time: 1
-  - level: 85
-    cost: 1
-    value: 1
-    time: 1
-  - level: 86
-    cost: 1
-    value: 1
-    time: 1
-  - level: 87
-    cost: 1
-    value: 1
-    time: 1
-  - level: 88
-    cost: 1
-    value: 1
-    time: 1
-  - level: 89
-    cost: 1
-    value: 1
-    time: 1
-  - level: 90
-    cost: 1
-    value: 1
-    time: 1
-  - level: 91
-    cost: 1
-    value: 1
-    time: 1
-  - level: 92
-    cost: 1
-    value: 1
-    time: 1
-  - level: 93
-    cost: 1
-    value: 1
-    time: 1
-  - level: 94
-    cost: 1
-    value: 1
-    time: 1
-  - level: 95
-    cost: 1
-    value: 1
-    time: 1
-  - level: 96
-    cost: 1
-    value: 1
-    time: 1
-  - level: 97
-    cost: 1
-    value: 1
-    time: 1
-  - level: 98
-    cost: 1
-    value: 1
-    time: 1
-  - level: 99
-    cost: 1
-    value: 1
+    cost: 1500
+    value: 304
     time: 1

@@ -172,12 +172,12 @@ namespace FattestInc {
             }
 
             void Unlock() {
-                Debug.Log($"Unlock: {FactoryId}", this);
+                // Debug.Log($"Unlock: {FactoryId}", this);
                 gameObject.SetActive(true);
             }
 
             void ShowFactory() {
-                Debug.Log($"Show: {FactoryId}", this);
+                // Debug.Log($"Show: {FactoryId}", this);
                 gameObject.SetActive(true);
             }
         }

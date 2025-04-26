@@ -28,7 +28,7 @@ namespace FattestInc {
                 ParseIndexString(sheetRow.elements, columnIndex++, out var unlockType, "None");
                 ParseIndexULong(sheetRow.elements, columnIndex++, out var value, 0);
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var valuePerSecond, 0);
-                ParseIndexString(sheetRow.elements, columnIndex++, out var factory1Id, "None");
+                ParseIndexString(sheetRow.elements, columnIndex++, out var factory1Id, "");
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var factory1Level, 0);
 
                 LevelsList.Add(new UnlockingData
