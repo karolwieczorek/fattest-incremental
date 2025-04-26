@@ -1,6 +1,6 @@
-﻿using Hypnagogia.Utils;
+﻿using System.Collections.Generic;
+using Hypnagogia.Utils;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace FattestInc {
@@ -10,6 +10,37 @@ namespace FattestInc {
 
         [HInject] DiContainer container;
         [HInject] EconomyReferencer economyReferencer;
+        [HInject] EconomyDataStore economyDataStore;
+
+        readonly List<ProgressionLevelView> viewsList = new();
+
+        void OnEnable() {
+            economyDataStore.CurrentAmountPerSecond.ChangedValue += OnCurrentAmountChanged;
+        }
+
+        void OnDisable() {
+            economyDataStore.CurrentAmountPerSecond.ChangedValue -= OnCurrentAmountChanged;
+        }
+
+        void OnCurrentAmountChanged(float value) {
+            RefreshCurrentView(value);
+        }
+
+        void RefreshCurrentView(float value) {
+            ProgressionLevelView currentView = null;
+            foreach (var view in viewsList) {
+                if (value >= view.Value)
+                    view.SetCompleted();
+                else if (currentView == null) {
+                    currentView = view;
+                    view.SetCurrent();
+                    view.UpdateAmount(economyDataStore.CurrentAmountPerSecond.Value);
+                }
+                else {
+                    view.SetFuture();
+                }
+            }
+        }
 
         void Start() {
             content.DestroyChildren();
@@ -17,7 +48,9 @@ namespace FattestInc {
             foreach (var levelData in progressionLevels) {
                 var view = container.InstantiateTypedPrefab(progressionLevelViewPrefab, content);
                 view.Init(levelData);
+                viewsList.Add(view);
             }
+            RefreshCurrentView(economyDataStore.CurrentAmountPerSecond.Value);
         }
     }
 }

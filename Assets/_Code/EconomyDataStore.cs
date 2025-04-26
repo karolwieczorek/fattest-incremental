@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine;
 namespace FattestInc {
     public class EconomyDataStore : HDataStore {
         [ShowInInspector] public Observable<ulong> CurrentTotalAmount { get; private set; } = new();
+        [ShowInInspector] public Observable<float> CurrentAmountPerSecond { get; private set; } = new();
         [ShowInInspector] readonly Dictionary<string, ResourceFactory> resourceFactories = new();
 
         public IReadOnlyDictionary<string, ResourceFactory> ResourceFactories => resourceFactories;
@@ -32,6 +34,22 @@ namespace FattestInc {
             return factory;
         }
 
+        public ResourceFactory LoadFactory(FactoryLevelsData factoryLevelsData, int level) {
+            var factoryId = factoryLevelsData.FactoryId;
+            
+            if (!resourceFactories.TryGetValue(factoryId, out var factory)) {
+                factory = new ResourceFactory(factoryLevelsData.FactoryType);
+                resourceFactories.Add(factoryId, factory);
+            }
+            
+            var value = factoryLevelsData.GetValueForLevel(level);
+            var duration = factoryLevelsData.GetDurationForLevel(level);
+            factory.Upgrade(level, value, duration);
+
+            FactoryUpgradedEvent?.Invoke();
+            return factory;
+        }
+
         public bool HasEnoughMoney(ulong cost) {
             return CurrentTotalAmount.Value >= cost;
         }
@@ -42,6 +60,34 @@ namespace FattestInc {
                 return true;
             }
             return false;
+        }
+
+        public bool IsFactoryUnlocked(string factoryId) {
+            return ResourceFactories.Any(x => x.Key == factoryId && x.Value.State == FactoryState.Unlocked);
+        }
+
+        public bool IsFactoryShown(string factoryId) {
+            return ResourceFactories.Any(x => x.Key == factoryId && x.Value.State == FactoryState.Shown);
+        }
+
+        public void UnlockFactory(string factoryId) {
+            var (key, factory) = ResourceFactories.FirstOrDefault(x => x.Key == factoryId);
+            if (factory == null) {
+                Debug.LogError("Could not unlock factory. Factory is missing");
+                return;
+            }
+
+            factory.Unlock();
+        }
+        
+        public void ShowFactory(string factoryId) {
+            var (key, factory) = ResourceFactories.FirstOrDefault(x => x.Key == factoryId);
+            if (factory == null) {
+                Debug.LogError("Could not unlock factory. Factory is missing");
+                return;
+            }
+
+            factory.Show();
         }
     }
 }

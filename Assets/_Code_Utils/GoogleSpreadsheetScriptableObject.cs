@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -46,5 +47,41 @@ namespace Hypnagogia.Utils {
         }
 
         protected abstract void ProcessData(GoogleSheetJson data);
+
+        protected void ParseIndexString(List<string> elements, int index, out string value, string defaultValue) {
+            if (elements.Count >= index + 1) {
+                value = elements[index];
+                return;
+            }
+
+            value = defaultValue;
+        }
+
+        protected void ParseIndexInt(List<string> elements, int index, out int value, int defaultValue = 0) {
+            if (elements.Count >= index + 1 && int.TryParse(elements[index], out var parsedValue)) {
+                value = parsedValue;
+                return;
+            }
+
+            value = defaultValue;
+        }
+        
+        protected void ParseIndexULong(List<string> elements, int index, out ulong value, ulong defaultValue = 0) {
+            if (elements.Count >= index + 1 && ulong.TryParse(elements[index], out var parsedValue)) {
+                value = parsedValue;
+                return;
+            }
+
+            value = defaultValue;
+        }
+
+        protected void ParseIndexFloat(List<string> elements, int index, out float value, float defaultValue = 0) {
+            if (elements.Count >= index + 1 && float.TryParse(elements[index], out var parsedValue)) {
+                value = parsedValue;
+                return;
+            }
+
+            value = defaultValue;
+        }
     }
 }

@@ -1,4 +1,8 @@
-﻿using TMPro;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using Hypnagogia.Utils;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,25 +16,54 @@ namespace FattestInc {
         [SerializeField] TMP_Text valueLabel;
         [SerializeField] TMP_Text costLabel;
         [SerializeField] TMP_Text nextLevelValueDifferenceLabel;
+        [SerializeField] TMP_Text timeLeftA;
+        [SerializeField] TMP_Text timeLeftB;
 
         [SerializeField] GameObject idleContainer;
         [SerializeField] GameObject clickerContainer;
         [SerializeField] TMP_Text clickerButtonLabel;
         [SerializeField] Button clickerButton;
 
+        [SerializeField] FactoryUpgradeButtonView factoryUpgradeButtonView;
+
         ResourceFactory factory;
         FactoryLevelsData factoryLevelsData;
         EconomyDataStore economyDataStore;
+        
+        public string FactoryId { get; private set; }
+
+        CancellationTokenSource cancellationTokenSource;
 
         void OnEnable() {
             button.onClick.AddListener(BuyUpgrade);
             clickerButton.onClick.AddListener(ClickerButtonClick);
+            factoryUpgradeButtonView.PointerEnter += Refresh;
+            factoryUpgradeButtonView.PointerExit += Refresh;
+            if (economyDataStore != null)
+                economyDataStore.CurrentTotalAmount.Changed += Refresh;
+
+            if (cancellationTokenSource != null) {
+                cancellationTokenSource.Cancel();
+                cancellationTokenSource.Dispose();
+            }
+
+            cancellationTokenSource = new CancellationTokenSource();
+            RefreshTimeTask(cancellationTokenSource.Token).Forget();
         }
 
         void OnDisable() {
             button.onClick.RemoveListener(BuyUpgrade);
             clickerButton.onClick.RemoveListener(ClickerButtonClick);
-            factory = null;
+            factoryUpgradeButtonView.PointerEnter -= Refresh;
+            factoryUpgradeButtonView.PointerExit -= Refresh;
+            if (economyDataStore != null)
+                economyDataStore.CurrentTotalAmount.Changed -= Refresh;
+            
+            if (cancellationTokenSource != null) {
+                cancellationTokenSource.Cancel();
+                cancellationTokenSource.Dispose();
+                cancellationTokenSource = null;
+            }
         }
 
         void BuyUpgrade() {
@@ -39,6 +72,11 @@ namespace FattestInc {
                 var economy = economyDataStore == null ? "null" : economyDataStore.name;
                 var factoryData = factoryLevelsData == null ? "null" : factoryLevelsData.name;
                 Debug.Log($"{economy}, {factoryData}");
+                return;
+            }
+
+            if (factoryLevelsData.IsLastLevel(factory.Level)) {
+                Debug.LogError($"Last level - {factory.Level}. Cant upgrade further. {factoryLevelsData.FactoryName}", factoryLevelsData);
                 return;
             }
 
@@ -64,6 +102,7 @@ namespace FattestInc {
 
         public void Init(FactoryLevelsData factoryLevelsData, EconomyDataStore economyDataStore) {
             icon.sprite = factoryLevelsData.Icon;
+            FactoryId = factoryLevelsData.FactoryId;
             nameLabel.text = factoryLevelsData.FactoryName;
             this.economyDataStore = economyDataStore;
             this.factory = economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 0);
@@ -71,6 +110,8 @@ namespace FattestInc {
             // factory type idle 
             idleContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Idle);
             clickerContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Clicker);
+            if (economyDataStore != null)
+                economyDataStore.CurrentTotalAmount.Changed += Refresh;
             // idle state
             // factory type clicker 
             // clicker state
@@ -78,15 +119,90 @@ namespace FattestInc {
         }
 
         void Refresh() {
-            amountLabel.text = $"{factory.Level}";
-            Debug.Log($"Value for level {factory.Level} = {factoryLevelsData.GetValueForLevel(factory.Level)}");
-            valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level).ToString();
-            var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
-            costLabel.text = $"Cost: {costAmount}";
-            var valueForNextLevel = factoryLevelsData.GetValueDifferenceForNextLevel(factory.Level).ToString();
-            var addMode = factoryLevelsData.FactoryType == FactoryType.Idle ? "tick" : "click";
-            nextLevelValueDifferenceLabel.text = $"+{valueForNextLevel}/{addMode}";
-            clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level)}";
+            var hasNextLevel = factoryLevelsData.HasNextLevel(factory.Level);
+            if (factoryUpgradeButtonView.IsHovered && hasNextLevel) {
+                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level + 1));
+                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level + 1)}";
+                amountLabel.text = $"{factory.Level + 1}";
+            }
+            else {
+                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level));
+                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level)}";
+                amountLabel.text = $"{factory.Level}";
+            }
+
+            if (!hasNextLevel) {
+                factoryUpgradeButtonView.ApplyMax();
+            }
+            else {
+                var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
+                bool canAffort = economyDataStore.HasEnoughMoney(costAmount);
+                if (canAffort)
+                    factoryUpgradeButtonView.ApplyAvailable();
+                else 
+                    factoryUpgradeButtonView.ApplyUnavailable();
+                
+                costLabel.text = $"Cost: {NumbersFormattingUtil.FormatNumber(costAmount)}";
+                nextLevelValueDifferenceLabel.text = $"Buy 1";
+            }
+        }
+
+        public void RefreshUnlockedState() {
+            if (factory == null) {
+                Hide();
+                return;
+            }
+            switch (factory.State) {
+                case FactoryState.Hidden:
+                    Hide();
+                    break;
+                case FactoryState.Shown:
+                    ShowFactory();
+                    break;
+                case FactoryState.Unlocked:
+                    Unlock();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return;
+
+            void Hide() {
+                gameObject.SetActive(false);
+            }
+
+            void Unlock() {
+                // Debug.Log($"Unlock: {FactoryId}", this);
+                gameObject.SetActive(true);
+            }
+
+            void ShowFactory() {
+                // Debug.Log($"Show: {FactoryId}", this);
+                gameObject.SetActive(true);
+            }
+        }
+
+        async UniTaskVoid RefreshTimeTask(CancellationToken cancellationToken) {
+            while (true) {
+                await UniTask.WaitForSeconds(0.1f, cancellationToken: cancellationToken);
+                if (cancellationToken.IsCancellationRequested)
+                    return;
+                if (factory != null) {
+                    if (factory.Duration > 10) {
+                        var timeSpan = TimeSpan.FromSeconds(factory.TimeLeft);
+                        var timeLabel = $"{timeSpan.TotalMinutes}:{timeSpan.Seconds}";
+                        timeLeftA.text = timeLabel;
+                        timeLeftB.text = timeLabel;
+                    }
+                    else {
+                        // var timeSpan = TimeSpan.FromSeconds(factory.TimeLeft);
+                        var timeLabel = $"{factory.TimeLeft:F1}";
+                        timeLeftA.text = timeLabel;
+                        timeLeftB.text = timeLabel;
+                    }
+                }
+            }
         }
     }
 }

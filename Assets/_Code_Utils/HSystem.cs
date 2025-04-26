@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using Zenject;
 
 namespace Hypnagogia.Utils {
-    [PublicAPI]
+    [PublicAPI, CreatedByInjection]
     public abstract class HSystem : IInitializable, IDisposable {
         protected virtual void SystemStart() { }
         protected virtual void SystemStop() { }

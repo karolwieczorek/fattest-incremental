@@ -16,7 +16,7 @@ namespace FattestInc {
         }
 
         void ShowTotalAmount(ulong value) {
-            label.text = $"{value}";
+            label.text = $"{NumbersFormattingUtil.FormatNumber(value)}";
         }
     }
 }

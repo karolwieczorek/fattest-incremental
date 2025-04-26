@@ -9,6 +9,7 @@ namespace FattestInc {
     {
         [SerializeField] string factoryId;
         [SerializeField] string factoryName;
+        [SerializeField] int startingLevel = 0;
         [SerializeField] Sprite icon;
         [SerializeField] FactoryType factoryType = FactoryType.Idle;
 
@@ -16,6 +17,7 @@ namespace FattestInc {
         [SerializeField] List<LevelData> levelsList = new();
 
         public string FactoryId => factoryId;
+        public int StartingLevel => startingLevel;
 
         public IReadOnlyList<LevelData> LevelsListReadOnly => levelsList;
 
@@ -40,7 +42,7 @@ namespace FattestInc {
 
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var level, 0);
                 ParseIndexULong(sheetRow.elements, columnIndex++, out var cost, 0);
-                ParseIndexInt(sheetRow.elements, columnIndex++, out var value, 0);
+                ParseIndexULong(sheetRow.elements, columnIndex++, out var value, 0);
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var time, 1);
 
                 levelsList.Add(new LevelData
@@ -56,47 +58,11 @@ namespace FattestInc {
             }
         }
 
-        void ParseIndexString(List<string> elements, int index, out string value, string defaultValue) {
-            if (elements.Count >= index + 1) {
-                value = elements[index];
-                return;
-            }
-
-            value = defaultValue;
-        }
-
-        void ParseIndexInt(List<string> elements, int index, out int value, int defaultValue = 0) {
-            if (elements.Count >= index + 1 && int.TryParse(elements[index], out var parsedValue)) {
-                value = parsedValue;
-                return;
-            }
-
-            value = defaultValue;
-        }
-        
-        void ParseIndexULong(List<string> elements, int index, out ulong value, ulong defaultValue = 0) {
-            if (elements.Count >= index + 1 && ulong.TryParse(elements[index], out var parsedValue)) {
-                value = parsedValue;
-                return;
-            }
-
-            value = defaultValue;
-        }
-
-        void ParseIndexFloat(List<string> elements, int index, out float value, float defaultValue = 0) {
-            if (elements.Count >= index + 1 && float.TryParse(elements[index], out var parsedValue)) {
-                value = parsedValue;
-                return;
-            }
-
-            value = defaultValue;
-        }
-
         [System.Serializable]
         public class LevelData {
             [TableColumnWidth(100)] public int level;
             [TableColumnWidth(100)] public ulong cost;
-            [TableColumnWidth(100)] public int value;
+            [TableColumnWidth(100)] public ulong value;
             [TableColumnWidth(100)] public int time;
         }
 
@@ -108,7 +74,7 @@ namespace FattestInc {
             return levelData.cost;
         }
 
-        public int GetValueForLevel(int factoryLevel) {
+        public ulong GetValueForLevel(int factoryLevel) {
             var levelData = levelsList.FirstOrDefault(x => x.level == factoryLevel);
             if (levelData == null)
                 return 0;
@@ -122,8 +88,13 @@ namespace FattestInc {
             return levelData.time;
         }
 
-        public int GetValueDifferenceForNextLevel(int factoryLevel) {
-            return GetValueForLevel(factoryLevel + 1) - GetValueForLevel(factoryLevel);
+        public bool IsLastLevel(int factoryLevel) {
+            return levelsList.Max(x => x.level) <= factoryLevel;
+        }
+
+        public bool HasNextLevel(int factoryLevel) {
+            var maxLevel = levelsList.Max(x => x.level);
+            return maxLevel > factoryLevel;
         }
     }
 }

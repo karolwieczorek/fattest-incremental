@@ -1,0 +1,422 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb3aeff3b3b4802a675585473a20c06, type: 3}
+  m_Name: f8_dam
+  m_EditorClassIdentifier: 
+  spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
+  tabName: dam
+  factoryId: dam
+  factoryName: Dam
+  startingLevel: 0
+  icon: {fileID: 21300000, guid: ef8c2a8f02d770045b7d408c85f2aed2, type: 3}
+  factoryType: 0
+  levelsList:
+  - level: 1
+    cost: 100000
+    value: 833
+    time: 30
+  - level: 2
+    cost: 100000
+    value: 1667
+    time: 30
+  - level: 3
+    cost: 250000
+    value: 2917
+    time: 30
+  - level: 4
+    cost: 500000
+    value: 6250
+    time: 30
+  - level: 5
+    cost: 1000000
+    value: 12500
+    time: 30
+  - level: 6
+    cost: 1200000
+    value: 18333
+    time: 30
+  - level: 7
+    cost: 1700000
+    value: 24167
+    time: 30
+  - level: 8
+    cost: 1900000
+    value: 30000
+    time: 30
+  - level: 9
+    cost: 2400000
+    value: 35833
+    time: 30
+  - level: 10
+    cost: 2600000
+    value: 41667
+    time: 30
+  - level: 11
+    cost: 2900000
+    value: 45833
+    time: 30
+  - level: 12
+    cost: 3100000
+    value: 50000
+    time: 30
+  - level: 13
+    cost: 3400000
+    value: 54167
+    time: 30
+  - level: 14
+    cost: 3600000
+    value: 58333
+    time: 30
+  - level: 15
+    cost: 3900000
+    value: 62500
+    time: 30
+  - level: 16
+    cost: 4600000
+    value: 70833
+    time: 30
+  - level: 17
+    cost: 5400000
+    value: 83333
+    time: 30
+  - level: 18
+    cost: 9600000
+    value: 125000
+    time: 30
+  - level: 19
+    cost: 10400000
+    value: 166667
+    time: 30
+  - level: 20
+    cost: 14600000
+    value: 208333
+    time: 30
+  - level: 21
+    cost: 15400000
+    value: 250000
+    time: 30
+  - level: 22
+    cost: 24600000
+    value: 333333
+    time: 30
+  - level: 23
+    cost: 25400000
+    value: 416667
+    time: 30
+  - level: 24
+    cost: 54600000
+    value: 666667
+    time: 30
+  - level: 25
+    cost: 65400000
+    value: 1000000
+    time: 30
+  - level: 26
+    cost: 134600000
+    value: 1666667
+    time: 30
+  - level: 27
+    cost: 165400000
+    value: 2500000
+    time: 30
+  - level: 28
+    cost: 234600000
+    value: 3333333
+    time: 30
+  - level: 29
+    cost: 465400000
+    value: 5833333
+    time: 30
+  - level: 30
+    cost: 434600000
+    value: 7500000
+    time: 30
+  - level: 31
+    cost: 665400000
+    value: 9166667
+    time: 30
+  - level: 32
+    cost: 634600000
+    value: 10833333
+    time: 30
+  - level: 33
+    cost: 865400000
+    value: 12500000
+    time: 30
+  - level: 34
+    cost: 734600000
+    value: 13333333
+    time: 30
+  - level: 35
+    cost: 965400000
+    value: 14166667
+    time: 30
+  - level: 36
+    cost: 834600000
+    value: 15000000
+    time: 30
+  - level: 37
+    cost: 1065400000
+    value: 15833333
+    time: 30
+  - level: 38
+    cost: 934600000
+    value: 16666667
+    time: 30
+  - level: 39
+    cost: 1315400000
+    value: 18750000
+    time: 30
+  - level: 40
+    cost: 1184600000
+    value: 20833333
+    time: 30
+  - level: 41
+    cost: 1565400000
+    value: 22916667
+    time: 30
+  - level: 42
+    cost: 1434600000
+    value: 25000000
+    time: 30
+  - level: 43
+    cost: 2065400000
+    value: 29166667
+    time: 30
+  - level: 44
+    cost: 1934600000
+    value: 33333333
+    time: 30
+  - level: 45
+    cost: 2565400000
+    value: 37500000
+    time: 30
+  - level: 46
+    cost: 2434600000
+    value: 41666667
+    time: 30
+  - level: 47
+    cost: 3065400000
+    value: 45833333
+    time: 30
+  - level: 48
+    cost: 2934600000
+    value: 50000000
+    time: 30
+  - level: 49
+    cost: 3565400000
+    value: 54166667
+    time: 30
+  - level: 50
+    cost: 3434600000
+    value: 58333333
+    time: 30
+  - level: 51
+    cost: 4565400000
+    value: 66666667
+    time: 30
+  - level: 52
+    cost: 4434600000
+    value: 75000000
+    time: 30
+  - level: 53
+    cost: 5565400000
+    value: 83333333
+    time: 30
+  - level: 54
+    cost: 5434600000
+    value: 91666667
+    time: 30
+  - level: 55
+    cost: 7065400000
+    value: 104166667
+    time: 30
+  - level: 56
+    cost: 12934600000
+    value: 166666667
+    time: 30
+  - level: 57
+    cost: 17065400000
+    value: 250000000
+    time: 30
+  - level: 58
+    cost: 32934600000
+    value: 416666667
+    time: 30
+  - level: 59
+    cost: 42065400000
+    value: 625000000
+    time: 30
+  - level: 60
+    cost: 57934600000
+    value: 833333333
+    time: 30
+  - level: 61
+    cost: 92065400000
+    value: 1250000000
+    time: 30
+  - level: 62
+    cost: 132934600000
+    value: 1875000000
+    time: 30
+  - level: 63
+    cost: 267065400000
+    value: 3333333333
+    time: 30
+  - level: 64
+    cost: 232934600000
+    value: 4166666667
+    time: 30
+  - level: 65
+    cost: 367065400000
+    value: 5000000000
+    time: 30
+  - level: 66
+    cost: 332934600000
+    value: 5833333333
+    time: 30
+  - level: 67
+    cost: 567065400000
+    value: 7500000000
+    time: 30
+  - level: 68
+    cost: 532934600000
+    value: 9166666667
+    time: 30
+  - level: 69
+    cost: 767065400000
+    value: 10833333333
+    time: 30
+  - level: 70
+    cost: 1232934600000
+    value: 16666666667
+    time: 30
+  - level: 71
+    cost: 1267065400000
+    value: 20833333333
+    time: 30
+  - level: 72
+    cost: 1732934600000
+    value: 25000000000
+    time: 30
+  - level: 73
+    cost: 1767065400000
+    value: 29166666667
+    time: 30
+  - level: 74
+    cost: 3232934600000
+    value: 41666666667
+    time: 30
+  - level: 75
+    cost: 3767065400000
+    value: 58333333333
+    time: 30
+  - level: 76
+    cost: 4232934600000
+    value: 66666666667
+    time: 30
+  - level: 77
+    cost: 4767065400000
+    value: 75000000000
+    time: 30
+  - level: 78
+    cost: 5232934600000
+    value: 83333333333
+    time: 30
+  - level: 79
+    cost: 6267065400000
+    value: 95833333333
+    time: 30
+  - level: 80
+    cost: 6232934600000
+    value: 104166666667
+    time: 30
+  - level: 81
+    cost: 8767065400000
+    value: 125000000000
+    time: 30
+  - level: 82
+    cost: 8732934600000
+    value: 145833333333
+    time: 30
+  - level: 83
+    cost: 11267065400000
+    value: 166666666667
+    time: 30
+  - level: 84
+    cost: 13732934600000
+    value: 208333333333
+    time: 30
+  - level: 85
+    cost: 286267065400000
+    value: 2500000000000
+    time: 30
+  - level: 86
+    cost: 113732934600000
+    value: 3333333333333
+    time: 30
+  - level: 87
+    cost: 386267065400000
+    value: 4166666666667
+    time: 30
+  - level: 88
+    cost: 213732934600000
+    value: 5000000000000
+    time: 30
+  - level: 89
+    cost: 486267065400000
+    value: 5833333333333
+    time: 30
+  - level: 90
+    cost: 313732934600000
+    value: 6666666666667
+    time: 30
+  - level: 91
+    cost: 586267065400000
+    value: 7500000000000
+    time: 30
+  - level: 92
+    cost: 413732934600000
+    value: 8333333333333
+    time: 30
+  - level: 93
+    cost: 786267065400000
+    value: 10000000000000
+    time: 30
+  - level: 94
+    cost: 613732934600000
+    value: 11666666666667
+    time: 30
+  - level: 95
+    cost: 887640358860000
+    value: 13333333333333
+    time: 30
+  - level: 96
+    cost: 650986347680000
+    value: 15000000000000
+    time: 30
+  - level: 97
+    cost: 830386945780000
+    value: 16666666666667
+    time: 30
+  - level: 98
+    cost: 608239760760000
+    value: 18333333333333
+    time: 30
+  - level: 99
+    cost: 831760239240000
+    value: 20000000000000
+    time: 30
+  - level: 100
+    cost: 556866467300000
+    value: 20833333333333
+    time: 30

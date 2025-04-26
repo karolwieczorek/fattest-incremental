@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 
 namespace FattestInc.Audio {
-    public static class AudioVolumeConverter
-    {
-        private const float MinDecibels = -80.0f;
-        private const float MaxDecibels = 0.0f;
+    public static class AudioVolumeConverter {
+        const float MinDecibels = -80.0f;
+        const float MaxDecibels = 0.0f;
 
         /// <summary>
         /// Converts a linear volume setting (0 to 1) to a logarithmic amplitude
@@ -12,8 +11,7 @@ namespace FattestInc.Audio {
         /// </summary>
         /// <param name="linearVolume">Volume setting from your slider (0.0 to 1.0).</param>
         /// <returns>Calculated amplitude (0.0 to 1.0) for AudioSource.volume.</returns>
-        public static float ConvertLinearToLogarithmicVolume(float linearVolume)
-        {
+        public static float ConvertLinearToLogarithmicVolume(float linearVolume) {
             // Ensure input is clamped between 0 and 1
             linearVolume = Mathf.Clamp01(linearVolume);
 

@@ -1,5 +1,7 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 namespace FattestInc.Audio {
     public class MusicPlayer : MonoBehaviour {
