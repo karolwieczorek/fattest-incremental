@@ -48,7 +48,7 @@ namespace FattestInc {
 
         public void UpdateAmount(float currentAmount) {
             progressBarFillImage.fillAmount = currentAmount / Value;
-            progressBarAmountLabel.text = $"{currentAmount} / {Value}";
+            progressBarAmountLabel.text = $"{NumbersFormattingUtil.FormatNumber((ulong)currentAmount)} / {NumbersFormattingUtil.FormatNumber(Value)}";
         }
 
         [Button]

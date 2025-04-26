@@ -18,9 +18,13 @@ namespace FattestInc {
 
         void OnAmountPerSecondChanged(float amountPerSecond) {
             // if decimal is bigger than 0 (modulo from number) then just print number else print number with string format F1
-            var decimalAmount = amountPerSecond % 1;
-            var numberToDraw = decimalAmount > 0 ? $"{amountPerSecond:F1}" : $"{amountPerSecond}";
-            label.text = $"{numberToDraw}/sec";
+            if (amountPerSecond < 1000) {
+                var decimalAmount = amountPerSecond % 1;
+                var numberToDraw = decimalAmount > 0 ? $"{amountPerSecond:F1}" : $"{amountPerSecond}";
+                label.text = $"{numberToDraw}/sec";
+            } else {
+                label.text = $"{NumbersFormattingUtil.FormatNumber((ulong)amountPerSecond)}/sec";
+            }
         }
     }
 }

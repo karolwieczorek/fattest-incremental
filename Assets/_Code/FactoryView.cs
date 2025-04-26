@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Hypnagogia.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -120,16 +121,16 @@ namespace FattestInc {
         void Refresh() {
             var hasNextLevel = factoryLevelsData.HasNextLevel(factory.Level);
             if (factoryUpgradeButtonView.IsHovered && hasNextLevel) {
-                valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level + 1).ToString();
+                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level + 1));
                 clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level + 1)}";
                 amountLabel.text = $"{factory.Level + 1}";
             }
             else {
-                valueLabel.text = factoryLevelsData.GetValueForLevel(factory.Level).ToString();
+                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level));
                 clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level)}";
                 amountLabel.text = $"{factory.Level}";
             }
-            
+
             if (!hasNextLevel) {
                 factoryUpgradeButtonView.ApplyMax();
             }
@@ -141,7 +142,7 @@ namespace FattestInc {
                 else 
                     factoryUpgradeButtonView.ApplyUnavailable();
                 
-                costLabel.text = $"Cost: {costAmount}";
+                costLabel.text = $"Cost: {NumbersFormattingUtil.FormatNumber(costAmount)}";
                 nextLevelValueDifferenceLabel.text = $"Buy 1";
             }
         }
