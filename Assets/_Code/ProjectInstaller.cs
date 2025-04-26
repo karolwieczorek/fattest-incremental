@@ -12,15 +12,20 @@ namespace FattestInc {
             Container.BindDataStores(transform, makeGroup:false, 
                 typeof(UIDataStore),
                 typeof(EconomyDataStore),
-                typeof(AudioSettingsDataStore)
+                typeof(AudioSettingsDataStore),
+                typeof(BuyMultipleDataStore)
                 
                 );
-            Container.BindSystems(
-                typeof(AudioSystem)
-            );
-            // Container.BindSystem<AudioSystem>();
+            
             Container.BindInterfacesAndSelfTo<ScenesLoaderHelper>().AsSingle();
             Container.BindInterfacesAndSelfTo<SaveHelper>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BuyMultipleHelper>().AsSingle();
+            
+            Container.BindSystems(
+                typeof(AudioSystem),
+                typeof(BuyMultipleInitializationSystem)
+            );
+            // Container.BindSystem<AudioSystem>();
         }
     }
 }

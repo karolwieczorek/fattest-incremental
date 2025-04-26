@@ -30,6 +30,9 @@ namespace FattestInc.UI.Implementation {
         ResourceFactory factory;
         FactoryLevelsData factoryLevelsData;
         EconomyDataStore economyDataStore;
+
+        [HInject] BuyMultipleHelper buyMultipleHelper;
+        [HInject] BuyMultipleDataStore buyMultipleDataStore;
         
         public string FactoryId { get; private set; }
 
@@ -40,6 +43,7 @@ namespace FattestInc.UI.Implementation {
             clickerButton.onClick.AddListener(ClickerButtonClick);
             factoryUpgradeButtonView.PointerEnter += Refresh;
             factoryUpgradeButtonView.PointerExit += Refresh;
+            buyMultipleDataStore.BuyMultipleUpdated += OnBuyMultipleUpdated;
             if (economyDataStore != null)
                 economyDataStore.CurrentTotalAmount.Changed += Refresh;
 
@@ -57,6 +61,7 @@ namespace FattestInc.UI.Implementation {
             clickerButton.onClick.RemoveListener(ClickerButtonClick);
             factoryUpgradeButtonView.PointerEnter -= Refresh;
             factoryUpgradeButtonView.PointerExit -= Refresh;
+            buyMultipleDataStore.BuyMultipleUpdated -= OnBuyMultipleUpdated;
             if (economyDataStore != null)
                 economyDataStore.CurrentTotalAmount.Changed -= Refresh;
             
@@ -65,6 +70,10 @@ namespace FattestInc.UI.Implementation {
                 cancellationTokenSource.Dispose();
                 cancellationTokenSource = null;
             }
+        }
+
+        void OnBuyMultipleUpdated(BuyMultipleData _) {
+            Refresh();
         }
 
         void BuyUpgrade() {
@@ -136,7 +145,9 @@ namespace FattestInc.UI.Implementation {
                 factoryUpgradeButtonView.ApplyMax();
             }
             else {
-                var costAmount = factoryLevelsData.GetCostForNextLevel(factory.Level);
+                buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, factory.Level, out var amount, out var price);
+
+                var costAmount = price;
                 bool canAffort = economyDataStore.HasEnoughMoney(costAmount);
                 if (canAffort)
                     factoryUpgradeButtonView.ApplyAvailable();
@@ -144,7 +155,7 @@ namespace FattestInc.UI.Implementation {
                     factoryUpgradeButtonView.ApplyUnavailable();
                 
                 costLabel.text = $"Cost: {NumbersFormattingUtil.FormatNumber(costAmount)}";
-                nextLevelValueDifferenceLabel.text = $"Buy 1";
+                nextLevelValueDifferenceLabel.text = $"Buy {amount}";
             }
         }
 

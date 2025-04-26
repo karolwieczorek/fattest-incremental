@@ -73,6 +73,14 @@ namespace FattestInc.Economy.API {
                 return 0;
             return levelData.cost;
         }
+        
+        public ulong GetCostForLevel(int factoryLevel) {
+            var nextLevel = factoryLevel;
+            var levelData = levelsList.FirstOrDefault(x => x.level == nextLevel);
+            if (levelData == null)
+                return 0;
+            return levelData.cost;
+        }
 
         public ulong GetValueForLevel(int factoryLevel) {
             var levelData = levelsList.FirstOrDefault(x => x.level == factoryLevel);
@@ -89,7 +97,11 @@ namespace FattestInc.Economy.API {
         }
 
         public bool IsLastLevel(int factoryLevel) {
-            return levelsList.Max(x => x.level) <= factoryLevel;
+            return GetLastLevel() <= factoryLevel;
+        }
+
+        public int GetLastLevel() {
+            return levelsList.Max(x => x.level);
         }
 
         public bool HasNextLevel(int factoryLevel) {
