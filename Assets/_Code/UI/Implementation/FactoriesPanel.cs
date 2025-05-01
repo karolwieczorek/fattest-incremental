@@ -25,6 +25,7 @@ namespace FattestInc.UI.Implementation {
             foreach (var factoryLevelsData in factoriesReferencer.Factories) {
                 var factoryView = container.InstantiateTypedPrefab(factoryViewPrefab, content);
                 factoryView.Init(factoryLevelsData, economyDataStore);
+                factoryView.RefreshUnlockedState();
                 factoryViews.Add(factoryView);
             }
         }

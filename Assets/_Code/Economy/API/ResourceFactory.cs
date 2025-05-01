@@ -5,7 +5,7 @@ namespace FattestInc.Economy.API {
     [System.Serializable]
     public class ResourceFactory {
         readonly FactoryType factoryType;
-        FactoryState factoryState;
+        FactoryState factoryState = FactoryState.Hidden;
         [ShowInInspector] int level;
         [ShowInInspector] ulong valuePerTick;
         [ShowInInspector] float time;

@@ -181,6 +181,7 @@ namespace FattestInc.UI.Implementation {
             return;
 
             void Hide() {
+                // Debug.Log($"Hide: {FactoryId}", this);
                 gameObject.SetActive(false);
             }
 
