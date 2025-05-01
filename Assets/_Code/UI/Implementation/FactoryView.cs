@@ -206,7 +206,7 @@ namespace FattestInc.UI.Implementation {
                 if (factory != null) {
                     if (factory.Duration > 10) {
                         var timeSpan = TimeSpan.FromSeconds(factory.TimeLeft);
-                        var timeLabel = $"{timeSpan.TotalMinutes}:{timeSpan.Seconds}";
+                        var timeLabel = $"{timeSpan.TotalMinutes:0}:{timeSpan.Seconds}";
                         timeLeftA.text = timeLabel;
                         timeLeftB.text = timeLabel;
                     }

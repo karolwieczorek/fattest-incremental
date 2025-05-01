@@ -22,9 +22,12 @@ MonoBehaviour:
   - label: x 10
     number: 10
     type: 0
+  - label: x 100
+    number: 1000
+    type: 0
+  - label: x <100
+    number: 100
+    type: 1
   - label: Max
     number: 0
     type: 2
-  - label: x 1k
-    number: 1000
-    type: 0
