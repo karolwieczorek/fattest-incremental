@@ -90,9 +90,10 @@ namespace FattestInc.UI.Implementation {
                 return;
             }
 
-            var cost = factoryLevelsData.GetCostForNextLevel(factory.Level);
+            buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, factory.Level, out var amount, out var cost);
+            // var cost = factoryLevelsData.GetCostForNextLevel(factory.Level);
             if (economyDataStore.TryBuy(cost)) {
-                economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 1);
+                economyDataStore.AddOrUpgradeFactory(factoryLevelsData, amount);
                 Refresh();
             } else {
                 Debug.Log($"Not enough money to buy upgrade: current: {economyDataStore.CurrentTotalAmount.Value}, cost: {cost}");
@@ -131,9 +132,10 @@ namespace FattestInc.UI.Implementation {
         void Refresh() {
             var hasNextLevel = factoryLevelsData.HasNextLevel(factory.Level);
             if (factoryUpgradeButtonView.IsHovered && hasNextLevel) {
-                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level + 1));
-                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level + 1)}";
-                amountLabel.text = $"{factory.Level + 1}";
+                buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, factory.Level, out var amount, out var price);
+                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level + amount));
+                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level + amount)}";
+                amountLabel.text = $"{factory.Level + amount}";
             }
             else {
                 valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level));

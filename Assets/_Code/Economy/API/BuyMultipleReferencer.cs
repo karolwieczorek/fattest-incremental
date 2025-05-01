@@ -11,13 +11,21 @@ namespace FattestInc.Economy.API {
     }
 
     [System.Serializable]
-    public class BuyMultipleData {
+    public class BuyMultipleData : IMultiBuySetting {
         public string label;
         [ShowIf(nameof(NotMax))]
         public int number;
         public MultipleType type;
 
         bool NotMax => type != MultipleType.Max;
+
+        public int Amount => number;
+        public MultipleType Type => type;
+    }
+
+    public interface IMultiBuySetting {
+        int Amount { get; }
+        MultipleType Type { get; }
     }
 
     public enum MultipleType { Number, NumberOrLess, Max }

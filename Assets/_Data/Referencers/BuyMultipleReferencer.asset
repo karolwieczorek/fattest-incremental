@@ -17,7 +17,7 @@ MonoBehaviour:
     number: 1
     type: 0
   - label: x ~10
-    number: 0
+    number: 10
     type: 1
   - label: x 10
     number: 10

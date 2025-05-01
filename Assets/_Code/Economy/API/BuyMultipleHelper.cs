@@ -1,6 +1,5 @@
 ﻿using System;
 using Hypnagogia.Utils;
-using UnityEngine;
 
 namespace FattestInc.Economy.API {
     public class BuyMultipleHelper {
@@ -8,47 +7,25 @@ namespace FattestInc.Economy.API {
         [HInject] EconomyDataStore economyDataStore;
 
         public void GetAmountForMultiBuy(FactoryLevelsData factoryLevelsData, int level, out int amount, out ulong price) {
-            var data = buyMultipleDataStore.CurrentBuyMultipleData;
+            IMultiBuySetting data = buyMultipleDataStore.CurrentBuyMultipleData;
+            int amountToBuy = data.Amount;
 
-            switch (data.type) {
+            switch (data.Type) {
                 case MultipleType.Number:
-                    GetAmountForMultiBuyForANumber(factoryLevelsData, level, data.number, out amount, out price);
+                    GetAmountForMultiBuyForANumber(factoryLevelsData, level, amountToBuy, out amount, out price);
                     return;
                 case MultipleType.NumberOrLess:
-                    break;
+                    GetAmountOrLessForMultiBuyForANumber(HasEnoughMoney, factoryLevelsData, level,
+                        amountToBuy, out amount, out price);
+                    return;
                 case MultipleType.Max:
+                    GetMaxAmountForMultiBuy(HasEnoughMoney, factoryLevelsData, level, out amount, out price);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            // if (data.type is MultipleType.Number) {
-            //     GetAmountForMultiBuyForANumber(factoryLevelsData, level, data.number, out amount, out price);
-            //     return;
-            // }
-
-            if (data.type is MultipleType.NumberOrLess) {
-                ulong priceSum = 0;
-                int i = 0;
-                for (; i <= data.number; i++) {
-                    var levelPrice = factoryLevelsData.GetCostForLevel(level + i + 1);
-                    if (economyDataStore.HasEnoughMoney(priceSum + levelPrice))
-                        priceSum += levelPrice;
-                    else
-                        break;
-                }
-                amount = i;
-                price = priceSum;
-                
-                if (amount < 1) {
-                    amount = 1;
-                    price = factoryLevelsData.GetCostForLevel(level + 1);
-                }
-
-                return;
-            }
-
-            if (data.type is MultipleType.Max) {
+            if (data.Type is MultipleType.Max) {
                 ulong priceSum = 0;
                 int i = 0;
                 var levelsLeft = factoryLevelsData.GetLastLevel() - level;
@@ -76,7 +53,123 @@ namespace FattestInc.Economy.API {
             amount = 0;
             price = 0;
             throw new ArgumentOutOfRangeException();
+
+            return;
+
+            bool HasEnoughMoney(ulong cost) {
+                return economyDataStore.HasEnoughMoney(cost); 
+            }
         }
+
+        // public static void GetAmountOrLessForMultiBuyForANumber(Func<ulong, bool> hasEnoughMoney, IFactoryLevelsData factoryLevelsData, int currentLevel,
+        //     int levelsToBuy, out int amount, out ulong price) {
+        //     ulong priceSum = 0;
+        //     int i = 0;
+        //     for (; i <= levelsToBuy; i++) {
+        //         var levelPrice = factoryLevelsData.GetCostForLevel(currentLevel + i + 1);
+        //         if (hasEnoughMoney(priceSum + levelPrice))
+        //             priceSum += levelPrice;
+        //         else
+        //             break;
+        //     }
+        //     amount = i;
+        //     price = priceSum;
+        //         
+        //     if (amount < 1) {
+        //         amount = 1;
+        //         price = factoryLevelsData.GetCostForLevel(currentLevel + 1);
+        //     }
+        // }
+
+        public static void GetMaxAmountForMultiBuy(Func<ulong, bool> hasEnoughMoney, IFactoryLevelsData factoryLevelsData, int currentLevel,
+            out int amount, out ulong price) {
+            ulong priceSum = 0;
+            int i = 0;
+            var levelsLeft = factoryLevelsData.GetLastLevel() - currentLevel;
+            if (levelsLeft <= 0) {
+                amount = 0;
+                price = 0;
+                return;
+            }
+            for (; i <= levelsLeft; i++) {
+                var levelPrice = factoryLevelsData.GetCostForLevel(currentLevel + i + 1);
+                if (hasEnoughMoney(priceSum + levelPrice))
+                    priceSum += levelPrice;
+                else
+                    break;
+            }
+            amount = i;
+            price = priceSum;
+                
+            if (amount < 1) {
+                amount = 1;
+                price = factoryLevelsData.GetCostForLevel(currentLevel + 1);
+            }
+        }
+        
+        public static void GetAmountOrLessForMultiBuyForANumber(Func<ulong, bool> hasEnoughMoney, IFactoryLevelsData factoryLevelsData, int currentLevel,
+            int levelsToBuy, out int amount, out ulong price) {
+            ulong priceSum = 0;
+            int i = 0;
+            var levelsLeft = factoryLevelsData.GetLastLevel() - currentLevel;
+            if (levelsLeft <= 0) {
+                amount = 0;
+                price = 0;
+                return;
+            }
+
+            levelsLeft = Math.Min(levelsToBuy, levelsLeft);
+            for (; i <= levelsLeft; i++) {
+                var levelPrice = factoryLevelsData.GetCostForLevel(currentLevel + i + 1);
+                if (hasEnoughMoney(priceSum + levelPrice))
+                    priceSum += levelPrice;
+                else
+                    break;
+            }
+            amount = i;
+            price = priceSum;
+                
+            if (amount < 1) {
+                amount = 1;
+                price = factoryLevelsData.GetCostForLevel(currentLevel + 1);
+            }
+        }
+
+        // public static void GetAmountOrLessForMultiBuyForANumber(Func<ulong, bool> hasEnoughMoney, IFactoryLevelsData factoryLevelsData, int currentLevel,
+        //     int levelsToBuy, out int amount, out ulong price) {
+        //     if (factoryLevelsData.IsLastLevel(currentLevel)) {
+        //         amount = 0;
+        //         price = 0;
+        //         return;
+        //     }
+        //
+        //     ulong priceSum = 0;
+        //     var targetLevel = currentLevel + levelsToBuy;
+        //     amount = 0;
+        //     for (int level = currentLevel; level < targetLevel; level++) {
+        //         var costForLevel = factoryLevelsData.GetCostForLevel(currentLevel + amount + 1);
+        //         // Debug.Log($"level: {level} - {costForLevel} - {priceSum+costForLevel}");
+        //         if (hasEnoughMoney(priceSum + costForLevel)) {
+        //             priceSum += costForLevel;
+        //         }
+        //         else {
+        //             break;
+        //         }
+        //         
+        //         amount++;
+        //         if (factoryLevelsData.IsLastLevel(currentLevel + amount))
+        //             break;
+        //         
+        //     }
+        //
+        //     // amount = levelsToBuy;
+        //     price = priceSum;
+        //
+        //     if (amount < 1) {
+        //         amount = 1;
+        //         price = factoryLevelsData.GetCostForLevel(currentLevel + 1);
+        //     }
+        // }
 
         public static void GetAmountForMultiBuyForANumber(IFactoryLevelsData factoryLevelsData, int currentLevel, int levelsToBuy,
             out int amount, out ulong price) {
@@ -92,7 +185,7 @@ namespace FattestInc.Economy.API {
             for (int level = currentLevel + 1; level <= targetLevel; level++) {
                 var costForLevel = factoryLevelsData.GetCostForLevel(level);
                 priceSum += costForLevel;
-                Debug.Log($"level: {level} - {costForLevel} - {priceSum}");
+                // Debug.Log($"level: {level} - {costForLevel} - {priceSum}");
                 amount++;
                 
                 if (factoryLevelsData.IsLastLevel(level))

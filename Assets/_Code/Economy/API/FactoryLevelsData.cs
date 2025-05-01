@@ -114,5 +114,6 @@ namespace FattestInc.Economy.API {
         ulong GetCostForNextLevel(int factoryLevel);
         ulong GetCostForLevel(int factoryLevel);
         bool IsLastLevel(int factoryLevel);
+        int GetLastLevel();
     }
 }
