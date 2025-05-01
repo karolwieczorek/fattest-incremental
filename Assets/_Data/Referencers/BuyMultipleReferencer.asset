@@ -25,3 +25,6 @@ MonoBehaviour:
   - label: Max
     number: 0
     type: 2
+  - label: x 1k
+    number: 1000
+    type: 0

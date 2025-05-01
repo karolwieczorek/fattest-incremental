@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace FattestInc.Economy.API {
-    public class FactoryLevelsData : GoogleSpreadsheetScriptableObject
+    public class FactoryLevelsData : GoogleSpreadsheetScriptableObject, IFactoryLevelsData
     {
         [SerializeField] string factoryId;
         [SerializeField] string factoryName;
@@ -108,5 +108,11 @@ namespace FattestInc.Economy.API {
             var maxLevel = levelsList.Max(x => x.level);
             return maxLevel > factoryLevel;
         }
+    }
+
+    public interface IFactoryLevelsData {
+        ulong GetCostForNextLevel(int factoryLevel);
+        ulong GetCostForLevel(int factoryLevel);
+        bool IsLastLevel(int factoryLevel);
     }
 }
