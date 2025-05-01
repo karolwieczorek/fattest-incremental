@@ -119,7 +119,7 @@ namespace FattestInc.Economy.API {
             }
 
             levelsLeft = Math.Min(levelsToBuy, levelsLeft);
-            for (; i <= levelsLeft; i++) {
+            for (; i < levelsLeft; i++) {
                 var levelPrice = factoryLevelsData.GetCostForLevel(currentLevel + i + 1);
                 if (hasEnoughMoney(priceSum + levelPrice))
                     priceSum += levelPrice;
