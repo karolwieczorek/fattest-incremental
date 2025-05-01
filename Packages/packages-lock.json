@@ -28,6 +28,13 @@
       },
       "hash": "c94f1c9902e06c45975982cc3ac448e9330cc96d"
     },
+    "com.github-glitchenzo.nugetforunity": {
+      "version": "4.3.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.marijnzwemmer.unity-toolbar-extender": {
       "version": "1.4.2",
       "depth": 0,
