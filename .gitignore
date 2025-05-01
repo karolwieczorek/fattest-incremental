@@ -103,3 +103,6 @@ crashlytics-build.properties
 
 # Unity Visual Scripting
 /[Aa]ssets/Unity.VisualScripting.Generated*
+
+# NuGet for Unity (minimal)
+/[Aa]ssets/Packages/
