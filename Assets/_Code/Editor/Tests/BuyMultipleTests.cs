@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace FattestInc.Tests
 {
-    public class FactoryLevelsDataTests
+    // public class FactoryLevelsDataTests { }
+    public class BuyMultipleTests
     {
         Mock<IFactoryLevelsData> factoryDataMock;
 
