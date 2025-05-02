@@ -36,3 +36,7 @@ MonoBehaviour:
     cost: 40
     value: 4
     time: 1
+  - level: 40
+    cost: 40
+    value: 40
+    time: 3
