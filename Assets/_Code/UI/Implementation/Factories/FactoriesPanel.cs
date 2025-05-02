@@ -5,7 +5,7 @@ using Hypnagogia.Utils;
 using UnityEngine;
 using Zenject;
 
-namespace FattestInc.UI.Implementation {
+namespace FattestInc.UI.Implementation.Factories {
     public class FactoriesPanel : MonoBehaviour {
         [SerializeField] FactoryView factoryViewPrefab;
         [SerializeField] GameObject clickerViewPrefab;

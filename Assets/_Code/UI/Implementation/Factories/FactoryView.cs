@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FattestInc.UI.Implementation {
+namespace FattestInc.UI.Implementation.Factories {
     public class FactoryView : MonoBehaviour {
         [SerializeField] Button button;
         [SerializeField] Image icon;
