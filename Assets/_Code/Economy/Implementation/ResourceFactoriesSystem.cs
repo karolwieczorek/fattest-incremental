@@ -34,6 +34,11 @@ namespace FattestInc.Economy.Implementation {
 
         void UnlockOrShowFactoryIfApplicable() {
             foreach (var factory in factoriesReferencer.Factories) {
+                if (economyDataStore.ResourceFactories.ContainsKey(factory.FactoryId) == false) {
+                    // Debug.LogWarning($"Factory {factory.FactoryId} not yet created. Continue");
+                    continue;
+                }
+
                 // Debug.Log($"{factory.FactoryId}");
                 if (economyDataStore.IsFactoryUnlocked(factory.FactoryId))
                     continue;

@@ -34,7 +34,8 @@ namespace FattestInc.Audio {
             audioSource.pitch = GetPitchOffset();
             audioSource.clip = GetAudioClip();
             audioSource.Play();
-            Debug.Log($"{audioSource.isPlaying}", audioSource);
+            // Debug.Log($"{audioSource.isPlaying}", audioSource);
+            
         }
 
 #if UNITY_EDITOR

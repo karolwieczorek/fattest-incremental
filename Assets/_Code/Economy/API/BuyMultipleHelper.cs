@@ -24,8 +24,6 @@ namespace FattestInc.Economy.API {
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            return;
             
             bool HasEnoughMoney(ulong cost) {
                 return economyDataStore.HasEnoughMoney(cost); 

@@ -73,17 +73,17 @@ namespace FattestInc.Economy.API {
         public void UnlockFactory(string factoryId) {
             var (key, factory) = ResourceFactories.FirstOrDefault(x => x.Key == factoryId);
             if (factory == null) {
-                Debug.LogError("Could not unlock factory. Factory is missing");
+                Debug.LogError($"Could not unlock factory. Factory {factoryId} is missing");
                 return;
             }
 
             factory.Unlock();
         }
-        
+
         public void ShowFactory(string factoryId) {
             var (key, factory) = ResourceFactories.FirstOrDefault(x => x.Key == factoryId);
             if (factory == null) {
-                Debug.LogError("Could not unlock factory. Factory is missing");
+                Debug.LogError($"Could not unlock factory. Factory {factoryId} is missing.");
                 return;
             }
 
