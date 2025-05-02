@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bb3aeff3b3b4802a675585473a20c06, type: 3}
-  m_Name: f2_solar
+  m_Name: f2_microPV
   m_EditorClassIdentifier: 
   spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
-  tabName: solar
-  factoryId: SolarPanel
-  factoryName: Solar Panel
+  tabName: microPV
+  factoryId: microPV
+  factoryName: Micro PV
   startingLevel: 0
-  icon: {fileID: 21300000, guid: 4ec605792cd3c3c45b31c0ce3b6b38de, type: 3}
+  icon: {fileID: 21300000, guid: 7ee30ff20817acf4cbf5517a3c7db0c3, type: 3}
   factoryType: 0
   levelsList:
   - level: 1

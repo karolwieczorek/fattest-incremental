@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bb3aeff3b3b4802a675585473a20c06, type: 3}
-  m_Name: f5_geothermal
+  m_Name: f8_gas
   m_EditorClassIdentifier: 
   spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
-  tabName: geothermal
-  factoryId: geothermal
-  factoryName: Geothermal
+  tabName: gas
+  factoryId: gas
+  factoryName: Gas
   startingLevel: 0
-  icon: {fileID: 21300000, guid: 288f8c3ea31d496439f52deb82713dfc, type: 3}
+  icon: {fileID: 21300000, guid: da94fc1a09031cf4ebb8d87dce25bdec, type: 3}
   factoryType: 0
   levelsList:
   - level: 1
