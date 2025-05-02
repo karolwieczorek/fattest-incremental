@@ -20,91 +20,22 @@ namespace FattestInc.Economy.API {
                     return;
                 case MultipleType.Max:
                     GetMaxAmountForMultiBuy(HasEnoughMoney, factoryLevelsData, level, out amount, out price);
-                    break;
+                    return;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (data.Type is MultipleType.Max) {
-                ulong priceSum = 0;
-                int i = 0;
-                var levelsLeft = factoryLevelsData.GetLastLevel() - level;
-                if (levelsLeft <= 0) {
-                    amount = 0;
-                    price = 0;
-                }
-                for (; i <= levelsLeft; i++) {
-                    var levelPrice = factoryLevelsData.GetCostForLevel(level + i + 1);
-                    if (economyDataStore.HasEnoughMoney(priceSum + levelPrice))
-                        priceSum += levelPrice;
-                    else
-                        break;
-                }
-                amount = i;
-                price = priceSum;
-                
-                if (amount < 1) {
-                    amount = 1;
-                    price = factoryLevelsData.GetCostForLevel(level + 1);
-                }
-                return;
-            }
-            
-            amount = 0;
-            price = 0;
-            throw new ArgumentOutOfRangeException();
-
             return;
-
+            
             bool HasEnoughMoney(ulong cost) {
                 return economyDataStore.HasEnoughMoney(cost); 
             }
         }
 
-        // public static void GetAmountOrLessForMultiBuyForANumber(Func<ulong, bool> hasEnoughMoney, IFactoryLevelsData factoryLevelsData, int currentLevel,
-        //     int levelsToBuy, out int amount, out ulong price) {
-        //     ulong priceSum = 0;
-        //     int i = 0;
-        //     for (; i <= levelsToBuy; i++) {
-        //         var levelPrice = factoryLevelsData.GetCostForLevel(currentLevel + i + 1);
-        //         if (hasEnoughMoney(priceSum + levelPrice))
-        //             priceSum += levelPrice;
-        //         else
-        //             break;
-        //     }
-        //     amount = i;
-        //     price = priceSum;
-        //         
-        //     if (amount < 1) {
-        //         amount = 1;
-        //         price = factoryLevelsData.GetCostForLevel(currentLevel + 1);
-        //     }
-        // }
-
         public static void GetMaxAmountForMultiBuy(Func<ulong, bool> hasEnoughMoney, IFactoryLevelsData factoryLevelsData, int currentLevel,
             out int amount, out ulong price) {
-            ulong priceSum = 0;
-            int i = 0;
-            var levelsLeft = factoryLevelsData.GetLastLevel() - currentLevel;
-            if (levelsLeft <= 0) {
-                amount = 0;
-                price = 0;
-                return;
-            }
-            for (; i <= levelsLeft; i++) {
-                var levelPrice = factoryLevelsData.GetCostForLevel(currentLevel + i + 1);
-                if (hasEnoughMoney(priceSum + levelPrice))
-                    priceSum += levelPrice;
-                else
-                    break;
-            }
-            amount = i;
-            price = priceSum;
-                
-            if (amount < 1) {
-                amount = 1;
-                price = factoryLevelsData.GetCostForLevel(currentLevel + 1);
-            }
+            var levelsToBuy = factoryLevelsData.GetLastLevel() - currentLevel;
+            GetAmountOrLessForMultiBuyForANumber(hasEnoughMoney, factoryLevelsData, currentLevel, levelsToBuy, out amount, out price);
         }
         
         public static void GetAmountOrLessForMultiBuyForANumber(Func<ulong, bool> hasEnoughMoney, IFactoryLevelsData factoryLevelsData, int currentLevel,
@@ -134,42 +65,6 @@ namespace FattestInc.Economy.API {
                 price = factoryLevelsData.GetCostForLevel(currentLevel + 1);
             }
         }
-
-        // public static void GetAmountOrLessForMultiBuyForANumber(Func<ulong, bool> hasEnoughMoney, IFactoryLevelsData factoryLevelsData, int currentLevel,
-        //     int levelsToBuy, out int amount, out ulong price) {
-        //     if (factoryLevelsData.IsLastLevel(currentLevel)) {
-        //         amount = 0;
-        //         price = 0;
-        //         return;
-        //     }
-        //
-        //     ulong priceSum = 0;
-        //     var targetLevel = currentLevel + levelsToBuy;
-        //     amount = 0;
-        //     for (int level = currentLevel; level < targetLevel; level++) {
-        //         var costForLevel = factoryLevelsData.GetCostForLevel(currentLevel + amount + 1);
-        //         // Debug.Log($"level: {level} - {costForLevel} - {priceSum+costForLevel}");
-        //         if (hasEnoughMoney(priceSum + costForLevel)) {
-        //             priceSum += costForLevel;
-        //         }
-        //         else {
-        //             break;
-        //         }
-        //         
-        //         amount++;
-        //         if (factoryLevelsData.IsLastLevel(currentLevel + amount))
-        //             break;
-        //         
-        //     }
-        //
-        //     // amount = levelsToBuy;
-        //     price = priceSum;
-        //
-        //     if (amount < 1) {
-        //         amount = 1;
-        //         price = factoryLevelsData.GetCostForLevel(currentLevel + 1);
-        //     }
-        // }
 
         public static void GetAmountForMultiBuyForANumber(IFactoryLevelsData factoryLevelsData, int currentLevel, int levelsToBuy,
             out int amount, out ulong price) {

@@ -15,28 +15,28 @@ MonoBehaviour:
   spreadsheetId: 1_S23uwN26N9wJUDwNX6xQStljoUtIpN0qfIgBcNk8M4
   tabName: bike
   factoryId: bike
-  factoryName: bike
+  factoryName: Bike generator
   startingLevel: 0
   icon: {fileID: 21300000, guid: 8531e1b8d57ef164595c349a366d8b44, type: 3}
   factoryType: 1
   levelsList:
   - level: 1
-    cost: 0
-    value: 1
+    cost: 1000
+    value: 100
     time: 1
   - level: 2
-    cost: 10
-    value: 2
+    cost: 1000
+    value: 200
     time: 1
   - level: 3
-    cost: 40
-    value: 3
+    cost: 1000
+    value: 300
     time: 1
   - level: 4
-    cost: 40
-    value: 4
+    cost: 1000
+    value: 400
     time: 1
-  - level: 40
-    cost: 40
-    value: 40
-    time: 3
+  - level: 5
+    cost: 1000
+    value: 500
+    time: 1
