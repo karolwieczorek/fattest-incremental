@@ -2,6 +2,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using FattestInc.Economy.API;
+using FattestInc.Progression.API;
 using Hypnagogia.Utils;
 using TMPro;
 using UnityEngine;
@@ -10,10 +11,10 @@ using UnityEngine.UI;
 namespace FattestInc.UI.Implementation.Factories {
     public class FactoryView : MonoBehaviour {
         [SerializeField] Button button;
-        [SerializeField] Image icon;
+
+        [SerializeField] FactoryIconView factoryIconView;
         [SerializeField] Image progressBar;
         [SerializeField] TMP_Text nameLabel;
-        [SerializeField] TMP_Text amountLabel;
         [SerializeField] TMP_Text valueLabel;
         [SerializeField] TMP_Text costLabel;
         [SerializeField] TMP_Text nextLevelValueDifferenceLabel;
@@ -26,6 +27,8 @@ namespace FattestInc.UI.Implementation.Factories {
         [SerializeField] Button clickerButton;
 
         [SerializeField] FactoryUpgradeButtonView factoryUpgradeButtonView;
+        [SerializeField] GameObject unlockedState; 
+        [SerializeField] FactoryShowedStateView factoryShowedStateView;
 
         ResourceFactory factory;
         FactoryLevelsData factoryLevelsData;
@@ -33,6 +36,7 @@ namespace FattestInc.UI.Implementation.Factories {
 
         [HInject] BuyMultipleHelper buyMultipleHelper;
         [HInject] BuyMultipleDataStore buyMultipleDataStore;
+        [HInject] UnlockingHelper unlockingHelper;
         
         public string FactoryId { get; private set; }
 
@@ -112,7 +116,7 @@ namespace FattestInc.UI.Implementation.Factories {
         }
 
         public void Init(FactoryLevelsData factoryLevelsData, EconomyDataStore economyDataStore) {
-            icon.sprite = factoryLevelsData.Icon;
+            factoryIconView.SetIcon(factoryLevelsData.Icon);
             FactoryId = factoryLevelsData.FactoryId;
             nameLabel.text = factoryLevelsData.FactoryName;
             this.economyDataStore = economyDataStore;
@@ -135,12 +139,12 @@ namespace FattestInc.UI.Implementation.Factories {
                 buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, factory.Level, out var amount, out var price);
                 valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level + amount));
                 clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level + amount)}";
-                amountLabel.text = $"{factory.Level + amount}";
+                factoryIconView.SetAmount(factory.Level + amount);
             }
             else {
                 valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level));
                 clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level)}";
-                amountLabel.text = $"{factory.Level}";
+                factoryIconView.SetAmount(factory.Level);
             }
 
             if (!hasNextLevel) {
@@ -189,11 +193,16 @@ namespace FattestInc.UI.Implementation.Factories {
 
             void Unlock() {
                 // Debug.Log($"Unlock: {FactoryId}", this);
+                factoryShowedStateView.Hide();
+                unlockedState.SetActive(true);
                 gameObject.SetActive(true);
             }
 
             void ShowFactory() {
                 // Debug.Log($"Show: {FactoryId}", this);
+                unlockedState.SetActive(false);
+                var unlockingData = unlockingHelper.GetUnlockingData(FactoryId);
+                factoryShowedStateView.Show(unlockingData);
                 gameObject.SetActive(true);
             }
         }

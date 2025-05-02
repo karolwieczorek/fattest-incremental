@@ -23,6 +23,13 @@ namespace FattestInc.Progression.API {
             return AreAllConditionsMet(unlockingData);
         }
 
+        public UnlockingFactoriesData.UnlockingData GetUnlockingData(string factoryId) {
+            var unlockingData =
+                economyReferencer.UnlockingFactoriesData.LevelsList.FirstOrDefault(
+                    x => x.IsUnlockType && x.factoryToUnlockId == factoryId);
+            return unlockingData;
+        }
+
         public bool CanBeUnlocked(string factoryId) {
             var unlockingData =
                 economyReferencer.UnlockingFactoriesData.LevelsList.FirstOrDefault(
