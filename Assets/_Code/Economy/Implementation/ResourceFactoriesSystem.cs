@@ -7,21 +7,12 @@ using Zenject;
 namespace FattestInc.Economy.Implementation {
     public class ResourceFactoriesSystem : HSystem, ITickable {
         [HInject] EconomyDataStore economyDataStore;
-        [HInject] EconomyReferencer economyReferencer;
         [HInject] FactoriesReferencer factoriesReferencer;
         [HInject] ResourceFactoriesHelper resourceFactoriesHelper;
         [HInject] UnlockingHelper unlockingHelper;
 
         protected override void SystemStart() {
             base.SystemStart();
-            economyDataStore.CurrentTotalAmount.Value = (ulong)economyReferencer.StartingValue;
-            foreach (var factoryLevelsData in factoriesReferencer.Factories) {
-                if (factoryLevelsData.StartingLevel > 0) {
-                    economyDataStore.AddOrUpgradeFactory(factoryLevelsData, factoryLevelsData.StartingLevel);
-                    economyDataStore.ShowFactory(factoryLevelsData.FactoryId);
-                }
-            }
-            
             economyDataStore.FactoryUpgradedEvent += UnlockOrShowFactoryIfApplicable;
             economyDataStore.CurrentTotalAmount.Changed += UnlockOrShowFactoryIfApplicable;
         }
@@ -40,8 +31,14 @@ namespace FattestInc.Economy.Implementation {
                 }
 
                 // Debug.Log($"{factory.FactoryId}");
-                if (economyDataStore.IsFactoryUnlocked(factory.FactoryId))
+                var isFactoryUnlocked = economyDataStore.IsFactoryUnlocked(factory.FactoryId, out var factoryLevel);
+                if (isFactoryUnlocked)
                     continue;
+
+                if (factoryLevel > 0) {
+                    economyDataStore.MakeSureFactoryUnlocked(factory.FactoryId);
+                    continue;
+                }
 
                 if (economyDataStore.IsFactoryShown(factory.FactoryId)) {
                     if (unlockingHelper.CanBeUnlocked(factory.FactoryId))

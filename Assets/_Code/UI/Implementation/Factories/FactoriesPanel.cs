@@ -24,10 +24,11 @@ namespace FattestInc.UI.Implementation.Factories {
             // container.InstantiatePrefab(clickerViewPrefab, content);
             foreach (var factoryLevelsData in factoriesReferencer.Factories) {
                 var factoryView = container.InstantiateTypedPrefab(factoryViewPrefab, content);
-                factoryView.Init(factoryLevelsData, economyDataStore);
-                factoryView.RefreshUnlockedState();
+                factoryView.Init(factoryLevelsData);
                 factoryViews.Add(factoryView);
             }
+            
+            Refresh();
         }
 
         void OnEnable() {

@@ -6,6 +6,7 @@ namespace FattestInc.Economy.Implementation {
         [HInject] EconomyDataStore economyDataStore;
 
         protected override void SystemStart() {
+            RecalculateValuePerSecond();
             economyDataStore.FactoryUpgradedEvent += OnFactoryUpgraded;
         }
 
@@ -14,6 +15,10 @@ namespace FattestInc.Economy.Implementation {
         }
 
         void OnFactoryUpgraded() {
+            RecalculateValuePerSecond();
+        }
+
+        void RecalculateValuePerSecond() {
             var perSecond = 0f;
             foreach (var (_, factory) in economyDataStore.ResourceFactories) {
                 perSecond += factory.GetCurrentValuePerSecond();

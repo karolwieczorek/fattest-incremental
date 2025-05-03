@@ -32,11 +32,11 @@ namespace FattestInc.UI.Implementation.Factories {
 
         ResourceFactory factory;
         FactoryLevelsData factoryLevelsData;
-        EconomyDataStore economyDataStore;
 
         [HInject] BuyMultipleHelper buyMultipleHelper;
         [HInject] BuyMultipleDataStore buyMultipleDataStore;
         [HInject] UnlockingHelper unlockingHelper;
+        [HInject] EconomyDataStore economyDataStore;
         
         public string FactoryId { get; private set; }
 
@@ -115,12 +115,12 @@ namespace FattestInc.UI.Implementation.Factories {
             progressBar.fillAmount = factory.Progress;
         }
 
-        public void Init(FactoryLevelsData factoryLevelsData, EconomyDataStore economyDataStore) {
+        public void Init(FactoryLevelsData factoryLevelsData) {
             factoryIconView.SetIcon(factoryLevelsData.Icon);
             FactoryId = factoryLevelsData.FactoryId;
             nameLabel.text = factoryLevelsData.FactoryName;
             this.economyDataStore = economyDataStore;
-            this.factory = economyDataStore.AddOrUpgradeFactory(factoryLevelsData, 0);
+            this.factory = economyDataStore.GetOrInitFactory(factoryLevelsData);
             this.factoryLevelsData = factoryLevelsData;
             // factory type idle 
             idleContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Idle);

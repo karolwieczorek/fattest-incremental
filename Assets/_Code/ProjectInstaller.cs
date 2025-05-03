@@ -23,8 +23,7 @@ namespace FattestInc {
             
             Container.BindSystems(
                 typeof(AudioSystem),
-                typeof(BuyMultipleInitializationSystem),
-                typeof(SaveSystem)
+                typeof(BuyMultipleInitializationSystem)
             );
             // Container.BindSystem<AudioSystem>();
         }

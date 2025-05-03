@@ -9,7 +9,8 @@ namespace FattestInc {
         public override void InstallBindings() {
             Container.BindSystems(
                 typeof(ResourceFactoriesSystem),
-                typeof(EconomySystem)
+                typeof(EconomySystem),
+                typeof(SaveSystem)
                 );
             Container.BindInterfacesAndSelfTo<ResourceFactoriesHelper>().AsSingle();
             Container.BindInterfacesAndSelfTo<UnlockingHelper>().AsSingle();

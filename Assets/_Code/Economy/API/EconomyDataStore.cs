@@ -14,6 +14,25 @@ namespace FattestInc.Economy.API {
         public IReadOnlyDictionary<string, ResourceFactory> ResourceFactories => resourceFactories;
         public event Action FactoryUpgradedEvent;
 
+        
+        public ResourceFactory GetOrInitFactory(FactoryLevelsData factoryLevelsData) {
+            var factoryId = factoryLevelsData.FactoryId;
+            if (!resourceFactories.TryGetValue(factoryId, out var factory))
+                factory = InitResourceFactory();
+            return factory;
+
+            ResourceFactory InitResourceFactory() {
+                factory = new ResourceFactory(factoryLevelsData.FactoryType);
+                resourceFactories.Add(factoryId, factory);
+                var level = 0;
+                var value = factoryLevelsData.GetValueForLevel(level);
+                // var cost = factoryLevelsData.GetCostForNextLevel(factory.Level);
+                var duration = factoryLevelsData.GetDurationForLevel(level);
+                factory.Upgrade(level, value, duration);
+                return factory;
+            }
+        }
+        
         public ResourceFactory AddOrUpgradeFactory(FactoryLevelsData factoryLevelsData, int i) {
             var factoryId = factoryLevelsData.FactoryId;
             
@@ -62,12 +81,19 @@ namespace FattestInc.Economy.API {
             return false;
         }
 
-        public bool IsFactoryUnlocked(string factoryId) {
-            return ResourceFactories.Any(x => x.Key == factoryId && x.Value.State == FactoryState.Unlocked);
+        public bool IsFactoryUnlocked(string factoryId, out int factoryLevel) {
+            if (ResourceFactories.ContainsKey(factoryId) == false) {
+                Debug.LogWarning($"Missing factory: {factoryId}");
+                factoryLevel = 0;
+                return false;
+            }
+            var factory = ResourceFactories[factoryId];
+            factoryLevel = factory.Level;
+            return factory.State == FactoryState.Unlocked;
         }
 
         public bool IsFactoryShown(string factoryId) {
-            return ResourceFactories.Any(x => x.Key == factoryId && x.Value.State == FactoryState.Shown);
+            return ResourceFactories.ContainsKey(factoryId) && ResourceFactories[factoryId].State == FactoryState.Shown;
         }
 
         public void UnlockFactory(string factoryId) {
@@ -88,6 +114,17 @@ namespace FattestInc.Economy.API {
             }
 
             factory.Show();
+        }
+
+        public void MakeSureFactoryUnlocked(string factoryId) {
+            if (ResourceFactories.ContainsKey(factoryId) == false) {
+                Debug.LogWarning($"Missing factory: {factoryId}");
+                return;
+            }
+
+            var factory = ResourceFactories[factoryId];
+            if (factory.State != FactoryState.Unlocked)
+                factory.Unlock();
         }
     }
 }
