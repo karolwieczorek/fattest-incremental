@@ -5,6 +5,7 @@ using UnityEngine;
 namespace FattestInc {
     public class SaveSystem : HSystem {
         [HInject] EconomyDataStore economyDataStore;
+        [HInject] SaveHelper saveHelper;
 
         protected override void SystemStart() {
             economyDataStore.FactoryUpgradedEvent += OnFactoryUpgraded;
@@ -17,11 +18,11 @@ namespace FattestInc {
         }
 
         void OnFactoryUpgraded() {
-            Debug.Log("Factory upgraded. Save");
+            saveHelper.SaveGame(silentMode: true);
         }
 
         void OnGameQuit() {
-            Debug.Log("Game About to quit. Save");
+            saveHelper.SaveGame();
         }
     }
 }

@@ -11,17 +11,17 @@ namespace FattestInc {
         [HInject] EconomyDataStore economyDataStore;
         [HInject] FactoriesReferencer factoriesReferencer;
         
-        public void SaveGame() {
+        public void SaveGame(bool silentMode = false) {
             var saveData = new SaveData();
             saveData.currencyAmount = economyDataStore.CurrentTotalAmount.Value;
             saveData.factoryLevels = new List<SaveData.FactoryLevelEntry>();
             foreach (var factory in economyDataStore.ResourceFactories) {
                 saveData.SetFactoryLevel(factory.Key, factory.Value.Level);
-                // saveData.factoryLevels.Add(new SaveData.FactoryLevelEntry() { factoryId = factory.Key, level = factory.Value.Level});
             }
 
             SaveStorageUtils.Save(saveData);
-            Debug.Log("Game Saved");
+            if (!silentMode)
+                Debug.Log("Game Saved");
         }
 
         public void LoadGame() {
