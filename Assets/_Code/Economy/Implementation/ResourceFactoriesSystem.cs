@@ -12,13 +12,12 @@ namespace FattestInc.Economy.Implementation {
         [HInject] UnlockingHelper unlockingHelper;
 
         protected override void SystemStart() {
-            base.SystemStart();
+            UnlockOrShowFactoryIfApplicable();
             economyDataStore.FactoryUpgradedEvent += UnlockOrShowFactoryIfApplicable;
             economyDataStore.CurrentTotalAmount.Changed += UnlockOrShowFactoryIfApplicable;
         }
 
         protected override void SystemStop() {
-            base.SystemStop();
             economyDataStore.FactoryUpgradedEvent -= UnlockOrShowFactoryIfApplicable;
             economyDataStore.CurrentTotalAmount.Changed -= UnlockOrShowFactoryIfApplicable;
         }

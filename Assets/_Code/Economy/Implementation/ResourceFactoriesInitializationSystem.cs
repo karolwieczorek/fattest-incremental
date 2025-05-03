@@ -11,6 +11,7 @@ namespace FattestInc.Economy.Implementation {
 
         protected override void SystemStart() {
             base.SystemStart();
+            economyDataStore.Clear();
             var gameLoaded = saveHelper.TryLoadGame();
             if (!gameLoaded) {
                 CreateFreshFactoriesState();

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Eflatun.SceneReference;
 using Hypnagogia.Utils;
@@ -25,6 +26,23 @@ namespace FattestInc {
             async UniTaskVoid Task() {
                 await LoadSceneTask(scenesLoaderReferencer.GameScene);
             }
+        }
+
+        public void RestartGame() {
+            lastLoadedScene = Maybe<SceneReference>.Empty;
+            Task(scenesLoaderReferencer.BootstrapperScene).Forget();
+            return;
+
+            async UniTaskVoid Task(SceneReference sceneToLoad) {
+                await LoadSingleScene(sceneToLoad);
+            }
+        }
+
+        async Task LoadSingleScene(SceneReference sceneToLoad) {
+            await zenjectSceneLoader.LoadSceneAsync(sceneToLoad.BuildIndex, LoadSceneMode.Single);
+            var scene = SceneManager.GetSceneByPath(sceneToLoad.Path);
+            SceneManager.SetActiveScene(scene);
+            Debug.Log($"Loaded {sceneToLoad.Path}");
         }
 
         public bool IsSceneLoaded(SceneReference sceneReference) {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace FattestInc.Windows.General {
@@ -6,7 +7,12 @@ namespace FattestInc.Windows.General {
         [SerializeField] WindowManager windowManager;
 
         public override void InstallBindings() {
-            ProjectContext.Instance.Container.BindInstance(windowManager).AsSingle();
+            // ProjectContext.Instance.Container.BindInstance(windowManager).AsSingle();
+            Container.BindInstance(windowManager).AsSingle();
         }
+
+        // void OnDestroy() {
+        //     ProjectContext.Instance.Container.Unbind(windowManager.GetType());
+        // }
     }
 }

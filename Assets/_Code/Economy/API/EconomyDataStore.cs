@@ -126,5 +126,11 @@ namespace FattestInc.Economy.API {
             if (factory.State != FactoryState.Unlocked)
                 factory.Unlock();
         }
+
+        public void Clear() {
+            resourceFactories.Clear();
+            CurrentTotalAmount = new();
+            CurrentAmountPerSecond = new();
+        }
     }
 }

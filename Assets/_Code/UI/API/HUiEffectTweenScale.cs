@@ -57,5 +57,9 @@ namespace FattestInc.UI.API {
             CancelAndCleanUp();
             scaleHandle = TargetToScale.DOScale(originalScale, animationDuration, easeType);
         }
+
+        void OnDestroy() {
+            CancelAndCleanUp();
+        }
     }
 }

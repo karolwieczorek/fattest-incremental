@@ -9,9 +9,10 @@ namespace FattestInc.Windows {
         [SerializeField] TMP_Text versionLabel;
         [SerializeField] Button saveButton;
         [SerializeField] Button loadButton;
-        [SerializeField] Slider musicSlider;
+        [SerializeField] Button resetButton;
 
         [HInject] SaveHelper saveHelper;
+        [HInject] ScenesLoaderHelper scenesLoaderHelper;
         [HInject] WindowManager windowManager;
 
 
@@ -19,12 +20,18 @@ namespace FattestInc.Windows {
             WindowApiShow();
             saveButton.onClick.AddListener(SaveButtonClicked);
             loadButton.onClick.AddListener(LoadButtonClicked);
+            resetButton.onClick.AddListener(ResetButtonClicked);
             // musicSlider.value
         }
 
         void OnDisable() {
             saveButton.onClick.RemoveListener(SaveButtonClicked);
             loadButton.onClick.RemoveListener(LoadButtonClicked);
+            resetButton.onClick.RemoveListener(ResetButtonClicked);
+        }
+
+        void WindowApiShow() {
+            versionLabel.text = $"Version {Application.version}";
         }
 
         void SaveButtonClicked() {
@@ -36,8 +43,9 @@ namespace FattestInc.Windows {
             windowManager.TryCloseWindow(this);
         }
 
-        public void WindowApiShow() {
-            versionLabel.text = $"Version {Application.version}";
+        void ResetButtonClicked() {
+            saveHelper.DeleteSave();
+            scenesLoaderHelper.RestartGame();
         }
     }
 }
