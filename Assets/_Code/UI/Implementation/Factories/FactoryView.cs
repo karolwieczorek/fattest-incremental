@@ -31,6 +31,19 @@ namespace FattestInc.UI.Implementation.Factories {
         [SerializeField] FactoryShowedStateView factoryShowedStateView;
 
         ResourceFactory factory;
+        ResourceFactory Factory {
+            get => factory;
+            set {
+                if (factory == value)
+                    return;
+                
+                if (factory != null)
+                    factory.State.Changed -= RefreshUnlockedState;
+                factory = value;
+                if (factory != null)
+                    factory.State.Changed += RefreshUnlockedState;
+            }
+        }
         FactoryLevelsData factoryLevelsData;
 
         [HInject] BuyMultipleHelper buyMultipleHelper;
@@ -89,12 +102,12 @@ namespace FattestInc.UI.Implementation.Factories {
                 return;
             }
 
-            if (factoryLevelsData.IsLastLevel(factory.Level)) {
-                Debug.LogError($"Last level - {factory.Level}. Cant upgrade further. {factoryLevelsData.FactoryName}", factoryLevelsData);
+            if (factoryLevelsData.IsLastLevel(Factory.Level)) {
+                Debug.LogError($"Last level - {Factory.Level}. Cant upgrade further. {factoryLevelsData.FactoryName}", factoryLevelsData);
                 return;
             }
 
-            buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, factory.Level, out var amount, out var cost);
+            buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, Factory.Level, out var amount, out var cost);
             // var cost = factoryLevelsData.GetCostForNextLevel(factory.Level);
             if (economyDataStore.TryBuy(cost)) {
                 economyDataStore.AddOrUpgradeFactory(factoryLevelsData, amount);
@@ -105,14 +118,14 @@ namespace FattestInc.UI.Implementation.Factories {
         }
 
         void ClickerButtonClick() {
-            economyDataStore.CurrentTotalAmount.Value += (ulong)factoryLevelsData.GetValueForLevel(factory.Level);
+            economyDataStore.CurrentTotalAmount.Value += (ulong)factoryLevelsData.GetValueForLevel(Factory.Level);
         }
 
         void Update() {
-            if (factory == null)
+            if (Factory == null)
                 return;
 
-            progressBar.fillAmount = factory.Progress;
+            progressBar.fillAmount = Factory.Progress;
         }
 
         public void Init(FactoryLevelsData factoryLevelsData) {
@@ -120,7 +133,7 @@ namespace FattestInc.UI.Implementation.Factories {
             FactoryId = factoryLevelsData.FactoryId;
             nameLabel.text = factoryLevelsData.FactoryName;
             this.economyDataStore = economyDataStore;
-            this.factory = economyDataStore.GetOrInitFactory(factoryLevelsData);
+            this.Factory = economyDataStore.GetOrInitFactory(factoryLevelsData);
             this.factoryLevelsData = factoryLevelsData;
             // factory type idle 
             idleContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Idle);
@@ -134,24 +147,24 @@ namespace FattestInc.UI.Implementation.Factories {
         }
 
         void Refresh() {
-            var hasNextLevel = factoryLevelsData.HasNextLevel(factory.Level);
+            var hasNextLevel = factoryLevelsData.HasNextLevel(Factory.Level);
             if (factoryUpgradeButtonView.IsHovered && hasNextLevel) {
-                buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, factory.Level, out var amount, out var price);
-                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level + amount));
-                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level + amount)}";
-                factoryIconView.SetAmount(factory.Level + amount);
+                buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, Factory.Level, out var amount, out var price);
+                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(Factory.Level + amount));
+                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(Factory.Level + amount)}";
+                factoryIconView.SetAmount(Factory.Level + amount);
             }
             else {
-                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(factory.Level));
-                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(factory.Level)}";
-                factoryIconView.SetAmount(factory.Level);
+                valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(Factory.Level));
+                clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(Factory.Level)}";
+                factoryIconView.SetAmount(Factory.Level);
             }
 
             if (!hasNextLevel) {
                 factoryUpgradeButtonView.ApplyMax();
             }
             else {
-                buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, factory.Level, out var amount, out var price);
+                buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, Factory.Level, out var amount, out var price);
 
                 var costAmount = price;
                 bool canAffort = economyDataStore.HasEnoughMoney(costAmount);
@@ -166,11 +179,11 @@ namespace FattestInc.UI.Implementation.Factories {
         }
 
         public void RefreshUnlockedState() {
-            if (factory == null) {
+            if (Factory == null) {
                 Hide();
                 return;
             }
-            switch (factory.State) {
+            switch (Factory.State.Value) {
                 case FactoryState.Hidden:
                     Hide();
                     break;
@@ -212,16 +225,16 @@ namespace FattestInc.UI.Implementation.Factories {
                 await UniTask.WaitForSeconds(0.1f, cancellationToken: cancellationToken);
                 if (cancellationToken.IsCancellationRequested)
                     return;
-                if (factory != null) {
-                    if (factory.Duration > 10) {
-                        var timeSpan = TimeSpan.FromSeconds(factory.TimeLeft);
+                if (Factory != null) {
+                    if (Factory.Duration > 10) {
+                        var timeSpan = TimeSpan.FromSeconds(Factory.TimeLeft);
                         var timeLabel = $"{timeSpan.TotalMinutes:0}:{timeSpan.Seconds}";
                         timeLeftA.text = timeLabel;
                         timeLeftB.text = timeLabel;
                     }
                     else {
                         // var timeSpan = TimeSpan.FromSeconds(factory.TimeLeft);
-                        var timeLabel = $"{factory.TimeLeft:F1}";
+                        var timeLabel = $"{Factory.TimeLeft:F1}";
                         timeLeftA.text = timeLabel;
                         timeLeftB.text = timeLabel;
                     }

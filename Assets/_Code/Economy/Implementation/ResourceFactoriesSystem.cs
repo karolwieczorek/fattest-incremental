@@ -23,6 +23,7 @@ namespace FattestInc.Economy.Implementation {
         }
 
         void UnlockOrShowFactoryIfApplicable() {
+            Debug.Log("Refresh unlocking");
             foreach (var factory in factoriesReferencer.Factories) {
                 if (economyDataStore.ResourceFactories.ContainsKey(factory.FactoryId) == false) {
                     // Debug.LogWarning($"Factory {factory.FactoryId} not yet created. Continue");
@@ -39,11 +40,15 @@ namespace FattestInc.Economy.Implementation {
                     continue;
                 }
 
-                if (economyDataStore.IsFactoryShown(factory.FactoryId)) {
-                    if (unlockingHelper.CanBeUnlocked(factory.FactoryId))
-                        economyDataStore.UnlockFactory(factory.FactoryId);
+                if (unlockingHelper.CanBeUnlocked(factory.FactoryId)) {
+                    economyDataStore.UnlockFactory(factory.FactoryId);
                     continue;
                 }
+
+                // if (economyDataStore.IsFactoryShown(factory.FactoryId)) {
+                //     
+                //     continue;
+                // }
 
                 if (unlockingHelper.CanBeShown(factory.FactoryId))
                     economyDataStore.ShowFactory(factory.FactoryId);

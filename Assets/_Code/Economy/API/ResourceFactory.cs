@@ -1,11 +1,12 @@
-﻿using Sirenix.OdinInspector;
+﻿using Hypnagogia.Utils;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace FattestInc.Economy.API {
     [System.Serializable]
     public class ResourceFactory {
         readonly FactoryType factoryType;
-        FactoryState factoryState = FactoryState.Hidden;
+        Observable<FactoryState> factoryState = new (FactoryState.Hidden);
         [ShowInInspector] int level;
         [ShowInInspector] ulong valuePerTick;
         [ShowInInspector] float time;
@@ -27,7 +28,7 @@ namespace FattestInc.Economy.API {
         public int Level => level;
 
         public FactoryType Type => factoryType;
-        public FactoryState State => factoryState;
+        public IReadOnlyObservable<FactoryState> State => factoryState;
 
         public ResourceFactory(FactoryType factoryType) {
             this.factoryType = factoryType;
@@ -84,11 +85,11 @@ namespace FattestInc.Economy.API {
         }
 
         public void Unlock() {
-            factoryState = FactoryState.Unlocked;
+            factoryState.Value = FactoryState.Unlocked;
         }
 
         public void Show() {
-            factoryState = FactoryState.Shown;
+            factoryState.Value = FactoryState.Shown;
         }
     }
 }

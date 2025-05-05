@@ -89,11 +89,11 @@ namespace FattestInc.Economy.API {
             }
             var factory = ResourceFactories[factoryId];
             factoryLevel = factory.Level;
-            return factory.State == FactoryState.Unlocked;
+            return factory.State.Value == FactoryState.Unlocked;
         }
 
         public bool IsFactoryShown(string factoryId) {
-            return ResourceFactories.ContainsKey(factoryId) && ResourceFactories[factoryId].State == FactoryState.Shown;
+            return ResourceFactories.ContainsKey(factoryId) && ResourceFactories[factoryId].State.Value == FactoryState.Shown;
         }
 
         public void UnlockFactory(string factoryId) {
@@ -123,7 +123,7 @@ namespace FattestInc.Economy.API {
             }
 
             var factory = ResourceFactories[factoryId];
-            if (factory.State != FactoryState.Unlocked)
+            if (factory.State.Value != FactoryState.Unlocked)
                 factory.Unlock();
         }
 
