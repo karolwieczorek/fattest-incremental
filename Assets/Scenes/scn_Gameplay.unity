@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 35
   m_Viewport: {fileID: 234643877}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1905928197}
@@ -4398,10 +4398,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1651071822}
-  icon: {fileID: 0}
+  factoryIconView: {fileID: 0}
   progressBar: {fileID: 0}
   nameLabel: {fileID: 0}
-  amountLabel: {fileID: 0}
   valueLabel: {fileID: 0}
   costLabel: {fileID: 0}
   nextLevelValueDifferenceLabel: {fileID: 0}
@@ -4412,6 +4411,8 @@ MonoBehaviour:
   clickerButtonLabel: {fileID: 0}
   clickerButton: {fileID: 0}
   factoryUpgradeButtonView: {fileID: 0}
+  unlockedState: {fileID: 0}
+  factoryShowedStateView: {fileID: 0}
 --- !u!114 &1651071822
 MonoBehaviour:
   m_ObjectHideFlags: 0
