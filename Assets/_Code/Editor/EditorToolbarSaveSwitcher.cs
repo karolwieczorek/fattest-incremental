@@ -45,6 +45,10 @@ namespace FattestInc {
                 if (GUI.Button(rect, content, guiStyle)) {
                     string defaultName = "EditorSave_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     string saveName = EditorInputDialog.Show("Get save name", "Provide save file name", defaultName);
+                    if (saveName == null) {
+                        Debug.Log("Save cancelled");
+                        return;
+                    }
                     if (editorSaves.ContainsKey(saveName)) {
                         Debug.LogError("Save Already exist: " + saveName);
                         return;
@@ -86,8 +90,6 @@ namespace FattestInc {
                 saveHelper.SaveGame();
                 var scenesLoaderHelper = ProjectContext.Instance.Container.Resolve<ScenesLoaderHelper>();
                 scenesLoaderHelper.RestartGame();
-                // editorSaves[saveName] = JsonUtility.ToJson(saveData);
-                // var saveData = saveHelper.GetSaveData();
             }
         }
 

@@ -1,69 +1,76 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace FattestInc {
     public class EditorInputDialog : EditorWindow {
-        public static string Show(string pTitle, string pDescription, string pText, string pOkButton = "Ok",
-            string pCancelButton = "Cancel") {
-            string r = null;
+        string title;
+        string description;
+        string inputText;
+        string okButton;
+        string cancelButton;
+        string result;
+        bool shouldFocus = true;
+
+        public static string Show(string title, string description, string defaultText, string okButton = "Ok", string cancelButton = "Cancel") {
             var window = CreateInstance<EditorInputDialog>();
-            window.titleContent = new GUIContent(pTitle);
-            window.rootVisualElement.style.height = new Length(100, LengthUnit.Percent);
-            window.rootVisualElement.style.justifyContent = new StyleEnum<Justify>(Justify.SpaceAround);
+            window.title = title;
+            window.description = description;
+            window.inputText = defaultText;
+            window.okButton = okButton;
+            window.cancelButton = cancelButton;
+            window.minSize = new Vector2(300, 100);
+            window.maxSize = new Vector2(300, 100);
 
-            var label = new Label(pDescription);
-            window.rootVisualElement.Add(label);
-
-            var inputText = new TextField();
-            inputText.value = pText;
-            window.rootVisualElement.Add(inputText);
-
-            var okButton = new Button(() => {
-                r = inputText.value;
-                window.Close();
-            }) {text = pOkButton};
-            okButton.style.flexGrow = 1;
-            var cancelButton = new Button(() => {
-                r = null;
-                window.Close();
-            }) {text = pCancelButton};
-            cancelButton.style.flexGrow = 1;
-
-            var buttonContainer = new VisualElement();
-            buttonContainer.style.flexDirection = new StyleEnum<FlexDirection>(FlexDirection.Row);
-            buttonContainer.style.justifyContent = new StyleEnum<Justify>(Justify.SpaceAround);
-            buttonContainer.Add(okButton);
-            buttonContainer.Add(cancelButton);
-            window.rootVisualElement.Add(buttonContainer);
-
-            window.rootVisualElement.RegisterCallback<KeyUpEvent>(e => {
-                if (e.keyCode == KeyCode.Escape) {
-                    r = null;
-                    window.Close();
-                }
-
-                if (e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter) {
-                    r = inputText.value;
-                    window.Close();
-                }
-            });
-
-            // Move window to a new position. Make sure we're inside visible window
+            // Position window near mouse
             var mousePos = GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
             var maxPos = GUIUtility.GUIToScreenPoint(new Vector2(Screen.width, Screen.height));
             mousePos.x += 32;
             if (mousePos.x + window.position.width > maxPos.x)
-                mousePos.x -= window.position.width + 64; // Display on left side of mouse
+                mousePos.x -= window.position.width + 64;
             if (mousePos.y + window.position.height > maxPos.y)
                 mousePos.y = maxPos.y - window.position.height;
 
-            window.position = new Rect(mousePos.x, mousePos.y, window.position.width, window.position.height);
+            window.position = new Rect(mousePos.x, mousePos.y, 300, 100);
+            window.ShowModalUtility();
+            return window.result;
+        }
 
-            window.rootVisualElement.schedule.Execute(() => { inputText.Focus(); }).ExecuteLater(10);
+        void OnGUI() {
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField(description, EditorStyles.wordWrappedLabel);
+            EditorGUILayout.Space(10);
 
-            window.ShowModal();
-            return r;
+            GUI.SetNextControlName("InputField");
+            inputText = EditorGUILayout.TextField(inputText);
+            
+            if (shouldFocus) {
+                EditorGUI.FocusTextInControl("InputField");
+                shouldFocus = false;
+            }
+
+            EditorGUILayout.Space(10);
+            
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(okButton)) {
+                result = inputText;
+                Close();
+            }
+            if (GUILayout.Button(cancelButton)) {
+                result = null;
+                Close();
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (Event.current.isKey && Event.current.type == EventType.KeyDown) {
+                if (Event.current.keyCode == KeyCode.Escape) {
+                    result = null;
+                    Close();
+                }
+                else if (Event.current.keyCode == KeyCode.Return || Event.current.keyCode == KeyCode.KeypadEnter) {
+                    result = inputText;
+                    Close();
+                }
+            }
         }
     }
 }
