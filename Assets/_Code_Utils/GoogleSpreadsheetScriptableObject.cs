@@ -12,12 +12,14 @@ namespace Hypnagogia.Utils {
         [FoldoutGroup("Google Settings")] [SerializeField]
         string tabName;
         
+        [ContextMenu(nameof(OpenUrl))]
         [FoldoutGroup("Google Settings")]
         [Button]
         void OpenUrl() {
             Application.OpenURL($"https://docs.google.com/spreadsheets/d/{spreadsheetId}");
         }
 
+        [ContextMenu(nameof(ImportFromGoogleSpreadsheet))]
         [FoldoutGroup("Google Settings")] 
         [Button]
         void ImportFromGoogleSpreadsheet()
