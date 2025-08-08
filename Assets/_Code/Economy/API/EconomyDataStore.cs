@@ -15,7 +15,7 @@ namespace FattestInc.Economy.API {
         public event Action FactoryUpgradedEvent;
 
         
-        public ResourceFactory GetOrInitFactory(FactoryLevelsData factoryLevelsData) {
+        public ResourceFactory GetOrInitFactory(IFactoryData factoryLevelsData) {
             var factoryId = factoryLevelsData.FactoryId;
             if (!resourceFactories.TryGetValue(factoryId, out var factory))
                 factory = InitResourceFactory();
@@ -33,7 +33,7 @@ namespace FattestInc.Economy.API {
             }
         }
         
-        public ResourceFactory AddOrUpgradeFactory(FactoryLevelsData factoryLevelsData, int i) {
+        public ResourceFactory AddOrUpgradeFactory(IFactoryData factoryLevelsData, int i) {
             var factoryId = factoryLevelsData.FactoryId;
             
             if (!resourceFactories.TryGetValue(factoryId, out var factory)) {
@@ -53,7 +53,7 @@ namespace FattestInc.Economy.API {
             return factory;
         }
 
-        public ResourceFactory LoadFactory(FactoryLevelsData factoryLevelsData, int level) {
+        public ResourceFactory LoadFactory(IFactoryData factoryLevelsData, int level) {
             var factoryId = factoryLevelsData.FactoryId;
             
             if (!resourceFactories.TryGetValue(factoryId, out var factory)) {

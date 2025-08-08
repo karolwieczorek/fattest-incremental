@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace FattestInc.Economy.API {
-    public class FactoryLevelsData : GoogleSpreadsheetScriptableObject, IFactoryLevelsData {
+    public class FactoryLevelsData : GoogleSpreadsheetScriptableObject, IFactoryData {
         [SerializeField] string factoryId;
         [SerializeField] string factoryName;
         [SerializeField] int startingLevel = 0;

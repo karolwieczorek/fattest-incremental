@@ -44,7 +44,7 @@ namespace FattestInc.UI.Implementation.Factories {
                     factory.State.Changed += RefreshUnlockedState;
             }
         }
-        FactoryLevelsData factoryLevelsData;
+        IFactoryData factoryLevelsData;
 
         [HInject] BuyMultipleHelper buyMultipleHelper;
         [HInject] BuyMultipleDataStore buyMultipleDataStore;
@@ -97,13 +97,13 @@ namespace FattestInc.UI.Implementation.Factories {
             if (economyDataStore == null || factoryLevelsData == null) {
                 Debug.LogError("Missing economyDataStore or factoryLevelsData");
                 var economy = economyDataStore == null ? "null" : economyDataStore.name;
-                var factoryData = factoryLevelsData == null ? "null" : factoryLevelsData.name;
+                var factoryData = factoryLevelsData == null ? "null" : (factoryLevelsData as UnityEngine.Object)?.name;
                 Debug.Log($"{economy}, {factoryData}");
                 return;
             }
 
             if (factoryLevelsData.IsLastLevel(Factory.Level)) {
-                Debug.LogError($"Last level - {Factory.Level}. Cant upgrade further. {factoryLevelsData.FactoryName}", factoryLevelsData);
+                Debug.LogError($"Last level - {Factory.Level}. Cant upgrade further. {factoryLevelsData.FactoryName}", this);
                 return;
             }
 
@@ -128,7 +128,7 @@ namespace FattestInc.UI.Implementation.Factories {
             progressBar.fillAmount = Factory.Progress;
         }
 
-        public void Init(FactoryLevelsData factoryLevelsData) {
+        public void Init(IFactoryData factoryLevelsData) {
             factoryIconView.SetIcon(factoryLevelsData.Icon);
             FactoryId = factoryLevelsData.FactoryId;
             nameLabel.text = factoryLevelsData.FactoryName;

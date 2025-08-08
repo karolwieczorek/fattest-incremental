@@ -6,7 +6,7 @@ namespace FattestInc.Economy.API {
         [HInject] BuyMultipleDataStore buyMultipleDataStore;
         [HInject] EconomyDataStore economyDataStore;
 
-        public void GetAmountForMultiBuy(FactoryLevelsData factoryLevelsData, int level, out int amount, out ulong price) {
+        public void GetAmountForMultiBuy(IFactoryLevelsData factoryLevelsData, int level, out int amount, out ulong price) {
             IMultiBuySetting data = buyMultipleDataStore.CurrentBuyMultipleData;
             int amountToBuy = data.Amount;
 
