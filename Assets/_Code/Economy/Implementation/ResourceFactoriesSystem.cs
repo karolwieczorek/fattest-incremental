@@ -1,4 +1,5 @@
-﻿using FattestInc.Economy.API;
+﻿using System.Linq;
+using FattestInc.Economy.API;
 using FattestInc.Progression.API;
 using Hypnagogia.Utils;
 using UnityEngine;
@@ -24,7 +25,8 @@ namespace FattestInc.Economy.Implementation {
 
         void UnlockOrShowFactoryIfApplicable() {
             Debug.Log("Refresh unlocking");
-            foreach (var factory in factoriesReferencer.Factories) {
+            var factoriesCopy = factoriesReferencer.Factories.ToList();
+            foreach (var factory in factoriesCopy) {
                 if (economyDataStore.ResourceFactories.ContainsKey(factory.FactoryId) == false) {
                     // Debug.LogWarning($"Factory {factory.FactoryId} not yet created. Continue");
                     continue;

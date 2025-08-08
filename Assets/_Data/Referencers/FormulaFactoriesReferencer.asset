@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a4a17792dd499bb8bf9350bffbe49e, type: 3}
-  m_Name: FactoriesReferencer
+  m_Name: FormulaFactoriesReferencer
   m_EditorClassIdentifier: 
   factories:
   - {fileID: 11400000, guid: b4225dfaad6d1894abb98ff2920b3838, type: 2}

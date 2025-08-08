@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: f8_geothermal
   m_EditorClassIdentifier: 
   factoryId: geothermal
-  factoryName: geothermal
+  factoryName: Geothermal
   startingLevel: 0
   icon: {fileID: 21300000, guid: 288f8c3ea31d496439f52deb82713dfc, type: 3}
   factoryType: 0

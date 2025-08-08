@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14078d181d68dd4a941a700a5d55921, type: 3}
   m_Name: f12_nuclear
   m_EditorClassIdentifier: 
-  factoryId: nuclear
+  factoryId: Nuclear
   factoryName: Nuclear
   startingLevel: 0
   icon: {fileID: 21300000, guid: e0812cdbf77b72e49834343c253b75da, type: 3}
