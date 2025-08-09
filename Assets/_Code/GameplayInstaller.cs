@@ -10,7 +10,8 @@ namespace FattestInc {
             Container.BindSystems(
                 typeof(ResourceFactoriesSystem),
                 typeof(EconomySystem),
-                typeof(SaveSystem)
+                typeof(SaveSystem),
+                typeof(ChangelogGateSystem)
                 );
             Container.BindInterfacesAndSelfTo<ResourceFactoriesHelper>().AsSingle();
             Container.BindInterfacesAndSelfTo<UnlockingHelper>().AsSingle();

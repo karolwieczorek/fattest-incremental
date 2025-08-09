@@ -7,8 +7,21 @@ namespace FattestInc.Economy.API {
         const string DataPath = "_Data/Factories";
 
         // [AssetList(Path = DataPath, AutoPopulate = false)]
-        [SerializeField] List<FactoryLevelsData> factories;
+        [SerializeField] List<ScriptableObject> factories;
 
-        public IReadOnlyList<FactoryLevelsData> Factories => factories;
+        public IReadOnlyList<IFactoryData> Factories {
+            get {
+                cachedList.Clear();
+                if (factories != null) {
+                    foreach (var so in factories) {
+                        if (so is IFactoryData data)
+                            cachedList.Add(data);
+                    }
+                }
+                return cachedList;
+            }
+        }
+
+        readonly List<IFactoryData> cachedList = new();
     }
 }

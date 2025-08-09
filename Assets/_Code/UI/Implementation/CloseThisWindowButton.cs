@@ -14,8 +14,12 @@ namespace FattestInc.UI.Implementation {
         }
 
         void OnValidate() {
+            if (targetWindow == null) {
+                targetWindow = GetComponentInParent<WindowBase>();
+                Debug.LogWarning("Updated target window for close button.", this);
+            }
             if (targetWindow is not ISimpleWindowClose) {
-                Debug.LogError($"Window is not {nameof(ISimpleWindowClose)}");
+                Debug.LogError($"Window is not {nameof(ISimpleWindowClose)}", this);
                 targetWindow = null;
             }
         }

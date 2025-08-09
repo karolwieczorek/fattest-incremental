@@ -37,15 +37,15 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 641bf743ec49c294182e5c02433f72a0, type: 3}
   - index: 6
     name: City
-    value: 1000000
+    value: 100000
     sprite: {fileID: 21300000, guid: d2f9777fafb57a746ac3f56220160f76, type: 3}
   - index: 7
     name: Country
-    value: 100000000
+    value: 5000000
     sprite: {fileID: 21300000, guid: 1e64e69f1c3ec8447a06fe6a77877d7e, type: 3}
   - index: 8
     name: Globe
-    value: 10000000000
+    value: 100000000
     sprite: {fileID: 21300000, guid: 51ab11b6b30bc3a459bb81705243183e, type: 3}
   icons:
   - name: Phone

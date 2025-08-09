@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14078d181d68dd4a941a700a5d55921, type: 3}
+  m_Name: f12_nuclear
+  m_EditorClassIdentifier: 
+  factoryId: Nuclear
+  factoryName: Nuclear
+  startingLevel: 0
+  icon: {fileID: 21300000, guid: e0812cdbf77b72e49834343c253b75da, type: 3}
+  factoryType: 0
+  maxLevel: 20
+  baseCost: 100000000
+  costMultiplier: 1.1
+  baseOutput: 5000000
+  linearOutputByLevel: 1
+  durationSeconds: 1
