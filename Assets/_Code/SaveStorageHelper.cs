@@ -48,7 +48,7 @@ namespace FattestInc {
                              $"to App version: {Application.version}");
 
             if (VersionUtils.TryParseVersion(version, out var v) && v < new Version(0, 2, 0)) {
-                // drop the version before game balance
+                Debug.Log("[SaveSystem] drop the version of save data before game balance");
                 return null;
             }
             if (version == "1.0.0") {
