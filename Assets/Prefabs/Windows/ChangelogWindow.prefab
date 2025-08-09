@@ -121,7 +121,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8229025736749398278}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6629605
+  m_Size: 0.6039657
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2c4aba8d9c4624a1146f60d70623d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  descriptionLabel: {fileID: 0}
+  descriptionLabel: {fileID: 4889829494657116674}
 --- !u!1 &2186240314169500308
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,8 +959,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=\"center\"><b><size=150%>Version 1.2</size></b></align>\n\u2022
-    fssai\n\u2022 fdaoifjdo\n\u2022 fjdoaifjdoas\n\u2022 fdjaiofjoajf\n\n<align=\"center\"><b><size=150%>Version
+  m_text: "<align=\"center\"><b><size=150%>Version 1.2</size></b></align>\n<align=\"center\">2025.05.06</align>\n\u2022
+    fssai\n\u2022 fdaoifjdo\n\u2022 fjdoaifjdoas\n\u2022 fdjaiofjoajf\n\n__________________________________________\n\n<align=\"center\"><b><size=150%>Version
     1.3</size></b></align>\n\u2022 fdjaiofjoajf\n\u2022 fdjaiofjoajf\n\u2022 fdjaiofjoajf\n\u2022
     fdjaiofjoajf\n\n<align=\"center\"><b><size=150%>Version 1.3</size></b></align>\n\u2022
     fdjaiofjoajf\n\u2022 fdjaiofjoajf\n\u2022 fdjaiofjoajf\n\u2022 fdjaiofjoajf\n\n<align=\"center\"><b><size=150%>Version

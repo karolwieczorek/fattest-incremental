@@ -1,0 +1,5 @@
+<align="center"><b><size=150%>Version 0.2.1</size></b></align>
+<align="center">2025.08.09</align>
+
+• major game re-balance
+• reset save games from previous version 
