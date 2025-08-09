@@ -2,3 +2,5 @@
 <align="center">2025.05.06</align>
 
 • public release on itch.io
+• basic mechanics
+• random game balance just for test
