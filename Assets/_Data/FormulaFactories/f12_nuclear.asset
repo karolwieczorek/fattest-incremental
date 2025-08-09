@@ -17,7 +17,7 @@ MonoBehaviour:
   startingLevel: 0
   icon: {fileID: 21300000, guid: e0812cdbf77b72e49834343c253b75da, type: 3}
   factoryType: 0
-  maxLevel: 25
+  maxLevel: 20
   baseCost: 100000000
   costMultiplier: 1.1
   baseOutput: 5000000
