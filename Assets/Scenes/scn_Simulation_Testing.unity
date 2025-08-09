@@ -2315,6 +2315,7 @@ MonoBehaviour:
   epsLabel: {fileID: 1375923438}
   factoriesLabel: {fileID: 859599862}
   factoriesReferencer: {fileID: 11400000, guid: 2fd964c370715454382a6e3918508612, type: 2}
+  unlockingFactoriesData: {fileID: 11400000, guid: 4dc0b6769d9745e4aa31679f343186a4, type: 2}
 --- !u!4 &816875878
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FattestInc.Economy.API;
+using FattestInc.Progression.API;
 using FattestInc.Simulation.API;
 using TMPro;
 using UnityEngine;
@@ -26,6 +27,9 @@ namespace FattestInc.Simulation.UI {
 
         [Header("Data")]
         [SerializeField] FactoriesReferencer factoriesReferencer;
+        
+        [Header("Optional")]
+        [SerializeField] UnlockingFactoriesData unlockingFactoriesData;
 
         SimulationResult lastResult;
 
@@ -55,7 +59,7 @@ namespace FattestInc.Simulation.UI {
             }
 
             var sim = new EconomySimulator();
-            var result = sim.Run(factoriesReferencer.Factories.ToList(), duration, clicks, buyOne, startingEnergy);
+            var result = sim.Run(factoriesReferencer.Factories.ToList(), duration, clicks, buyOne, startingEnergy, unlockingFactoriesData);
             lastResult = result;
 
             if (timeSlider != null) {

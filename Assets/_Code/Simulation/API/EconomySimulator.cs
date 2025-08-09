@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FattestInc.Economy.API;
+using FattestInc.Progression.API;
 
 namespace FattestInc.Simulation.API {
     public class EconomySimulator {
@@ -9,12 +10,23 @@ namespace FattestInc.Simulation.API {
             int durationSeconds,
             double manualClicksPerSecond,
             bool buyOnlyOnePerSecond = true,
-            double startingEnergy = 0d) {
+            double startingEnergy = 0d,
+            UnlockingFactoriesData unlockingData = null) {
             if (factories == null || factories.Count == 0)
                 return new SimulationResult(new List<Snapshot>());
 
+            // Initialize owned levels from StartingLevel (so clickers at level 1 produce immediately)
             var ownedLevels = factories.ToDictionary(f => f.FactoryId, f => Math.Max(0, f.StartingLevel));
             double energy = startingEnergy;
+
+            // Unlock rules map
+            var unlockRules = BuildUnlockRules(unlockingData);
+            var unlockedFactories = new HashSet<string>();
+            // Initial unlocked set: any factory with no rule, or with StartingLevel > 0
+            foreach (var f in factories) {
+                if (ownedLevels[f.FactoryId] > 0 || !unlockRules.ContainsKey(f.FactoryId))
+                    unlockedFactories.Add(f.FactoryId);
+            }
 
             var snapshots = new List<Snapshot>(durationSeconds);
 
@@ -26,11 +38,67 @@ namespace FattestInc.Simulation.API {
                 var eps = CalculateEnergyPerSecond(factories, ownedLevels, manualClicksPerSecond);
                 snapshots.Add(CreateSnapshot(t, energy, eps, factories, ownedLevels));
 
-                // Purchase logic: iterate factories in reversed input order and buy first affordable
-                TryPurchase(factories, ref energy, ownedLevels, buyOnlyOnePerSecond);
+                // Update unlocked state based on current EPS and owned levels
+                UpdateUnlockedFactories(factories, unlockRules, unlockedFactories, ownedLevels, eps);
+
+                // Purchase logic: iterate factories in reversed input order and buy first affordable among unlocked
+                TryPurchase(factories, ref energy, ownedLevels, buyOnlyOnePerSecond, unlockedFactories);
             }
 
             return new SimulationResult(snapshots);
+        }
+
+        static Dictionary<string, UnlockingFactoriesData.UnlockingData> BuildUnlockRules(UnlockingFactoriesData unlockingData) {
+            var result = new Dictionary<string, UnlockingFactoriesData.UnlockingData>();
+            if (unlockingData == null || unlockingData.LevelsList == null)
+                return result;
+            foreach (var entry in unlockingData.LevelsList) {
+                if (entry != null && entry.IsUnlockType && !string.IsNullOrEmpty(entry.factoryToUnlockId)) {
+                    // Last wins if duplicates
+                    result[entry.factoryToUnlockId] = entry;
+                }
+            }
+            return result;
+        }
+
+        static bool AreUnlockConditionsMet(UnlockingFactoriesData.UnlockingData rule,
+            IReadOnlyDictionary<string, int> ownedLevels,
+            double currentEps) {
+            if (rule == null)
+                return true;
+
+            if (rule.valuePerSecond > 0 && currentEps < rule.valuePerSecond)
+                return false;
+
+            bool FactoryReq(string id, int lvl) {
+                if (string.IsNullOrEmpty(id) || lvl <= 0)
+                    return true;
+                return ownedLevels.TryGetValue(id, out var have) && have >= lvl;
+            }
+
+            if (!FactoryReq(rule.factory1Id, rule.factory1Level)) return false;
+            if (!FactoryReq(rule.factory2Id, rule.factory2Level)) return false;
+            if (!FactoryReq(rule.factory3Id, rule.factory3Level)) return false;
+
+            return true;
+        }
+
+        static void UpdateUnlockedFactories(IReadOnlyList<IFactoryData> factories,
+            IReadOnlyDictionary<string, UnlockingFactoriesData.UnlockingData> unlockRules,
+            ISet<string> unlocked,
+            IReadOnlyDictionary<string, int> ownedLevels,
+            double currentEps) {
+            foreach (var f in factories) {
+                if (unlocked.Contains(f.FactoryId))
+                    continue;
+                if (unlockRules.TryGetValue(f.FactoryId, out var rule)) {
+                    if (AreUnlockConditionsMet(rule, ownedLevels, currentEps))
+                        unlocked.Add(f.FactoryId);
+                } else {
+                    // No rule -> unlocked
+                    unlocked.Add(f.FactoryId);
+                }
+            }
         }
 
         static double ProduceEnergyForSecond(IReadOnlyList<IFactoryData> factories,
@@ -82,13 +150,16 @@ namespace FattestInc.Simulation.API {
         static void TryPurchase(IReadOnlyList<IFactoryData> factories,
             ref double energy,
             Dictionary<string, int> ownedLevels,
-            bool buyOnlyOnePerSecond) {
+            bool buyOnlyOnePerSecond,
+            ISet<string> unlockedFactories) {
             if (energy <= 0)
                 return;
 
             if (buyOnlyOnePerSecond) {
                 for (int i = factories.Count - 1; i >= 0; i--) {
                     var f = factories[i];
+                    if (!unlockedFactories.Contains(f.FactoryId))
+                        continue;
                     var currentLevel = ownedLevels[f.FactoryId];
                     if (!f.HasNextLevel(currentLevel))
                         continue;
@@ -102,6 +173,8 @@ namespace FattestInc.Simulation.API {
             } else {
                 for (int i = factories.Count - 1; i >= 0; i--) {
                     var f = factories[i];
+                    if (!unlockedFactories.Contains(f.FactoryId))
+                        continue;
                     while (true) {
                         var currentLevel = ownedLevels[f.FactoryId];
                         if (!f.HasNextLevel(currentLevel))
