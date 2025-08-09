@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using FattestInc.Windows;
 using FattestInc.Windows.General;
 using Hypnagogia.Utils;
@@ -11,15 +10,12 @@ namespace FattestInc {
         [HInject] WindowManager windowManager;
         
         const string PrefKey = "last_seen_version";
-        static readonly Version DefaultVersion = new(0, 0, 0);
+        
         readonly PlayerPrefString lastSeenVersionPref = new(PrefKey, "");
-
-        static Version Current => TryParseVersion(Application.version, out var v) ? v : DefaultVersion;
-        static Version LastSeen
-        {
+        Version LastSeen {
             get {
-                var raw = PlayerPrefs.GetString(PrefKey, "");
-                return TryParseVersion(raw, out var v) ? v : DefaultVersion;
+                var raw = lastSeenVersionPref.Value;
+                return VersionUtils.TryParseVersion(raw, out var v) ? v : VersionUtils.NullVersion;
             }
         }
 
@@ -31,19 +27,8 @@ namespace FattestInc {
             }
         }
 
-        static bool TryParseVersion(string s, out Version v) {
-            // Allows Unity versions like "1.2.3f1", "1.2.3-beta", etc.
-            var m = Regex.Match(s, @"\d+(\.\d+){1,2}");
-            if (!m.Success) {
-                v = DefaultVersion;
-                return false;
-            }
-
-            return Version.TryParse(m.Value, out v);
-        }
-        
-        static bool ShouldShowOnLaunch() {
-            var cur = Current;
+        bool ShouldShowOnLaunch() {
+            var cur = VersionUtils.Current;
             var seen = LastSeen;
             // If nothing saved yet, treat as not seen → show
             if (seen.Major == 0 && seen.Minor == 0 && seen.Build == 0)
