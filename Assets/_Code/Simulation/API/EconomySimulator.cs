@@ -18,6 +18,7 @@ namespace FattestInc.Simulation.API {
             // Initialize owned levels from StartingLevel (so clickers at level 1 produce immediately)
             var ownedLevels = factories.ToDictionary(f => f.FactoryId, f => Math.Max(0, f.StartingLevel));
             double energy = startingEnergy;
+            double totalEarned = energy;
 
             // Unlock rules map
             var unlockRules = BuildUnlockRules(unlockingData);
@@ -32,11 +33,13 @@ namespace FattestInc.Simulation.API {
 
             for (int t = 0; t < durationSeconds; t++) {
                 // Produce energy for this second
-                energy += ProduceEnergyForSecond(factories, ownedLevels, manualClicksPerSecond);
+                var produced = ProduceEnergyForSecond(factories, ownedLevels, manualClicksPerSecond);
+                energy += produced;
+                totalEarned += produced;
 
                 // Snapshot BEFORE purchasing (to match the provided pseudocode)
                 var eps = CalculateEnergyPerSecond(factories, ownedLevels, manualClicksPerSecond);
-                snapshots.Add(CreateSnapshot(t, energy, eps, factories, ownedLevels));
+                snapshots.Add(CreateSnapshot(t, energy, eps, totalEarned, factories, ownedLevels));
 
                 // Update unlocked state based on current EPS and owned levels
                 UpdateUnlockedFactories(factories, unlockRules, unlockedFactories, ownedLevels, eps);
@@ -191,7 +194,7 @@ namespace FattestInc.Simulation.API {
             }
         }
 
-        static Snapshot CreateSnapshot(int t, double energy, double eps,
+        static Snapshot CreateSnapshot(int t, double energy, double eps, double total,
             IReadOnlyList<IFactoryData> factories,
             Dictionary<string, int> ownedLevels) {
             var levels = new List<FactoryLevelSnapshot>(factories.Count);
@@ -199,7 +202,7 @@ namespace FattestInc.Simulation.API {
                 levels.Add(new FactoryLevelSnapshot(f.FactoryId, f.FactoryName, ownedLevels[f.FactoryId]));
             }
 
-            return new Snapshot(t, energy, eps, levels);
+            return new Snapshot(t, energy, eps, total, levels);
         }
     }
 
@@ -213,13 +216,15 @@ namespace FattestInc.Simulation.API {
     public readonly struct Snapshot {
         public readonly int TimeSeconds;
         public readonly double Energy;
+        public readonly double EnergyTotalEarned ;
         public readonly double EnergyPerSecond;
         public readonly IReadOnlyList<FactoryLevelSnapshot> Levels;
 
-        public Snapshot(int timeSeconds, double energy, double energyPerSecond, IReadOnlyList<FactoryLevelSnapshot> levels) {
+        public Snapshot(int timeSeconds, double energy, double energyPerSecond, double totalEarned , IReadOnlyList<FactoryLevelSnapshot> levels) {
             TimeSeconds = timeSeconds;
             Energy = energy;
             EnergyPerSecond = energyPerSecond;
+            EnergyTotalEarned = totalEarned;
             Levels = levels;
         }
     }
