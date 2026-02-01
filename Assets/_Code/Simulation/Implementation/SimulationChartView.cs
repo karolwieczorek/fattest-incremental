@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FattestInc.Simulation.API;
 using UnityEngine;
@@ -11,11 +12,13 @@ namespace FattestInc.Simulation.Implementation {
         [Header("References")] [SerializeField]
         private LineChart chart;
 
+        [SerializeField] GraphType type;
+
         [Header("Options")] [SerializeField] bool showAllFactories = true;
         [SerializeField] List<string> onlyFactoryIds = new();
         
+        public enum GraphType { Levels, UpgradeEvents }
         void OnEnable() {
-            ClearAll(chart);
             simulationRunner.OnSimulationGenerated += SimulationGenerated;
         }
 
@@ -24,9 +27,16 @@ namespace FattestInc.Simulation.Implementation {
         }
 
         void SimulationGenerated(SimulationResult result) {
-            ClearAll(chart);
-            ShowLevels(result);
-            // ShowUpgradeEvents(result);
+            switch (type) {
+                case GraphType.Levels:
+                    ShowLevels(result);
+                    break;
+                case GraphType.UpgradeEvents:
+                    ShowUpgradeEvents(result);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public void ShowLevels(SimulationResult result) {
@@ -121,6 +131,10 @@ namespace FattestInc.Simulation.Implementation {
             chart.AddData("Upgrades/sec", 0);
             chart.AddData("Cumulative upgrades", 0);
 
+            var wantedSeries = new HashSet<string>();
+            wantedSeries.Add("Upgrades/sec");
+            wantedSeries.Add("Cumulative upgrades");
+            
             for (int t = 1; t < dicts.Count; t++)
             {
                 int upgradesThisSecond = 0;
@@ -137,26 +151,8 @@ namespace FattestInc.Simulation.Implementation {
                 chart.AddData("Cumulative upgrades", cumulative);
             }
 
+            chart.RemoveAllSeriesExcept(wantedSeries);
             chart.RefreshChart();
-        }
-        
-        public static void ClearAll(LineChart chart)
-        {
-            if (chart == null) return;
-
-            // Clear data points too (harmless even if series were removed)
-            // chart.ClearData();
-
-            // Remove all series (gets rid of preview legend + lines)
-            // if (chart.series != null)
-            //     chart.series.Clear();
-
-            // // Clear x-axis category labels if you use them
-            // var xAxis = chart.GetChartComponent<XAxis>();
-            // if (xAxis != null && xAxis.data != null)
-            //     xAxis.data.Clear();
-
-            // chart.RefreshChart();
         }
     }
 }
