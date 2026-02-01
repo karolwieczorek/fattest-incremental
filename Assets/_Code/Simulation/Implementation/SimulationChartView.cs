@@ -6,8 +6,7 @@ using UnityEngine;
 using XCharts.Runtime;
 
 namespace FattestInc.Simulation.Implementation {
-    public sealed class SimulationChartView : MonoBehaviour {
-        [SerializeField] SimulationRunner simulationRunner;
+    public sealed class SimulationChartView : ChartViewBase {
         
         [Header("References")] [SerializeField]
         private LineChart chart;
@@ -18,15 +17,8 @@ namespace FattestInc.Simulation.Implementation {
         [SerializeField] List<string> onlyFactoryIds = new();
         
         public enum GraphType { Levels, UpgradeEvents }
-        void OnEnable() {
-            simulationRunner.OnSimulationGenerated += SimulationGenerated;
-        }
 
-        void OnDisable() {
-            simulationRunner.OnSimulationGenerated -= SimulationGenerated;
-        }
-
-        void SimulationGenerated(SimulationResult result) {
+        protected override void SimulationGenerated(SimulationResult result) {
             switch (type) {
                 case GraphType.Levels:
                     ShowLevels(result);
@@ -39,7 +31,7 @@ namespace FattestInc.Simulation.Implementation {
             }
         }
 
-        public void ShowLevels(SimulationResult result) {
+        void ShowLevels(SimulationResult result) {
             if (chart == null)
                 return;
             if (result.Snapshots == null || result.Snapshots.Count == 0)
@@ -103,7 +95,7 @@ namespace FattestInc.Simulation.Implementation {
             chart.RefreshChart();
         }
 
-        public void ShowUpgradeEvents(SimulationResult result)
+        void ShowUpgradeEvents(SimulationResult result)
         {
             if (chart == null) return;
             if (result.Snapshots == null || result.Snapshots.Count < 2) return;
