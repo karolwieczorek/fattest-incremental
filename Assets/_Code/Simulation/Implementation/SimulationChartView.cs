@@ -15,6 +15,7 @@ namespace FattestInc.Simulation.Implementation {
         [SerializeField] List<string> onlyFactoryIds = new();
         
         void OnEnable() {
+            ClearAll(chart);
             simulationRunner.OnSimulationGenerated += SimulationGenerated;
         }
 
@@ -23,7 +24,7 @@ namespace FattestInc.Simulation.Implementation {
         }
 
         void SimulationGenerated(SimulationResult result) {
-            // ClearAll(chart);
+            ClearAll(chart);
             ShowLevels(result);
             // ShowUpgradeEvents(result);
         }
@@ -66,10 +67,14 @@ namespace FattestInc.Simulation.Implementation {
             foreach (var s in result.Snapshots)
                 perTimeLevels.Add(s.Levels.ToDictionary(l => l.FactoryId, l => l.Level));
 
+            
+            var wantedSeries = new HashSet<string>();
+            
             // Add a series for each factory
             foreach (var id in factoryIds) {
                 // Find display name from snapshot 0
                 var name = result.Snapshots[0].Levels.First(l => l.FactoryId == id).FactoryName;
+                wantedSeries.Add(name);
 
                 var serie = chart.AddSerie<Line>(name);
                 // Optional: make it look like upgrades (steps)
@@ -84,6 +89,7 @@ namespace FattestInc.Simulation.Implementation {
                 }
             }
 
+            chart.RemoveAllSeriesExcept(wantedSeries);
             chart.RefreshChart();
         }
 
@@ -138,19 +144,19 @@ namespace FattestInc.Simulation.Implementation {
         {
             if (chart == null) return;
 
-            // Remove all series (gets rid of preview legend + lines)
-            if (chart.series != null)
-                chart.series.Clear();
-
             // Clear data points too (harmless even if series were removed)
-            chart.ClearData();
+            // chart.ClearData();
 
-            // Clear x-axis category labels if you use them
-            var xAxis = chart.GetChartComponent<XAxis>();
-            if (xAxis != null && xAxis.data != null)
-                xAxis.data.Clear();
+            // Remove all series (gets rid of preview legend + lines)
+            // if (chart.series != null)
+            //     chart.series.Clear();
 
-            chart.RefreshChart();
+            // // Clear x-axis category labels if you use them
+            // var xAxis = chart.GetChartComponent<XAxis>();
+            // if (xAxis != null && xAxis.data != null)
+            //     xAxis.data.Clear();
+
+            // chart.RefreshChart();
         }
     }
 }
