@@ -68,5 +68,64 @@ namespace FattestInc.Simulation.Implementation {
 
             return cumulative;
         }
+
+        public static Dictionary<string, double[]> BuildEpsByFactory(
+            IReadOnlyList<IFactoryData> factories,
+            SimulationResult result,
+            double manualClicksPerSecond,
+            bool useIdInSeriesName = true)
+        {
+            var byId = factories.ToDictionary(f => f.FactoryId, f => f);
+
+            int n = result.Snapshots.Count;
+
+            var seriesNameByFactoryId = factories
+                .Select((f, index) => new
+                {
+                    f.FactoryId,
+                    Name = useIdInSeriesName
+                        ? $"[{index}] {f.FactoryName} ({f.FactoryId})"
+                        : $"[{index}] {f.FactoryName}"
+                })
+                .ToDictionary(x => x.FactoryId, x => x.Name);
+
+            // Allocate eps arrays
+            var eps = seriesNameByFactoryId.Values
+                .Distinct()
+                .ToDictionary(name => name, _ => new double[n]);
+
+            for (int t = 0; t < n; t++)
+            {
+                var snap = result.Snapshots[t];
+
+                foreach (var lvl in snap.Levels)
+                {
+                    if (!byId.TryGetValue(lvl.FactoryId, out var f))
+                        continue;
+
+                    int level = lvl.Level;
+                    double perSecond = 0.0;
+
+                    if (level > 0)
+                    {
+                        if (f.FactoryType == FactoryType.Clicker)
+                        {
+                            perSecond = f.GetValueForLevel(level) * manualClicksPerSecond;
+                        }
+                        else
+                        {
+                            var vpt = f.GetValueForLevel(level);
+                            var dur = f.GetDurationForLevel(level);
+                            perSecond = dur > 0 ? (double)vpt / dur : 0.0;
+                        }
+                    }
+
+                    var seriesName = seriesNameByFactoryId[lvl.FactoryId];
+                    eps[seriesName][t] = perSecond;
+                }
+            }
+
+            return eps;
+        }
     }
 }
