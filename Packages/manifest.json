@@ -5,6 +5,7 @@
     "com.eflatun.scenereference": "https://github.com/starikcetin/Eflatun.SceneReference.git#3.1.1",
     "com.github-glitchenzo.nugetforunity": "4.3.0",
     "com.marijnzwemmer.unity-toolbar-extender": "1.4.2",
+    "com.monitor1394.xcharts": "https://github.com/XCharts-Team/XCharts.git",
     "com.svermeulen.extenject": "https://github.com/karolwieczorek/Extenject.git?path=UnityProject/Assets/Plugins/Zenject/Source",
     "com.unity.collab-proxy": "2.7.1",
     "com.unity.feature.2d": "2.0.1",

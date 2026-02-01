@@ -3,6 +3,7 @@ using System.Linq;
 using FattestInc.Economy.API;
 using FattestInc.Progression.API;
 using FattestInc.Simulation.API;
+using FattestInc.Simulation.Implementation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,19 +26,20 @@ namespace FattestInc.Simulation.UI {
         [SerializeField] TMP_Text epsLabel;
         [SerializeField] TMP_Text factoriesLabel;
 
-        [Header("Data")]
+        [Header("Data")] 
+        [SerializeField] SimulationRunner simulationRunner;
         [SerializeField] FactoriesReferencer factoriesReferencer;
         
         [Header("Optional")]
         [SerializeField] UnlockingFactoriesData unlockingFactoriesData;
 
-        SimulationResult lastResult;
 
         void OnEnable() {
             if (runButton != null)
                 runButton.onClick.AddListener(RunSimulation);
             if (timeSlider != null)
                 timeSlider.onValueChanged.AddListener(OnTimeChanged);
+            simulationRunner.OnSimulationGenerated += SimulationGenerated;
         }
 
         void OnDisable() {
@@ -45,6 +47,7 @@ namespace FattestInc.Simulation.UI {
                 runButton.onClick.RemoveListener(RunSimulation);
             if (timeSlider != null)
                 timeSlider.onValueChanged.RemoveListener(OnTimeChanged);
+            simulationRunner.OnSimulationGenerated -= SimulationGenerated;
         }
 
         void RunSimulation() {
@@ -57,10 +60,8 @@ namespace FattestInc.Simulation.UI {
                 Debug.LogError("SimulationWindow: Missing FactoriesReferencer or no factories set.", this);
                 return;
             }
-
-            var sim = new EconomySimulator();
-            var result = sim.Run(factoriesReferencer.Factories.ToList(), duration, clicks, buyOne, startingEnergy, unlockingFactoriesData);
-            lastResult = result;
+            
+            simulationRunner.RunSimulation(duration, clicks, startingEnergy, buyOne);
 
             if (timeSlider != null) {
                 timeSlider.minValue = 0;
@@ -68,7 +69,11 @@ namespace FattestInc.Simulation.UI {
                 timeSlider.wholeNumbers = true;
                 timeSlider.value = 0;
             }
+        }
+        
+        
 
+        void SimulationGenerated(SimulationResult result) {
             ShowSnapshot(0);
         }
 
@@ -77,6 +82,7 @@ namespace FattestInc.Simulation.UI {
         }
 
         void ShowSnapshot(int index) {
+            var lastResult = simulationRunner.Result;
             if (lastResult.Snapshots == null || lastResult.Snapshots.Count == 0)
                 return;
             index = Mathf.Clamp(index, 0, lastResult.Snapshots.Count - 1);
