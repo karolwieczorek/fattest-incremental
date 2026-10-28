@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Lang: {fileID: 11400000, guid: cfc5541268f414098950441fd8b6f4a7, type: 2}
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_TMPFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_FontSizeLv1: 24
   m_FontSizeLv2: 22
   m_FontSizeLv3: 20
@@ -49,3 +48,5 @@ MonoBehaviour:
   m_CustomThemes:
   - {fileID: 11400000, guid: 289d2fc7f4ce24f73b9ed8ec52639f72, type: 2}
   - {fileID: 11400000, guid: e1dc23a10de1e4c5dbfbaf74c4dfd218, type: 2}
+  - {fileID: 11400000, guid: 779cf064e91d50c4ab048793948b5708, type: 2}
+  - {fileID: 11400000, guid: 089d8d20d5547cd40a3e56c82148e4a6, type: 2}
