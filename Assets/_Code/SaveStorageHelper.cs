@@ -47,7 +47,8 @@ namespace FattestInc {
             Debug.LogWarning($"[SaveSystem] Try To migrate Save version: {version} " +
                              $"to App version: {Application.version}");
 
-            if (VersionUtils.TryParseVersion(version, out var v) && v < new Version(0, 2, 0)) {
+            // 0.3.0: auto-tuned economy; levels from older saves would produce wildly different income.
+            if (VersionUtils.TryParseVersion(version, out var v) && v < new Version(0, 3, 0)) {
                 Debug.Log("[SaveSystem] drop the version of save data before game balance");
                 return null;
             }

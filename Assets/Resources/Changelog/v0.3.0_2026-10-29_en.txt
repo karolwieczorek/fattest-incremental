@@ -1,0 +1,7 @@
+<align="center"><b><size=150%>Version 0.3.0</size></b></align>
+<align="center">2026.10.29</align>
+
+• full game re-balance: new factories unlock steadily for about 45 minutes
+• locked factories show how much energy you need to earn to unlock them
+• progression goals re-spaced to match the new pace
+• reset save games from previous version 
