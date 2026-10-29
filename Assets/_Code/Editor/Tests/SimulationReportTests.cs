@@ -44,13 +44,23 @@ namespace FattestInc.Tests
         [Test]
         public void StopWhenUnlocked_EndsRunEarly() {
             var factories = new List<IFactoryData> { Clicker("click", 1), Idle("a", 10, 1) };
-            var rules = Rules(new UnlockingFactoriesData.UnlockingData { factoryToUnlockId = "a", unlockType = "Unlock", valuePerSecond = 1 });
+            var rules = Rules(new UnlockingFactoriesData.UnlockingData { factoryToUnlockId = "a", unlockType = "Unlock", value = 3 });
 
             var result = new EconomySimulator().Run(factories, rules,
                 new SimulationOptions { DurationSeconds = 1000, ManualClicksPerSecond = 1, StopWhenUnlocked = "a" });
 
-            Assert.AreEqual(0, result.UnlockTimes["a"]);
-            Assert.AreEqual(1, result.DurationSeconds);
+            Assert.AreEqual(2, result.UnlockTimes["a"]);
+            Assert.AreEqual(3, result.DurationSeconds);
+        }
+
+        [Test]
+        public void IncomeGate_IgnoresClicks_LikeTheGame() {
+            var factories = new List<IFactoryData> { Clicker("click", 100), Idle("a", 10, 1) };
+            var rules = Rules(new UnlockingFactoriesData.UnlockingData { factoryToUnlockId = "a", unlockType = "Unlock", valuePerSecond = 1 });
+
+            var result = new EconomySimulator().Run(factories, rules, new SimulationOptions { DurationSeconds = 100, ManualClicksPerSecond = 1 });
+
+            Assert.IsFalse(result.UnlockTimes.ContainsKey("a"));
         }
 
         [Test]
@@ -78,17 +88,18 @@ namespace FattestInc.Tests
         public void Report_TiersAndGaps() {
             var factories = new List<IFactoryData> { Clicker("click", 1), Idle("a", 10, 1, maxLevel: 2) };
             var result = new EconomySimulator().Run(factories, null, new SimulationOptions { DurationSeconds = 60, ManualClicksPerSecond = 1 });
-            var tiers = new List<(string, double)> { ("one", 1), ("two", 2), ("three", 3), ("never", 100) };
+            var tiers = new List<(string, double)> { ("one", 1), ("two", 2), ("never", 3) };
 
             var report = SimulationReport.Build(result, factories, tiers);
 
             // Purchases: level 1 at t=9 (10 energy), level 2 at t=14 (2/s from t=10, 10 more energy).
             Assert.AreEqual(9, report.Factories[1].FirstPurchaseTime);
             Assert.AreEqual(2, report.Factories[1].FinalLevel);
-            Assert.AreEqual(0, report.Tiers[0].ReachedTime);
-            Assert.AreEqual(10, report.Tiers[1].ReachedTime);
-            Assert.AreEqual(15, report.Tiers[2].ReachedTime);
-            Assert.AreEqual(SimulationReport.Never, report.Tiers[3].ReachedTime);
+            // Tiers use idle income only (clicks excluded), like the in-game per-second value.
+            Assert.AreEqual(10, report.Tiers[0].ReachedTime);
+            Assert.AreEqual(15, report.Tiers[1].ReachedTime);
+            Assert.AreEqual(SimulationReport.Never, report.Tiers[2].ReachedTime);
+            Assert.AreEqual(14, report.LastPurchaseTime);
 
             var gap = report.LongestGap();
             Assert.AreEqual(0, gap.StartTime);

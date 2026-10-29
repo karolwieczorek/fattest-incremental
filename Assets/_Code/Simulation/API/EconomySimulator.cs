@@ -63,6 +63,7 @@ namespace FattestInc.Simulation.API {
             var unlockTimes = new Dictionary<string, int>();
             var purchases = new List<PurchaseEvent>();
             var epsBySecond = new List<double>(options.DurationSeconds);
+            var incomeBySecond = new List<double>(options.DurationSeconds);
             // Initial unlocked set: any factory with no rule, or with StartingLevel > 0
             foreach (var f in factories) {
                 if (ownedLevels[f.FactoryId] > 0 || !unlockRules.ContainsKey(f.FactoryId)) {
@@ -79,13 +80,17 @@ namespace FattestInc.Simulation.API {
                 energy += eps;
                 totalEarned += eps;
 
+                // Income as the game shows it (idle factories only); unlock rules and tiers use this.
+                var income = CalculateEnergyPerSecond(factories, ownedLevels, 0d);
+
                 // Snapshot BEFORE purchasing (to match the provided pseudocode)
                 epsBySecond.Add(eps);
+                incomeBySecond.Add(income);
                 if (options.RecordSnapshots)
                     snapshots.Add(CreateSnapshot(t, energy, eps, totalEarned, factories, ownedLevels));
 
                 // Update unlocked state based on current EPS and owned levels
-                UpdateUnlockedFactories(factories, unlockRules, unlockedFactories, unlockTimes, getFactoryLevel, eps, totalEarned, t);
+                UpdateUnlockedFactories(factories, unlockRules, unlockedFactories, unlockTimes, getFactoryLevel, income, totalEarned, t);
                 if (options.StopWhenUnlocked != null && unlockTimes.ContainsKey(options.StopWhenUnlocked))
                     break;
 
@@ -95,7 +100,7 @@ namespace FattestInc.Simulation.API {
                     TryPurchase(factories, ref energy, ownedLevels, options.BuyOnlyOnePerSecond, unlockedFactories, purchases, t);
             }
 
-            return new SimulationResult(snapshots, epsBySecond, unlockTimes, purchases);
+            return new SimulationResult(snapshots, epsBySecond, incomeBySecond, unlockTimes, purchases);
         }
 
         static void UpdateUnlockedFactories(IReadOnlyList<IFactoryData> factories,
@@ -246,8 +251,10 @@ namespace FattestInc.Simulation.API {
 
     public readonly struct SimulationResult {
         public readonly IReadOnlyList<Snapshot> Snapshots;
-        // Energy per second at each simulated second (always recorded, even without snapshots).
+        // Energy per second at each simulated second, clicks included (always recorded, even without snapshots).
         public readonly IReadOnlyList<double> EnergyPerSecond;
+        // Idle income per second, clicks excluded: what the game shows as "per second" (CurrentAmountPerSecond).
+        public readonly IReadOnlyList<double> IncomePerSecond;
         // Second at which each factory became unlocked (0 = unlocked from the start). Missing = never.
         public readonly IReadOnlyDictionary<string, int> UnlockTimes;
         public readonly IReadOnlyList<PurchaseEvent> Purchases;
@@ -257,14 +264,16 @@ namespace FattestInc.Simulation.API {
         public SimulationResult(IReadOnlyList<Snapshot> snapshots) {
             Snapshots = snapshots;
             EnergyPerSecond = snapshots.Select(s => s.EnergyPerSecond).ToList();
+            IncomePerSecond = EnergyPerSecond;
             UnlockTimes = new Dictionary<string, int>();
             Purchases = new List<PurchaseEvent>();
         }
 
         public SimulationResult(IReadOnlyList<Snapshot> snapshots, IReadOnlyList<double> energyPerSecond,
-            IReadOnlyDictionary<string, int> unlockTimes, IReadOnlyList<PurchaseEvent> purchases) {
+            IReadOnlyList<double> incomePerSecond, IReadOnlyDictionary<string, int> unlockTimes, IReadOnlyList<PurchaseEvent> purchases) {
             Snapshots = snapshots;
             EnergyPerSecond = energyPerSecond;
+            IncomePerSecond = incomePerSecond;
             UnlockTimes = unlockTimes;
             Purchases = purchases;
         }

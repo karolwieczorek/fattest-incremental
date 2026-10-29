@@ -50,6 +50,7 @@ namespace FattestInc.Simulation.API {
         public IReadOnlyList<TierTiming> Tiers { get; }
         public int DurationSeconds { get; }
         public int PurchaseCount { get; }
+        public int LastPurchaseTime => purchaseTimes.Count > 0 ? purchaseTimes[^1] : Never;
 
         readonly List<int> purchaseTimes;
 
@@ -86,7 +87,7 @@ namespace FattestInc.Simulation.API {
             var tierTimings = new List<TierTiming>();
             if (tiers != null) {
                 foreach (var (name, threshold) in tiers)
-                    tierTimings.Add(new TierTiming(name, threshold, FindFirstSecondReaching(result.EnergyPerSecond, threshold)));
+                    tierTimings.Add(new TierTiming(name, threshold, FindFirstSecondReaching(result.IncomePerSecond, threshold)));
             }
 
             return new SimulationReport(factoryTimings, tierTimings, purchaseTimes, result.DurationSeconds);
@@ -119,7 +120,7 @@ namespace FattestInc.Simulation.API {
 
         public string ToText() {
             var sb = new StringBuilder();
-            sb.AppendLine($"Simulated {FormatTime(DurationSeconds)}, {PurchaseCount} purchase moments");
+            sb.AppendLine($"Simulated {FormatTime(DurationSeconds)}, {PurchaseCount} purchase moments, last purchase at {FormatTime(LastPurchaseTime)}");
             sb.AppendLine();
             sb.AppendLine("Factory              unlock     first buy  final lvl");
             foreach (var f in Factories)
@@ -127,7 +128,7 @@ namespace FattestInc.Simulation.API {
 
             if (Tiers.Count > 0) {
                 sb.AppendLine();
-                sb.AppendLine("Tier                 needs/s        reached");
+                sb.AppendLine("Tier                 income/s       reached");
                 foreach (var tier in Tiers)
                     sb.AppendLine($"{tier.Name,-20} {tier.Threshold,-14:N0} {FormatTime(tier.ReachedTime)}");
             }
