@@ -30,6 +30,10 @@ namespace FattestInc.Progression.API {
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var valuePerSecond, 0);
                 ParseIndexString(sheetRow.elements, columnIndex++, out var factory1Id, "");
                 ParseIndexInt(sheetRow.elements, columnIndex++, out var factory1Level, 0);
+                ParseIndexString(sheetRow.elements, columnIndex++, out var factory2Id, "");
+                ParseIndexInt(sheetRow.elements, columnIndex++, out var factory2Level, 0);
+                ParseIndexString(sheetRow.elements, columnIndex++, out var factory3Id, "");
+                ParseIndexInt(sheetRow.elements, columnIndex++, out var factory3Level, 0);
 
                 LevelsList.Add(new UnlockingData
                 {
@@ -40,7 +44,10 @@ namespace FattestInc.Progression.API {
                     valuePerSecond = valuePerSecond,
                     factory1Id = factory1Id,
                     factory1Level = factory1Level,
-                    
+                    factory2Id = factory2Id,
+                    factory2Level = factory2Level,
+                    factory3Id = factory3Id,
+                    factory3Level = factory3Level,
                 });
             }
         }
