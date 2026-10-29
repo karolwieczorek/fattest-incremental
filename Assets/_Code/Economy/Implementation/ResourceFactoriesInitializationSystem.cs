@@ -20,6 +20,7 @@ namespace FattestInc.Economy.Implementation {
 
         void CreateFreshFactoriesState() {
             economyDataStore.CurrentTotalAmount.Value = (ulong) economyReferencer.StartingValue;
+            economyDataStore.TotalEarned.Value = (ulong) economyReferencer.StartingValue;
             foreach (var factoryLevelsData in factoriesReferencer.Factories) {
                 if (factoryLevelsData.StartingLevel > 0) {
                     economyDataStore.AddOrUpgradeFactory(factoryLevelsData, factoryLevelsData.StartingLevel);

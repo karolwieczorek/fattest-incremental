@@ -5,6 +5,7 @@ namespace FattestInc {
     [Serializable]
     public class SaveData {
         public ulong currencyAmount;
+        public ulong totalEarned;
         public List<FactoryLevelEntry> factoryLevels = new();
 
         [Serializable]

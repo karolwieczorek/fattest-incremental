@@ -9,6 +9,8 @@ namespace FattestInc.Economy.API {
     public class EconomyDataStore : HDataStore {
         [ShowInInspector] public Observable<ulong> CurrentTotalAmount { get; private set; } = new();
         [ShowInInspector] public Observable<float> CurrentAmountPerSecond { get; private set; } = new();
+        // Lifetime currency earned (never decreases when spending). Used by unlock rules.
+        [ShowInInspector] public Observable<ulong> TotalEarned { get; private set; } = new();
         [ShowInInspector] readonly Dictionary<string, ResourceFactory> resourceFactories = new();
 
         public IReadOnlyDictionary<string, ResourceFactory> ResourceFactories => resourceFactories;
@@ -67,6 +69,11 @@ namespace FattestInc.Economy.API {
 
             FactoryUpgradedEvent?.Invoke();
             return factory;
+        }
+
+        public void AddCurrency(ulong amount) {
+            CurrentTotalAmount.Value += amount;
+            TotalEarned.Value += amount;
         }
 
         public bool HasEnoughMoney(ulong cost) {
@@ -131,6 +138,7 @@ namespace FattestInc.Economy.API {
             resourceFactories.Clear();
             CurrentTotalAmount = new();
             CurrentAmountPerSecond = new();
+            TotalEarned = new();
         }
     }
 }

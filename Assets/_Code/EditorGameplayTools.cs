@@ -12,7 +12,7 @@ namespace FattestInc {
 
         [Button]
         void AddValue(ulong value) {
-            economyDataStore.CurrentTotalAmount.Value += value;
+            economyDataStore.AddCurrency(value);
         }
 
         [Button]

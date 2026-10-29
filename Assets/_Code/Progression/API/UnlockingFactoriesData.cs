@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Hypnagogia.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -50,6 +51,22 @@ namespace FattestInc.Progression.API {
                     factory3Level = factory3Level,
                 });
             }
+        }
+
+        public Dictionary<string, UnlockingData> GetShowRules() => BuildRules(x => x.IsShowType);
+
+        public Dictionary<string, UnlockingData> GetUnlockRules() => BuildRules(x => x.IsUnlockType);
+
+        Dictionary<string, UnlockingData> BuildRules(Func<UnlockingData, bool> predicate) {
+            var rules = new Dictionary<string, UnlockingData>();
+            foreach (var data in levelsList) {
+                if (data == null || string.IsNullOrEmpty(data.factoryToUnlockId) || predicate(data) == false)
+                    continue;
+                if (rules.TryAdd(data.factoryToUnlockId, data) == false)
+                    Debug.LogWarning($"Duplicate {data.unlockType} rule for {data.factoryToUnlockId}. Using the first one.");
+            }
+
+            return rules;
         }
 
         [System.Serializable]

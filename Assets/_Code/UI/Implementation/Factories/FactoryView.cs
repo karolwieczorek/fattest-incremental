@@ -118,7 +118,7 @@ namespace FattestInc.UI.Implementation.Factories {
         }
 
         void ClickerButtonClick() {
-            economyDataStore.CurrentTotalAmount.Value += (ulong)factoryLevelsData.GetValueForLevel(Factory.Level);
+            economyDataStore.AddCurrency(factoryLevelsData.GetValueForLevel(Factory.Level));
         }
 
         void Update() {

@@ -18,7 +18,7 @@ namespace FattestInc.UI.Implementation {
         }
 
         void Increment() {
-            economyDataStore.CurrentTotalAmount.Value += (ulong)amount;
+            economyDataStore.AddCurrency((ulong)amount);
         }
     }
 }

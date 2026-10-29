@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FattestInc.Economy.API;
 using Hypnagogia.Utils;
@@ -22,6 +23,7 @@ namespace FattestInc {
         public SaveData GetSaveData() {
             var saveData = new SaveData();
             saveData.currencyAmount = economyDataStore.CurrentTotalAmount.Value;
+            saveData.totalEarned = economyDataStore.TotalEarned.Value;
             saveData.factoryLevels = new List<SaveData.FactoryLevelEntry>();
             foreach (var factory in economyDataStore.ResourceFactories) {
                 saveData.SetFactoryLevel(factory.Key, factory.Value.Level);
@@ -49,6 +51,8 @@ namespace FattestInc {
 
         public void LoadFromSaveData(SaveData saveData) {
             economyDataStore.CurrentTotalAmount.Value = saveData.currencyAmount;
+            // Saves from before totalEarned existed load it as 0; the current balance is the best lower bound.
+            economyDataStore.TotalEarned.Value = Math.Max(saveData.totalEarned, saveData.currencyAmount);
             foreach (var factoryLevel in saveData.factoryLevels) {
                 var factoryData =
                     factoriesReferencer.Factories.FirstOrDefault(x => x.FactoryId == factoryLevel.factoryId);

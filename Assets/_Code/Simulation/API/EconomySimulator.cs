@@ -21,7 +21,10 @@ namespace FattestInc.Simulation.API {
             double totalEarned = energy;
 
             // Unlock rules map
-            var unlockRules = BuildUnlockRules(unlockingData);
+            var unlockRules = unlockingData != null
+                ? unlockingData.GetUnlockRules()
+                : new Dictionary<string, UnlockingFactoriesData.UnlockingData>();
+            Func<string, int> getFactoryLevel = id => ownedLevels.TryGetValue(id, out var level) ? level : 0;
             var unlockedFactories = new HashSet<string>();
             // Initial unlocked set: any factory with no rule, or with StartingLevel > 0
             foreach (var f in factories) {
@@ -42,7 +45,7 @@ namespace FattestInc.Simulation.API {
                 snapshots.Add(CreateSnapshot(t, energy, eps, totalEarned, factories, ownedLevels));
 
                 // Update unlocked state based on current EPS and owned levels
-                UpdateUnlockedFactories(factories, unlockRules, unlockedFactories, ownedLevels, eps);
+                UpdateUnlockedFactories(factories, unlockRules, unlockedFactories, getFactoryLevel, eps, totalEarned);
 
                 // Purchase logic: iterate factories in reversed input order and buy first affordable among unlocked
                 TryPurchase(factories, ref energy, ownedLevels, buyOnlyOnePerSecond, unlockedFactories);
@@ -51,51 +54,17 @@ namespace FattestInc.Simulation.API {
             return new SimulationResult(snapshots);
         }
 
-        static Dictionary<string, UnlockingFactoriesData.UnlockingData> BuildUnlockRules(UnlockingFactoriesData unlockingData) {
-            var result = new Dictionary<string, UnlockingFactoriesData.UnlockingData>();
-            if (unlockingData == null || unlockingData.LevelsList == null)
-                return result;
-            foreach (var entry in unlockingData.LevelsList) {
-                if (entry != null && entry.IsUnlockType && !string.IsNullOrEmpty(entry.factoryToUnlockId)) {
-                    // Last wins if duplicates
-                    result[entry.factoryToUnlockId] = entry;
-                }
-            }
-            return result;
-        }
-
-        static bool AreUnlockConditionsMet(UnlockingFactoriesData.UnlockingData rule,
-            IReadOnlyDictionary<string, int> ownedLevels,
-            double currentEps) {
-            if (rule == null)
-                return true;
-
-            if (rule.valuePerSecond > 0 && currentEps < rule.valuePerSecond)
-                return false;
-
-            bool FactoryReq(string id, int lvl) {
-                if (string.IsNullOrEmpty(id) || lvl <= 0)
-                    return true;
-                return ownedLevels.TryGetValue(id, out var have) && have >= lvl;
-            }
-
-            if (!FactoryReq(rule.factory1Id, rule.factory1Level)) return false;
-            if (!FactoryReq(rule.factory2Id, rule.factory2Level)) return false;
-            if (!FactoryReq(rule.factory3Id, rule.factory3Level)) return false;
-
-            return true;
-        }
-
         static void UpdateUnlockedFactories(IReadOnlyList<IFactoryData> factories,
             IReadOnlyDictionary<string, UnlockingFactoriesData.UnlockingData> unlockRules,
             ISet<string> unlocked,
-            IReadOnlyDictionary<string, int> ownedLevels,
-            double currentEps) {
+            Func<string, int> getFactoryLevel,
+            double currentEps,
+            double totalEarned) {
             foreach (var f in factories) {
                 if (unlocked.Contains(f.FactoryId))
                     continue;
                 if (unlockRules.TryGetValue(f.FactoryId, out var rule)) {
-                    if (AreUnlockConditionsMet(rule, ownedLevels, currentEps))
+                    if (UnlockConditions.AreMet(rule, (ulong)totalEarned, currentEps, getFactoryLevel))
                         unlocked.Add(f.FactoryId);
                 } else {
                     // No rule -> unlocked
