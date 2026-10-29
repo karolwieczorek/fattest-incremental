@@ -25,8 +25,11 @@ namespace FattestInc.UI.Implementation.Factories {
                 return;
             }
             gameObject.SetActive(true);
-            requiredAmountPerSecond.gameObject.SetActive(unlockingData.valuePerSecond > 0);
-            requiredAmountPerSecond.text = $"{unlockingData.valuePerSecond}/s";
+            // One label for the energy requirement: income per second if set, else lifetime earned.
+            requiredAmountPerSecond.gameObject.SetActive(unlockingData.valuePerSecond > 0 || unlockingData.value > 0);
+            requiredAmountPerSecond.text = unlockingData.valuePerSecond > 0
+                ? $"{NumbersFormattingUtil.FormatNumber((ulong)unlockingData.valuePerSecond)}/s"
+                : $"{NumbersFormattingUtil.FormatNumber(unlockingData.value)} earned";
 
             SetupFactoryRequirement(factory1Icon, unlockingData.factory1Id, unlockingData.factory1Level);
             SetupFactoryRequirement(factory2Icon, unlockingData.factory2Id, unlockingData.factory2Level);
