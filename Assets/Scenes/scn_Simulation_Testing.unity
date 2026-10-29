@@ -19522,6 +19522,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   factoriesReferencer: {fileID: 11400000, guid: 2fd964c370715454382a6e3918508612, type: 2}
   unlockingFactoriesData: {fileID: 11400000, guid: 4dc0b6769d9745e4aa31679f343186a4, type: 2}
+  progressionLevelsData: {fileID: 11400000, guid: f3e1476c42f16114d94c94452219aab2, type: 2}
+  strategy: 1
+  logReport: 1
 --- !u!4 &764908946
 Transform:
   m_ObjectHideFlags: 0
