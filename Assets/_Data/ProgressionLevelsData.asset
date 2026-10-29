@@ -17,35 +17,35 @@ MonoBehaviour:
   levelsList:
   - index: 1
     name: Phone
-    value: 10
+    value: 200
     sprite: {fileID: 21300000, guid: e3f23ad9a5cac2342b75381c97dca9de, type: 3}
   - index: 2
     name: Fridge
-    value: 100
+    value: 1000
     sprite: {fileID: 21300000, guid: 918f375dd9e4c7048a8e396a845138c8, type: 3}
   - index: 3
     name: Car
-    value: 500
+    value: 10000
     sprite: {fileID: 21300000, guid: ebf1bdac1eeaeab428286325ae9d783e, type: 3}
   - index: 4
     name: Home
-    value: 1000
+    value: 100000
     sprite: {fileID: 21300000, guid: a30e3c4840425e14f9d42d71d4a0aa26, type: 3}
   - index: 5
     name: Street
-    value: 20000
+    value: 1000000
     sprite: {fileID: 21300000, guid: 641bf743ec49c294182e5c02433f72a0, type: 3}
   - index: 6
     name: City
-    value: 100000
+    value: 20000000
     sprite: {fileID: 21300000, guid: d2f9777fafb57a746ac3f56220160f76, type: 3}
   - index: 7
     name: Country
-    value: 5000000
+    value: 500000000
     sprite: {fileID: 21300000, guid: 1e64e69f1c3ec8447a06fe6a77877d7e, type: 3}
   - index: 8
     name: Globe
-    value: 100000000
+    value: 10000000000
     sprite: {fileID: 21300000, guid: 51ab11b6b30bc3a459bb81705243183e, type: 3}
   icons:
   - name: Phone

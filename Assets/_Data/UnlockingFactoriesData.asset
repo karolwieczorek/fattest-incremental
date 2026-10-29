@@ -29,7 +29,7 @@ MonoBehaviour:
   - index: 2
     factoryToUnlockId: microPV
     unlockType: Show
-    value: 0
+    value: 170
     valuePerSecond: 0
     factory1Id: 
     factory1Level: 0
@@ -40,76 +40,76 @@ MonoBehaviour:
   - index: 3
     factoryToUnlockId: microPV
     unlockType: Unlock
-    value: 0
+    value: 860
     valuePerSecond: 0
-    factory1Id: hand-crank
-    factory1Level: 2
-    factory2Id: 
-    factory2Level: 0
-    factory3Id: 
-    factory3Level: 0
-  - index: 6
-    factoryToUnlockId: bike
-    unlockType: Show
-    value: 0
-    valuePerSecond: 0
-    factory1Id: hand-crank
-    factory1Level: 2
-    factory2Id: 
-    factory2Level: 0
-    factory3Id: 
-    factory3Level: 0
-  - index: 7
-    factoryToUnlockId: bike
-    unlockType: Unlock
-    value: 0
-    valuePerSecond: 0
-    factory1Id: microPV
-    factory1Level: 5
-    factory2Id: 
-    factory2Level: 0
-    factory3Id: 
-    factory3Level: 0
-  - index: 8
-    factoryToUnlockId: diesel
-    unlockType: Show
-    value: 0
-    valuePerSecond: 0
-    factory1Id: microPV
-    factory1Level: 5
-    factory2Id: 
-    factory2Level: 0
-    factory3Id: 
-    factory3Level: 0
-  - index: 9
-    factoryToUnlockId: diesel
-    unlockType: Unlock
-    value: 0
-    valuePerSecond: 0
-    factory1Id: bike
-    factory1Level: 2
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
     factory3Level: 0
   - index: 4
-    factoryToUnlockId: SolarPanel
+    factoryToUnlockId: bike
     unlockType: Show
-    value: 0
+    value: 1500
     valuePerSecond: 0
-    factory1Id: microPV
-    factory1Level: 5
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
     factory3Level: 0
   - index: 5
+    factoryToUnlockId: bike
+    unlockType: Unlock
+    value: 2400
+    valuePerSecond: 0
+    factory1Id: 
+    factory1Level: 0
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 6
+    factoryToUnlockId: diesel
+    unlockType: Show
+    value: 4400
+    valuePerSecond: 0
+    factory1Id: 
+    factory1Level: 0
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 7
+    factoryToUnlockId: diesel
+    unlockType: Unlock
+    value: 7900
+    valuePerSecond: 0
+    factory1Id: 
+    factory1Level: 0
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 8
+    factoryToUnlockId: SolarPanel
+    unlockType: Show
+    value: 18000
+    valuePerSecond: 0
+    factory1Id: 
+    factory1Level: 0
+    factory2Id: 
+    factory2Level: 0
+    factory3Id: 
+    factory3Level: 0
+  - index: 9
     factoryToUnlockId: SolarPanel
     unlockType: Unlock
-    value: 0
+    value: 38000
     valuePerSecond: 0
-    factory1Id: bike
-    factory1Level: 2
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -117,10 +117,10 @@ MonoBehaviour:
   - index: 10
     factoryToUnlockId: Wind
     unlockType: Show
-    value: 0
+    value: 100000
     valuePerSecond: 0
-    factory1Id: bike
-    factory1Level: 2
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -128,10 +128,10 @@ MonoBehaviour:
   - index: 11
     factoryToUnlockId: Wind
     unlockType: Unlock
-    value: 0
+    value: 230000
     valuePerSecond: 0
-    factory1Id: SolarPanel
-    factory1Level: 2
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -139,10 +139,10 @@ MonoBehaviour:
   - index: 12
     factoryToUnlockId: Coal
     unlockType: Show
-    value: 0
+    value: 670000
     valuePerSecond: 0
-    factory1Id: bike
-    factory1Level: 2
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -150,10 +150,10 @@ MonoBehaviour:
   - index: 13
     factoryToUnlockId: Coal
     unlockType: Unlock
-    value: 0
+    value: 1700000
     valuePerSecond: 0
-    factory1Id: SolarPanel
-    factory1Level: 1
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -161,10 +161,10 @@ MonoBehaviour:
   - index: 14
     factoryToUnlockId: geothermal
     unlockType: Show
-    value: 0
+    value: 6300000
     valuePerSecond: 0
-    factory1Id: SolarPanel
-    factory1Level: 2
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -172,10 +172,10 @@ MonoBehaviour:
   - index: 15
     factoryToUnlockId: geothermal
     unlockType: Unlock
-    value: 0
+    value: 18000000
     valuePerSecond: 0
-    factory1Id: Wind
-    factory1Level: 5
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -183,10 +183,10 @@ MonoBehaviour:
   - index: 16
     factoryToUnlockId: gas
     unlockType: Show
-    value: 0
+    value: 76000000
     valuePerSecond: 0
-    factory1Id: SolarPanel
-    factory1Level: 1
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -194,10 +194,10 @@ MonoBehaviour:
   - index: 17
     factoryToUnlockId: gas
     unlockType: Unlock
-    value: 0
+    value: 220000000
     valuePerSecond: 0
-    factory1Id: Coal
-    factory1Level: 5
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -205,10 +205,10 @@ MonoBehaviour:
   - index: 18
     factoryToUnlockId: solar-array
     unlockType: Show
-    value: 0
+    value: 1100000000
     valuePerSecond: 0
-    factory1Id: Wind
-    factory1Level: 5
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -216,10 +216,10 @@ MonoBehaviour:
   - index: 19
     factoryToUnlockId: solar-array
     unlockType: Unlock
-    value: 0
+    value: 3400000000
     valuePerSecond: 0
-    factory1Id: geothermal
-    factory1Level: 2
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -227,10 +227,10 @@ MonoBehaviour:
   - index: 20
     factoryToUnlockId: dam
     unlockType: Show
-    value: 0
+    value: 21000000000
     valuePerSecond: 0
-    factory1Id: geothermal
-    factory1Level: 2
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -238,10 +238,10 @@ MonoBehaviour:
   - index: 21
     factoryToUnlockId: dam
     unlockType: Unlock
-    value: 0
+    value: 63000000000
     valuePerSecond: 0
-    factory1Id: solar-array
-    factory1Level: 3
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -249,10 +249,10 @@ MonoBehaviour:
   - index: 22
     factoryToUnlockId: Nuclear
     unlockType: Show
-    value: 0
+    value: 420000000000
     valuePerSecond: 0
-    factory1Id: solar-array
-    factory1Level: 3
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 
@@ -260,10 +260,10 @@ MonoBehaviour:
   - index: 23
     factoryToUnlockId: Nuclear
     unlockType: Unlock
-    value: 0
+    value: 1200000000000
     valuePerSecond: 0
-    factory1Id: dam
-    factory1Level: 5
+    factory1Id: 
+    factory1Level: 0
     factory2Id: 
     factory2Level: 0
     factory3Id: 

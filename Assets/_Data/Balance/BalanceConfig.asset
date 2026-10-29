@@ -29,4 +29,29 @@ MonoBehaviour:
   factoriesReferencer: {fileID: 11400000, guid: 2fd964c370715454382a6e3918508612, type: 2}
   unlockingFactoriesData: {fileID: 11400000, guid: 4dc0b6769d9745e4aa31679f343186a4, type: 2}
   progressionLevelsData: {fileID: 11400000, guid: f3e1476c42f16114d94c94452219aab2, type: 2}
-  lastReport: 
+  lastReport: "Factory       unlock at  base cost          base output     x/level 
+    max\r\nhand-crank    0m00s      20                 2               1.1      100\r\nmicroPV      
+    0m20s      1,400              93              1.15     100\r\nbike          0m33s     
+    2,200              39              1.15     100\r\ndiesel        0m53s      8,600             
+    360             1.15     100\r\nSolarPanel    1m27s      34,000             1,100          
+    1.15     100\r\nWind          2m22s      180,000            4,900           1.15    
+    75\r\nCoal          3m52s      990,000            21,000          1.15     70\r\ngeothermal   
+    6m20s      7,400,000          120,000         1.15     60\r\ngas           10m20s    
+    62,000,000         860,000         1.15     50\r\nsolar-array   16m52s     690,000,000       
+    7,700,000       1.15     35\r\ndam           27m33s     8,300,000,000      74,000,000     
+    1.15     25\r\nNuclear       45m00s     100,000,000,000    710,000,000     1.15    
+    20\r\n\r\nSimulated 1h50m, 286 purchase moments, last purchase at 1h04m\r\n\r\nFactory             
+    unlock     first buy  final lvl\r\nHand Crank           0m00s      0m03s     
+    100\r\nMicro PV             0m20s      0m36s      100\r\nBike generator      
+    0m33s      0m50s      100\r\nDiesel Generator     0m53s      1m22s      100\r\nSolar
+    Panel          1m27s      1m59s      100\r\nWind Turbine         2m22s      2m55s     
+    75\r\nCoal                 3m50s      4m20s      70\r\nGeothermal           6m18s     
+    6m42s      60\r\nGas                  10m16s     10m40s     50\r\nSolar Array         
+    16m46s     17m08s     35\r\nDam                  27m29s     28m02s     25\r\nNuclear             
+    44m53s     44m59s     20\r\n\r\nTier                 income/s       reached\r\nPhone               
+    200            0m56s\r\nFridge               1,000          1m32s\r\nCar                 
+    10,000         2m56s\r\nHome                 100,000        5m00s\r\nStreet              
+    1,000,000      8m51s\r\nCity                 20,000,000     17m09s\r\nCountry             
+    500,000,000    30m25s\r\nGlobe                10,000,000,000 52m41s\r\n\r\nLongest
+    wait between purchases\r\n  0-5 min    0m27s (from 3m53s)\r\n  5-30 min   0m52s
+    (from 27m10s)\r\n  30 min+    1m33s (from 1h00m)\r\n"
