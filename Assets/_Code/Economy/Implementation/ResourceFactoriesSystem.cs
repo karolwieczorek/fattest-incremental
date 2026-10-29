@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using FattestInc.Economy.API;
 using FattestInc.Progression.API;
 using Hypnagogia.Utils;
@@ -12,48 +12,50 @@ namespace FattestInc.Economy.Implementation {
         [HInject] ResourceFactoriesHelper resourceFactoriesHelper;
         [HInject] UnlockingHelper unlockingHelper;
 
+        // Factories not yet unlocked. Unlocking is permanent, so once this is empty the refresh is free.
+        readonly List<IFactoryData> lockedFactories = new();
+
         protected override void SystemStart() {
+            lockedFactories.AddRange(factoriesReferencer.Factories);
             UnlockOrShowFactoryIfApplicable();
             economyDataStore.FactoryUpgradedEvent += UnlockOrShowFactoryIfApplicable;
-            economyDataStore.CurrentTotalAmount.Changed += UnlockOrShowFactoryIfApplicable;
+            economyDataStore.TotalEarned.Changed += UnlockOrShowFactoryIfApplicable;
+            economyDataStore.CurrentAmountPerSecond.Changed += UnlockOrShowFactoryIfApplicable;
         }
 
         protected override void SystemStop() {
             economyDataStore.FactoryUpgradedEvent -= UnlockOrShowFactoryIfApplicable;
-            economyDataStore.CurrentTotalAmount.Changed -= UnlockOrShowFactoryIfApplicable;
+            economyDataStore.TotalEarned.Changed -= UnlockOrShowFactoryIfApplicable;
+            economyDataStore.CurrentAmountPerSecond.Changed -= UnlockOrShowFactoryIfApplicable;
         }
 
         void UnlockOrShowFactoryIfApplicable() {
-            Debug.Log("Refresh unlocking");
-            var factoriesCopy = factoriesReferencer.Factories.ToList();
-            foreach (var factory in factoriesCopy) {
-                if (economyDataStore.ResourceFactories.ContainsKey(factory.FactoryId) == false) {
-                    // Debug.LogWarning($"Factory {factory.FactoryId} not yet created. Continue");
+            for (var i = lockedFactories.Count - 1; i >= 0; i--) {
+                var factoryId = lockedFactories[i].FactoryId;
+                // Runtime factories are created by their views; check again on the next refresh.
+                if (economyDataStore.ResourceFactories.ContainsKey(factoryId) == false)
+                    continue;
+
+                var isFactoryUnlocked = economyDataStore.IsFactoryUnlocked(factoryId, out var factoryLevel);
+                if (isFactoryUnlocked) {
+                    lockedFactories.RemoveAt(i);
                     continue;
                 }
-
-                // Debug.Log($"{factory.FactoryId}");
-                var isFactoryUnlocked = economyDataStore.IsFactoryUnlocked(factory.FactoryId, out var factoryLevel);
-                if (isFactoryUnlocked)
-                    continue;
 
                 if (factoryLevel > 0) {
-                    economyDataStore.MakeSureFactoryUnlocked(factory.FactoryId);
+                    economyDataStore.MakeSureFactoryUnlocked(factoryId);
+                    lockedFactories.RemoveAt(i);
                     continue;
                 }
 
-                if (unlockingHelper.CanBeUnlocked(factory.FactoryId)) {
-                    economyDataStore.UnlockFactory(factory.FactoryId);
+                if (unlockingHelper.CanBeUnlocked(factoryId)) {
+                    economyDataStore.UnlockFactory(factoryId);
+                    lockedFactories.RemoveAt(i);
                     continue;
                 }
 
-                // if (economyDataStore.IsFactoryShown(factory.FactoryId)) {
-                //     
-                //     continue;
-                // }
-
-                if (unlockingHelper.CanBeShown(factory.FactoryId))
-                    economyDataStore.ShowFactory(factory.FactoryId);
+                if (economyDataStore.IsFactoryShown(factoryId) == false && unlockingHelper.CanBeShown(factoryId))
+                    economyDataStore.ShowFactory(factoryId);
             }
         }
 

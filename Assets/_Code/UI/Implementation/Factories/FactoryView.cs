@@ -138,8 +138,11 @@ namespace FattestInc.UI.Implementation.Factories {
             // factory type idle 
             idleContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Idle);
             clickerContainer.gameObject.SetActive(factoryLevelsData.FactoryType == FactoryType.Clicker);
-            if (economyDataStore != null)
+            if (economyDataStore != null) {
+                // OnEnable may already have subscribed; avoid refreshing twice per change.
+                economyDataStore.CurrentTotalAmount.Changed -= Refresh;
                 economyDataStore.CurrentTotalAmount.Changed += Refresh;
+            }
             // idle state
             // factory type clicker 
             // clicker state

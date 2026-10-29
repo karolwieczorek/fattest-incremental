@@ -13,7 +13,6 @@ namespace FattestInc.UI.Implementation.Factories {
 
         [HInject] DiContainer container;
         [HInject] FactoriesReferencer factoriesReferencer;
-        [HInject] EconomyDataStore economyDataStore;
         [HInject] UnlockingHelper unlockingHelper;
 
         readonly List<FactoryView> factoryViews = new();
@@ -28,24 +27,7 @@ namespace FattestInc.UI.Implementation.Factories {
                 factoryViews.Add(factoryView);
             }
             
-            Refresh();
-        }
-
-        void OnEnable() {
-            economyDataStore.FactoryUpgradedEvent += OnFactoryUpgraded;
-            economyDataStore.CurrentTotalAmount.ChangedValue += OnTotalAmountChanged;
-        }
-
-        void OnDisable() {
-            economyDataStore.FactoryUpgradedEvent -= OnFactoryUpgraded;
-            economyDataStore.CurrentTotalAmount.ChangedValue -= OnTotalAmountChanged;
-        }
-
-        void OnFactoryUpgraded() {
-            Refresh();
-        }
-
-        void OnTotalAmountChanged(ulong value) {
+            // After this, each FactoryView follows its own factory's State changes.
             Refresh();
         }
 
