@@ -1,4 +1,3 @@
-using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -27,52 +26,38 @@ namespace FattestInc.Economy.API {
         public FactoryType FactoryType => factoryType;
         public int StartingLevel => startingLevel;
 
-        public ulong GetCostForNextLevel(int factoryLevel) {
-            var targetLevel = factoryLevel + 1;
-            return GetCostForLevel(targetLevel);
+        public ulong GetCostForNextLevel(int factoryLevel) => GetCostForLevel(factoryLevel + 1);
+        public ulong GetCostForLevel(int factoryLevel) => FormulaFactory.GetCost(baseCost, costMultiplier, factoryLevel);
+        public ulong GetValueForLevel(int factoryLevel) => FormulaFactory.GetValue(baseOutput, linearOutputByLevel, factoryLevel);
+        public int GetDurationForLevel(int factoryLevel) => FormulaFactory.GetDuration(factoryType, durationSeconds, factoryLevel);
+        public bool IsLastLevel(int factoryLevel) => factoryLevel >= maxLevel;
+        public int GetLastLevel() => maxLevel;
+        public bool HasNextLevel(int factoryLevel) => factoryLevel < maxLevel;
+
+        public FormulaFactory ToFormula() {
+            return new FormulaFactory {
+                factoryId = factoryId,
+                factoryName = factoryName,
+                factoryType = factoryType,
+                startingLevel = startingLevel,
+                maxLevel = maxLevel,
+                baseCost = baseCost,
+                costMultiplier = costMultiplier,
+                baseOutput = baseOutput,
+                linearOutputByLevel = linearOutputByLevel,
+                durationSeconds = durationSeconds,
+            };
         }
 
-        public ulong GetCostForLevel(int factoryLevel) {
-            if (factoryLevel <= 0)
-                return 0;
-            // Cost at level N: baseCost * costMultiplier^(N-1)
-            double cost = baseCost * Math.Pow(costMultiplier, factoryLevel - 1);
-            return (ulong)Math.Ceiling(cost);
-        }
-
-        public ulong GetValueForLevel(int factoryLevel) {
-            if (factoryLevel <= 0)
-                return 0;
-
-            if (linearOutputByLevel) {
-                // Output scales linearly with level
-                return (ulong)(baseOutput * (ulong)factoryLevel);
-            }
-
-            // Fallback to base output only
-            return baseOutput;
-        }
-
-        public int GetDurationForLevel(int factoryLevel) {
-            if (factoryLevel <= 0)
-                return 0;
-
-            if (factoryType == FactoryType.Clicker)
-                return 0; // Clickers are instant (handled separately)
-
-            return durationSeconds;
-        }
-
-        public bool IsLastLevel(int factoryLevel) {
-            return factoryLevel >= maxLevel;
-        }
-
-        public int GetLastLevel() {
-            return maxLevel;
-        }
-
-        public bool HasNextLevel(int factoryLevel) {
-            return factoryLevel < maxLevel;
+        // Used by the balance tool. Identity fields (id, name, icon, type) are left alone.
+        public void ApplyFormula(FormulaFactory formula) {
+            startingLevel = formula.startingLevel;
+            maxLevel = formula.maxLevel;
+            baseCost = formula.baseCost;
+            costMultiplier = formula.costMultiplier;
+            baseOutput = formula.baseOutput;
+            linearOutputByLevel = formula.linearOutputByLevel;
+            durationSeconds = formula.durationSeconds;
         }
     }
-} 
+}
