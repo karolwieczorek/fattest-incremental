@@ -51,7 +51,7 @@ namespace FattestInc.Tests
                 .Returns((int level) => level >= maxLevel);
             factoryDataMock
                 .Setup(f => f.GetLastLevel())
-                .Returns(() => 100);
+                .Returns(maxLevel);
             
             BuyMultipleHelper.GetAmountOrLessForMultiBuyForANumber(HasEnoughMoney, factoryDataMock.Object, levelStart, levelsToBuy, out var amount, out var price);
             Assert.AreEqual(expectedLevel, amount, message: "Level:");
