@@ -23,4 +23,4 @@ MonoBehaviour:
     description: Max out every generator.
     icon: {fileID: 21300000, guid: e0812cdbf77b72e49834343c253b75da, type: 3}
     condition: 1
-  toastPrefab: {fileID: 0}
+  toastPrefab: {fileID: 3981223240951369065, guid: 60628996e981c824b9d52cc208a76144, type: 3}
