@@ -29,6 +29,12 @@ namespace FattestInc.UI.Implementation.Factories {
         [SerializeField] FactoryUpgradeButtonView factoryUpgradeButtonView;
         [SerializeField] GameObject unlockedState; 
         [SerializeField] FactoryShowedStateView factoryShowedStateView;
+        [Tooltip("Colour of the values shown while hovering the buy button (what you get after buying).")]
+        [SerializeField] Color previewColor = new(0.22745098f, 0.9137255f, 0f, 1f);
+
+        // Cached on first Refresh, before any preview colour is applied.
+        Color? valueLabelColor;
+        Color? clickerButtonLabelColor;
 
         ResourceFactory factory;
         ResourceFactory Factory {
@@ -151,7 +157,8 @@ namespace FattestInc.UI.Implementation.Factories {
 
         void Refresh() {
             var hasNextLevel = factoryLevelsData.HasNextLevel(Factory.Level);
-            if (factoryUpgradeButtonView.IsHovered && hasNextLevel) {
+            var isPreview = factoryUpgradeButtonView.IsHovered && hasNextLevel;
+            if (isPreview) {
                 buyMultipleHelper.GetAmountForMultiBuy(factoryLevelsData, Factory.Level, out var amount, out var price);
                 valueLabel.text = NumbersFormattingUtil.FormatNumber(factoryLevelsData.GetValueForLevel(Factory.Level + amount));
                 clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(Factory.Level + amount)}";
@@ -162,6 +169,12 @@ namespace FattestInc.UI.Implementation.Factories {
                 clickerButtonLabel.text = $"+{factoryLevelsData.GetValueForLevel(Factory.Level)}";
                 factoryIconView.SetAmount(Factory.Level);
             }
+            // Values after the purchase are shown in the preview colour so they don't read as current values.
+            valueLabelColor ??= valueLabel.color;
+            clickerButtonLabelColor ??= clickerButtonLabel.color;
+            valueLabel.color = isPreview ? previewColor : valueLabelColor.Value;
+            clickerButtonLabel.color = isPreview ? previewColor : clickerButtonLabelColor.Value;
+            factoryIconView.SetPreview(isPreview, previewColor);
 
             if (!hasNextLevel) {
                 factoryUpgradeButtonView.ApplyMax();

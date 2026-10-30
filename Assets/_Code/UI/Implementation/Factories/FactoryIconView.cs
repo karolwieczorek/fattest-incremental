@@ -9,6 +9,14 @@ namespace FattestInc.UI.Implementation.Factories {
         [SerializeField] TMP_Text amountLabel;
         [SerializeField] Vector2 rebuildSizeDelta;
 
+        // Cached on first use (Awake doesn't run while a parent is inactive).
+        Color? amountColor;
+
+        public void SetPreview(bool isPreview, Color previewColor) {
+            amountColor ??= amountLabel.color;
+            amountLabel.color = isPreview ? previewColor : amountColor.Value;
+        }
+
         public void SetIcon(Sprite icon) {
             factoryIcon.sprite = icon;
         }
