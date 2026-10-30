@@ -32,8 +32,12 @@ namespace FattestInc.UI.Implementation.Factories {
         [Tooltip("Colour of the values shown while hovering the buy button (what you get after buying).")]
         [SerializeField] Color previewColor = new(0.22745098f, 0.9137255f, 0f, 1f);
 
+        [Tooltip("Optional separate '+' in front of the value, coloured together with it.")]
+        [SerializeField] TMP_Text valuePrefixLabel;
+
         // Cached on first Refresh, before any preview colour is applied.
         Color? valueLabelColor;
+        Color? valuePrefixLabelColor;
         Color? clickerButtonLabelColor;
 
         ResourceFactory factory;
@@ -174,6 +178,10 @@ namespace FattestInc.UI.Implementation.Factories {
             clickerButtonLabelColor ??= clickerButtonLabel.color;
             valueLabel.color = isPreview ? previewColor : valueLabelColor.Value;
             clickerButtonLabel.color = isPreview ? previewColor : clickerButtonLabelColor.Value;
+            if (valuePrefixLabel != null) {
+                valuePrefixLabelColor ??= valuePrefixLabel.color;
+                valuePrefixLabel.color = isPreview ? previewColor : valuePrefixLabelColor.Value;
+            }
             factoryIconView.SetPreview(isPreview, previewColor);
 
             if (!hasNextLevel) {

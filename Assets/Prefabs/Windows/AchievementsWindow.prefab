@@ -606,7 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 6773065677425406612}
-  targetWindow: {fileID: 0}
+  targetWindow: {fileID: 8003872576984140531}
 --- !u!114 &5476816233209351559
 MonoBehaviour:
   m_ObjectHideFlags: 0
