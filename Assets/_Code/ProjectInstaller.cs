@@ -1,3 +1,4 @@
+using FattestInc.Achievements.API;
 using FattestInc.Audio;
 using FattestInc.Economy.API;
 using FattestInc.Windows.General;
@@ -13,7 +14,8 @@ namespace FattestInc {
                 typeof(UIDataStore),
                 typeof(EconomyDataStore),
                 typeof(AudioSettingsDataStore),
-                typeof(BuyMultipleDataStore)
+                typeof(BuyMultipleDataStore),
+                typeof(AchievementsDataStore)
                 
                 );
             

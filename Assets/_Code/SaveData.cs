@@ -7,6 +7,14 @@ namespace FattestInc {
         public ulong currencyAmount;
         public ulong totalEarned;
         public List<FactoryLevelEntry> factoryLevels = new();
+        public List<AchievementEntry> achievements = new();
+
+        [Serializable]
+        public class AchievementEntry {
+            public string id;
+            // Unix seconds, UTC.
+            public long unlockTime;
+        }
 
         [Serializable]
         public class FactoryLevelEntry {

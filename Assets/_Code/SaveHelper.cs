@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FattestInc.Achievements.API;
 using FattestInc.Economy.API;
 using Hypnagogia.Utils;
 using JetBrains.Annotations;
@@ -11,6 +12,7 @@ namespace FattestInc {
     public class SaveHelper {
         [HInject] EconomyDataStore economyDataStore;
         [HInject] FactoriesReferencer factoriesReferencer;
+        [HInject] AchievementsDataStore achievementsDataStore;
         
         public void SaveGame(bool silentMode = false) {
             var saveData = GetSaveData();
@@ -28,6 +30,8 @@ namespace FattestInc {
             foreach (var factory in economyDataStore.ResourceFactories) {
                 saveData.SetFactoryLevel(factory.Key, factory.Value.Level);
             }
+            foreach (var (id, unlockTime) in achievementsDataStore.Unlocked)
+                saveData.achievements.Add(new SaveData.AchievementEntry { id = id, unlockTime = unlockTime });
 
             return saveData;
         }
@@ -62,6 +66,12 @@ namespace FattestInc {
                 }
 
                 economyDataStore.LoadFactory(factoryData, factoryLevel.level);
+            }
+
+            achievementsDataStore.Clear();
+            if (saveData.achievements != null) {
+                foreach (var achievement in saveData.achievements)
+                    achievementsDataStore.Load(achievement.id, achievement.unlockTime);
             }
 
             // Debug.Log($"LoadedData: {JsonUtility.ToJson(saveData)}");

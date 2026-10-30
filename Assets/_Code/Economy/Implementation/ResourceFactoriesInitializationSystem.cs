@@ -1,4 +1,5 @@
-﻿using FattestInc.Economy.API;
+﻿using FattestInc.Achievements.API;
+using FattestInc.Economy.API;
 using Hypnagogia.Utils;
 using UnityEngine;
 
@@ -8,10 +9,12 @@ namespace FattestInc.Economy.Implementation {
         [HInject] EconomyReferencer economyReferencer;
         [HInject] FactoriesReferencer factoriesReferencer;
         [HInject] SaveHelper saveHelper;
+        [HInject] AchievementsDataStore achievementsDataStore;
 
         protected override void SystemStart() {
             base.SystemStart();
             economyDataStore.Clear();
+            achievementsDataStore.Clear();
             var gameLoaded = saveHelper.TryLoadGame();
             if (!gameLoaded) {
                 CreateFreshFactoriesState();

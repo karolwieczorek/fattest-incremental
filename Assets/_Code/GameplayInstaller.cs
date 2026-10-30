@@ -1,4 +1,5 @@
-﻿using FattestInc.Economy.API;
+﻿using FattestInc.Achievements.Implementation;
+using FattestInc.Economy.API;
 using FattestInc.Economy.Implementation;
 using FattestInc.Progression.API;
 using Hypnagogia.Utils;
@@ -11,7 +12,9 @@ namespace FattestInc {
                 typeof(ResourceFactoriesSystem),
                 typeof(EconomySystem),
                 typeof(SaveSystem),
-                typeof(ChangelogGateSystem)
+                typeof(ChangelogGateSystem),
+                typeof(AchievementsSystem),
+                typeof(AchievementToastSystem)
                 );
             Container.BindInterfacesAndSelfTo<ResourceFactoriesHelper>().AsSingle();
             Container.BindInterfacesAndSelfTo<UnlockingHelper>().AsSingle();
