@@ -4,4 +4,6 @@
 • full game re-balance: new factories unlock steadily for about 45 minutes
 • locked factories show how much energy you need to earn to unlock them
 • progression goals re-spaced to match the new pace
+• achievements: "Game Complete" and "You Bought It All", listed in the menu
+• hovering a buy button shows the values after buying in green
 • reset save games from previous version 

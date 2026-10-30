@@ -63,7 +63,27 @@ Work through them top to bottom, ticking them off.
 - [ ] **Build.** Build WebGL and upload to itch.io (Editor menu, `ItchUploader`).
 - [ ] **PR.** `main` is far behind; this branch contains `develop`'s history. Open the PR into `develop`, not `main`.
 
-## 6. Unrelated things noticed
+## 6. Achievements and buy preview (added after the play-test)
+
+Two achievements live in `Assets/_Data/Referencers/AchievementsReferencer.asset`: Game Complete (income reaches the
+Globe tier) and You Bought It All (every factory maxed). They're listed in Menu → Achievements, and a toast
+(`Assets/Prefabs/AchievementToast.prefab`) slides in bottom-right when one unlocks.
+
+- [ ] **Texts and icons.** I chose the titles, descriptions and icons (the Globe tier sprite and the Nuclear factory icon); review them.
+  Never rename an achievement `id` once released, because saves store it.
+- [ ] **Restart Game wipes achievements.** They're stored in the save, so Menu → Restart Game deletes them too. Should they
+  survive a restart (separate storage) or reset with the run?
+- [ ] **Sound.** The toast has no sound. Add an SFX if you want one (the AudioSystem needs a clip).
+- [ ] **Menu button size.** The Changelog/Achievements buttons are split in half and the text auto-shrinks. Consider a
+  bigger layout.
+- [ ] **Preview when you can't afford it.** The green buy preview only shows when the button is clickable
+  (`FactoryUpgradeButtonView.IsHovered` requires `interactable`). Should it also preview levels you can't afford yet?
+- [ ] **Version.** If 0.3.0 isn't released yet, the achievements ship with it (they're already in its changelog draft);
+  otherwise bump the version and move those lines to a new changelog file.
+- [ ] **`ProjectSettings/Packages/com.unity.pipeline/EditorPipelineConfig.json`** was created by the Unity CLI's
+  Run In Background toggle (it is back to its defaults). Commit it or add it to `.gitignore`.
+
+## 7. Unrelated things noticed
 
 - [ ] **URP warning.** `DualKawaseBlurWebGlRenderPass` logs a warning every frame in play mode (no `RecordRenderGraph`
   implementation, so the blur does nothing under Render Graph). It was there before this work.
